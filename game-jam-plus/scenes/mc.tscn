@@ -8,17 +8,19 @@
 [ext_resource type="Resource" uid="uid://bfmelgio6beqp" path="res://dialogues/test.dialogue" id="6_3ylss"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ungyi"]
-size = Vector2(123, 122)
+size = Vector2(54, 46)
 
 [node name="mc" type="CharacterBody2D" unique_id=1775706242]
 motion_mode = 1
 script = ExtResource("1_i6vl1")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1496478930]
+position = Vector2(0.9999981, 1.9073486e-06)
+scale = Vector2(0.578125, 0.578125)
 texture = ExtResource("2_a6s5m")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=882635758]
-position = Vector2(-0.5, -1)
+position = Vector2(0, 2)
 shape = SubResource("RectangleShape2D_ungyi")
 
 [node name="Dialogue" type="Node2D" parent="." unique_id=919208436]

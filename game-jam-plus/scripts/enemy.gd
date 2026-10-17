@@ -1,16 +1,16 @@
 extends CharacterBody2D
 
 var types = {
-	"wolf": [15, 2, 25, 50],
-	"goblin": [15, 2, 25, 50],
-	"skeleton": [15, 2, 25, 50]
+	"wolf": [15, 2, 25, 100.0],
+	"goblin": [15, 2, 25, 100.0],
+	"skeleton": [15, 2, 25, 100.0]
 }
 @export var type: String = "wolf"
 var life: int
 var DAMAGE: int
 var SPEED: int
-@export var radius_limit : float = 100.0
-@export var detection_radius : float = 200.0
+@export var radius_limit : float
+@export var detection_radius : float
 
 var INITIAL_POSITION : Vector2
 var distance : float
@@ -23,10 +23,12 @@ enum State {WANDER, ATTACK}
 var cur_state: State = State.WANDER
 
 func _ready() -> void:
-	var stats = types.get(type, [15, 2, 25, 50])
+	var stats = types.get(type, [15, 2, 25, 100.0])
 	life = stats[0]
 	DAMAGE = stats[1]
 	SPEED = stats[2]
+	radius_limit = stats[3]
+	detection_radius = radius_limit*2
 	INITIAL_POSITION = global_position
 	
 	if has_node("Timer"):

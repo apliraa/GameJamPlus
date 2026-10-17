@@ -1,6 +1,15 @@
 [gd_scene format=3 uid="uid://bsxg4awkj6s12"]
 
 [ext_resource type="Script" uid="uid://c6eqijwlb62bh" path="res://scripts/enemy.gd" id="1_3gvst"]
+[ext_resource type="Texture2D" uid="uid://v5cu1276vqab" path="res://assets/icon.svg" id="2_55jtl"]
 
-[node name="Enemy" type="Node2D" unique_id=364852976]
+[sub_resource type="CircleShape2D" id="CircleShape2D_klwtp"]
+
+[node name="Enemy" type="CharacterBody2D" unique_id=1350644445]
 script = ExtResource("1_3gvst")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=670228505]
+shape = SubResource("CircleShape2D_klwtp")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=2047224396]
+texture = ExtResource("2_55jtl")

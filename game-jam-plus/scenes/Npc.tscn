@@ -4,21 +4,32 @@
 [ext_resource type="Texture2D" uid="uid://v5cu1276vqab" path="res://assets/icon.svg" id="2_bq5aw"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ev4kj"]
+size = Vector2(104, 103)
 
-[node name="Npc" type="CharacterBody2D" unique_id=523486800]
-process_mode = 3
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_tl5bo"]
+size = Vector2(112, 110)
+
+[node name="Npc" type="CharacterBody2D" unique_id=523486800 node_paths=PackedStringArray("Point")]
 script = ExtResource("1_7fv6s")
 radius_limit = 200.0
 timer = 4.0
+Point = NodePath("HitArea")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1562784947]
-position = Vector2(245, 134)
 texture = ExtResource("2_bq5aw")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1345548107]
+position = Vector2(0, -2.5)
 shape = SubResource("RectangleShape2D_ev4kj")
 
 [node name="Timer" type="Timer" parent="." unique_id=620563410]
 autostart = true
 
+[node name="HitArea" type="Area2D" parent="." unique_id=1146211391]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitArea" unique_id=34127745]
+position = Vector2(-1, -2)
+shape = SubResource("RectangleShape2D_tl5bo")
+
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+[connection signal="body_entered" from="HitArea" to="." method="_on_hit_area_body_entered"]

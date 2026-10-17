@@ -36,8 +36,7 @@ func _on_timer_timeout() -> void:
 	
 	if(prob < 0.55):
 		var angle = randf_range(0.0, TAU)
-		var lenght = randf_range(0.2, 1.0)
-		DIRECTION = (Vector2.from_angle(angle) * lenght).normalized()
+		DIRECTION = (Vector2.from_angle(angle)).normalized()
 	else:
 		DIRECTION = Vector2.ZERO
 	

@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://brnwmy3ij5rld"]
 
-[ext_resource type="Script" uid="uid://dfih1ib8pdavr" path="res://scenes/npc.gd" id="1_7fv6s"]
+[ext_resource type="Script" uid="uid://dfih1ib8pdavr" path="res://scripts/npc.gd" id="1_7fv6s"]
 [ext_resource type="Texture2D" uid="uid://v5cu1276vqab" path="res://assets/icon.svg" id="2_bq5aw"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ev4kj"]
@@ -9,7 +9,7 @@
 process_mode = 3
 script = ExtResource("1_7fv6s")
 radius_limit = 200.0
-timer = 2.0
+timer = 4.0
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1562784947]
 position = Vector2(245, 134)

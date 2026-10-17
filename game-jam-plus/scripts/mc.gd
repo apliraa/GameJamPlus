@@ -9,8 +9,7 @@ const ACC = 20.0
 var distanciaMouse
 
 func _physics_process(delta: float) -> void:
-	
-	
+	Globals.player_pos = global_position
 	
 	if(Input.is_action_just_pressed("left_click")):
 		mouseDirection = get_global_mouse_position() 

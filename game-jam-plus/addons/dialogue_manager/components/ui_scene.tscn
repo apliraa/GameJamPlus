@@ -1,19 +1,19 @@
 [gd_scene format=3 uid="uid://csu5i0d235td7"]
 
-[ext_resource type="PackedScene" uid="uid://da1atgsbu7dtv" path="res://scenes/ui/hud.tscn" id="1_ekcqj"]
-[ext_resource type="PackedScene" uid="uid://7o2plo56qevd" path="res://scenes/ui/hp_bar_value.tscn" id="2_2bhp0"]
-[ext_resource type="Texture2D" uid="uid://b4aogi0y4s2tf" path="res://assets/audios/icon.svg" id="3_aydlw"]
-[ext_resource type="Script" uid="uid://blv5ffueggafa" path="res://scripts/ui/character_dialogue.gd" id="4_ec4mc"]
-[ext_resource type="Script" uid="uid://bl24wyvtoeawn" path="res://scripts/speech_anchor.gd" id="5_avbjy"]
-[ext_resource type="PackedScene" uid="uid://rbonvwrh7gbn" path="res://scenes/SpeechBalloon.tscn" id="6_1a36h"]
-[ext_resource type="Resource" uid="uid://bfmelgio6beqp" path="res://dialogues/test.dialogue" id="7_56jlq"]
+[ext_resource type="PackedScene" uid="uid://da1atgsbu7dtv" path="res://scenes/ui/hud.tscn" id="1_f35ww"]
+[ext_resource type="PackedScene" uid="uid://7o2plo56qevd" path="res://scenes/ui/hp_bar_value.tscn" id="2_e7qjq"]
+[ext_resource type="Texture2D" uid="uid://b4aogi0y4s2tf" path="res://assets/audios/icon.svg" id="3_ep6cc"]
+[ext_resource type="Script" uid="uid://blv5ffueggafa" path="res://scripts/ui/character_dialogue.gd" id="4_731w5"]
+[ext_resource type="Script" uid="uid://bl24wyvtoeawn" path="res://scripts/speech_anchor.gd" id="5_a1x5q"]
+[ext_resource type="PackedScene" uid="uid://rbonvwrh7gbn" path="res://scenes/SpeechBalloon.tscn" id="6_y5smt"]
+[ext_resource type="Resource" uid="uid://bfmelgio6beqp" path="res://dialogues/test.dialogue" id="7_3skvq"]
 
 [node name="Node2D" type="Node2D" unique_id=1937043519]
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=248334728]
 anchor_mode = 0
 
-[node name="Fake chat" parent="." unique_id=66097488 instance=ExtResource("1_ekcqj")]
+[node name="Fake chat" parent="." unique_id=66097488 instance=ExtResource("1_f35ww")]
 anchors_preset = 15
 anchor_top = 0.0
 anchor_right = 1.0
@@ -30,19 +30,19 @@ grow_vertical = 2
 
 [node name="CanvasLayer" type="CanvasLayer" parent="HUD" unique_id=2127473872]
 
-[node name="Hp Bar Value" parent="HUD/CanvasLayer" unique_id=832068778 instance=ExtResource("2_2bhp0")]
+[node name="Hp Bar Value" parent="HUD/CanvasLayer" unique_id=832068778 instance=ExtResource("2_e7qjq")]
 
 [node name="Character" type="Node2D" parent="." unique_id=733036571]
 position = Vector2(891, 221)
 
 [node name="Sprite2D" type="Sprite2D" parent="Character" unique_id=1396647215]
-texture = ExtResource("3_aydlw")
+texture = ExtResource("3_ep6cc")
 
 [node name="Dialogue" type="Node2D" parent="Character" unique_id=1174920403]
-script = ExtResource("4_ec4mc")
+script = ExtResource("4_731w5")
 
 [node name="SpeechAnchor" type="Marker2D" parent="Character/Dialogue" unique_id=496881512]
 position = Vector2(1, -85)
-script = ExtResource("5_avbjy")
-balloon_scene = ExtResource("6_1a36h")
-default_dialogue = ExtResource("7_56jlq")
+script = ExtResource("5_a1x5q")
+balloon_scene = ExtResource("6_y5smt")
+default_dialogue = ExtResource("7_3skvq")

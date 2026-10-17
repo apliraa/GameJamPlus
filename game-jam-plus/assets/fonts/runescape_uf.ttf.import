@@ -3,12 +3,12 @@
 importer="font_data_dynamic"
 type="FontFile"
 uid="uid://dldoaqsjq31cp"
-path="res://.godot/imported/runescape_uf.ttf-139d7a54aa3e3304df17e9159bb68246.fontdata"
+path="res://.godot/imported/runescape_uf.ttf-167363835d6f38b2f06a3b2f4159d08a.fontdata"
 
 [deps]
 
-source_file="res://ui/fonts/runescape_uf.ttf"
-dest_files=["res://.godot/imported/runescape_uf.ttf-139d7a54aa3e3304df17e9159bb68246.fontdata"]
+source_file="res://assets/fonts/runescape_uf.ttf"
+dest_files=["res://.godot/imported/runescape_uf.ttf-167363835d6f38b2f06a3b2f4159d08a.fontdata"]
 
 [params]
 

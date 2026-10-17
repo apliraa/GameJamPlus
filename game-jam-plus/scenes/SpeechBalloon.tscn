@@ -1,8 +1,8 @@
 [gd_scene format=3 uid="uid://rbonvwrh7gbn"]
 
-[ext_resource type="StyleBox" uid="uid://exudty2wceh1" path="res://ui/fonts/box_shadow.tres" id="1_6cddt"]
-[ext_resource type="Script" uid="uid://cstpambecmmxn" path="res://dialogue/scripts/speech_balloon.gd" id="1_balloon"]
-[ext_resource type="FontFile" uid="uid://dldoaqsjq31cp" path="res://ui/fonts/runescape_uf.ttf" id="3_8a2cn"]
+[ext_resource type="StyleBox" uid="uid://exudty2wceh1" path="res://assets/fonts/box_shadow.tres" id="1_6cddt"]
+[ext_resource type="Script" uid="uid://cstpambecmmxn" path="res://scripts/speech_balloon.gd" id="1_balloon"]
+[ext_resource type="FontFile" uid="uid://dldoaqsjq31cp" path="res://assets/fonts/runescape_uf.ttf" id="3_8a2cn"]
 
 [sub_resource type="Theme" id="Theme_ni31j"]
 default_font = ExtResource("3_8a2cn")

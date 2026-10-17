@@ -1,12 +1,12 @@
 [gd_scene format=3 uid="uid://csu5i0d235td7"]
 
-[ext_resource type="PackedScene" uid="uid://da1atgsbu7dtv" path="res://hud.tscn" id="1_ekcqj"]
-[ext_resource type="PackedScene" uid="uid://7o2plo56qevd" path="res://ui/hp_bar_value.tscn" id="2_2bhp0"]
-[ext_resource type="Texture2D" uid="uid://b4aogi0y4s2tf" path="res://ui/icon.svg" id="3_aydlw"]
-[ext_resource type="Script" uid="uid://blv5ffueggafa" path="res://ui/character_dialogue.gd" id="4_ec4mc"]
-[ext_resource type="Script" uid="uid://bl24wyvtoeawn" path="res://dialogue/scripts/speech_anchor.gd" id="5_avbjy"]
-[ext_resource type="PackedScene" uid="uid://rbonvwrh7gbn" path="res://dialogue/scripts/SpeechBalloon.tscn" id="6_1a36h"]
-[ext_resource type="Resource" uid="uid://bfmelgio6beqp" path="res://dialogue/test.dialogue" id="7_56jlq"]
+[ext_resource type="PackedScene" uid="uid://da1atgsbu7dtv" path="res://scenes/ui/hud.tscn" id="1_ekcqj"]
+[ext_resource type="PackedScene" uid="uid://7o2plo56qevd" path="res://scenes/ui/hp_bar_value.tscn" id="2_2bhp0"]
+[ext_resource type="Texture2D" uid="uid://b4aogi0y4s2tf" path="res://assets/audios/icon.svg" id="3_aydlw"]
+[ext_resource type="Script" uid="uid://blv5ffueggafa" path="res://scripts/ui/character_dialogue.gd" id="4_ec4mc"]
+[ext_resource type="Script" uid="uid://bl24wyvtoeawn" path="res://scripts/speech_anchor.gd" id="5_avbjy"]
+[ext_resource type="PackedScene" uid="uid://rbonvwrh7gbn" path="res://scenes/SpeechBalloon.tscn" id="6_1a36h"]
+[ext_resource type="Resource" uid="uid://bfmelgio6beqp" path="res://dialogues/test.dialogue" id="7_56jlq"]
 
 [node name="Node2D" type="Node2D" unique_id=1937043519]
 

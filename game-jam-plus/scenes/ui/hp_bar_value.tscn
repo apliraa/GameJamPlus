@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://7o2plo56qevd"]
 
-[ext_resource type="FontFile" uid="uid://dldoaqsjq31cp" path="res://ui/fonts/runescape_uf.ttf" id="1_wygta"]
+[ext_resource type="FontFile" uid="uid://dldoaqsjq31cp" path="res://assets/fonts/runescape_uf.ttf" id="1_wygta"]
 
 [sub_resource type="Theme" id="Theme_alrc6"]
 default_font = ExtResource("1_wygta")

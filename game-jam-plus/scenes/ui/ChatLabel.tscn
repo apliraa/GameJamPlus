@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://dj1rwqbuollp8"]
 
-[ext_resource type="FontFile" uid="uid://dldoaqsjq31cp" path="res://ui/fonts/runescape_uf.ttf" id="1_be86v"]
+[ext_resource type="FontFile" uid="uid://dldoaqsjq31cp" path="res://assets/fonts/runescape_uf.ttf" id="1_be86v"]
 [ext_resource type="Script" uid="uid://ctwb64ernkrka" path="res://scripts/ui/chat_label.gd" id="2_x4pfq"]
 
 [sub_resource type="Theme" id="Theme_alrc6"]

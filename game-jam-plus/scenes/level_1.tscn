@@ -6,15 +6,13 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ungyi"]
 size = Vector2(123, 122)
 
-[node name="Level1" type="Node2D" unique_id=1424139795]
-
-[node name="CharacterBody2D" type="CharacterBody2D" parent="." unique_id=1775706242]
+[node name="CharacterBody2D" type="CharacterBody2D" unique_id=1775706242]
 motion_mode = 1
 script = ExtResource("1_bswci")
 
-[node name="Sprite2D" type="Sprite2D" parent="CharacterBody2D" unique_id=1496478930]
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1496478930]
 texture = ExtResource("2_rus8k")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D" unique_id=882635758]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=882635758]
 position = Vector2(-0.5, -1)
 shape = SubResource("RectangleShape2D_ungyi")

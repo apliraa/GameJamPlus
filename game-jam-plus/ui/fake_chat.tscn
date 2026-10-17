@@ -1,0 +1,89 @@
+[gd_scene format=3 uid="uid://e8ho00vp8vek"]
+
+[ext_resource type="Script" uid="uid://bp7vg4xy6wpku" path="res://ui/fake_chat.gd" id="1_37p78"]
+[ext_resource type="PackedScene" uid="uid://dj1rwqbuollp8" path="res://scripts/ui/ChatLabel.tscn" id="2_64ctp"]
+
+[sub_resource type="Theme" id="Theme_64ctp"]
+
+[sub_resource type="Theme" id="Theme_1xsix"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_rftc2"]
+bg_color = Color(0.0666, 0.0666, 0.18, 0.6862745)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_a2258"]
+bg_color = Color(0.8156863, 0.8156863, 0.8156863, 0.77254903)
+
+[sub_resource type="Theme" id="Theme_37p78"]
+
+[node name="HUD" type="Control" unique_id=66097488]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 446.0
+offset_right = -893.0
+offset_bottom = -24.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = SubResource("Theme_64ctp")
+
+[node name="Chat" type="Control" parent="." unique_id=500590275 node_paths=PackedStringArray("scroll_container", "chat_container")]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("1_37p78")
+scroll_container = NodePath("ScrollContainer")
+chat_container = NodePath("ScrollContainer/VBoxContainer")
+chat_label_scene = ExtResource("2_64ctp")
+min_delay = 0.2
+online_count = 10
+usernames = Array[String](["Thorgar", "Lunaria", "xXSlayerXx", "HealzPlz", "NoobMaster69", "Elaria", "Grimbold", "Sir_Lagsalot", "DarkMage", "FarmingBot3000", "_SazukeGod_", "xXStormLordXx", "TheUnburden", "Leonardt", "StormHunter"])
+
+[node name="Background" type="Panel" parent="Chat" unique_id=1132683298]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 1.0224719
+grow_horizontal = 2
+grow_vertical = 2
+theme = SubResource("Theme_1xsix")
+theme_override_styles/panel = SubResource("StyleBoxFlat_rftc2")
+metadata/_edit_use_anchors_ = true
+
+[node name="Panel2" type="Panel" parent="Chat" unique_id=311358126]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 1.0224719
+anchor_right = 1.0
+anchor_bottom = 1.1256281
+offset_top = 141.10112
+offset_bottom = 141.1011
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_a2258")
+metadata/_edit_use_anchors_ = true
+
+[node name="ScrollContainer" type="ScrollContainer" parent="Chat" unique_id=192557332]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 9.0
+offset_top = 9.0
+offset_right = -8.0
+offset_bottom = -1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = SubResource("Theme_37p78")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Chat/ScrollContainer" unique_id=2003931931]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="Panel" type="Panel" parent="Chat" unique_id=2072122491]
+layout_mode = 0
+offset_left = 863.0
+offset_top = -333.0
+offset_right = 903.0
+offset_bottom = -293.0

@@ -1,0 +1,20 @@
+[gd_scene format=3 uid="uid://dj1rwqbuollp8"]
+
+[ext_resource type="FontFile" uid="uid://dldoaqsjq31cp" path="res://ui/fonts/runescape_uf.ttf" id="1_be86v"]
+[ext_resource type="Script" uid="uid://ctwb64ernkrka" path="res://scripts/ui/chat_label.gd" id="2_x4pfq"]
+
+[sub_resource type="Theme" id="Theme_alrc6"]
+default_font = ExtResource("1_be86v")
+
+[node name="ChatLabel" type="RichTextLabel" unique_id=606726733]
+offset_right = 300.0
+offset_bottom = 24.0
+size_flags_horizontal = 3
+theme = SubResource("Theme_alrc6")
+theme_override_font_sizes/normal_font_size = 14
+bbcode_enabled = true
+text = "I am god."
+fit_content = true
+scroll_active = false
+vertical_alignment = 1
+script = ExtResource("2_x4pfq")

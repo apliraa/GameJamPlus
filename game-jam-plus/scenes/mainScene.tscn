@@ -1,0 +1,11 @@
+[gd_scene format=3 uid="uid://i8dbthb5i2vq"]
+
+[ext_resource type="Script" uid="uid://b8mycqjbf6iwi" path="res://scenes/event_manager.gd" id="1_ki6c0"]
+
+[node name="main" type="Node" unique_id=417759079]
+
+[node name="event_manager" type="Node" parent="." unique_id=1170222806 node_paths=PackedStringArray("events")]
+script = ExtResource("1_ki6c0")
+maxDays = 7
+playersPerDay = Array[int]([50, 50, 48, 47, 0, 0, 0])
+events = [NodePath("")]

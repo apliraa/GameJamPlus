@@ -20,12 +20,26 @@ extends Control
 
 @export_group("Chat")
 @export var max_messages: int = 50
+## A message can't repeat until this many other messages have been posted.
+## Automatically capped so there is always at least one message to pick.
+@export var no_repeat_count: int = 5
+
+@export_group("Online Users")
+## How many players are "online". Only this many usernames send messages.
+## Change it at runtime (e.g. chat.online_count = 12) and the group updates:
+## increasing it logs random offline users in, decreasing it logs random users out,
+## everyone else stays online. Capped to the size of the usernames list.
+@export var online_count: int = 5:
+	set(value):
+		online_count = maxi(value, 0)
+		_refresh_online_users()
 
 @export_group("Content")
 @export var usernames: Array[String] = [
 	"Thorgar", "Lunaria", "xXSlayerXx", "HealzPlz", "NoobMaster69",
 	"Elaria", "Grimbold", "Sir_Lagsalot", "DarkMage", "FarmingBot3000"
 ]
+
 @export var chat_messages: Array[String] = [
 	"LFG dungeon, need tank and healer!",
 	"WTS Iron Sword 500g",
@@ -42,15 +56,22 @@ extends Control
 	"is the event still going?",
 	"LF1M for quest, 2 min",
 	"nice armor bro",
+	"hours farming for this trash loot",
+	"invite me to raid",
+	"Diamond sword for 10k"
 ]
 
 # Optional: one color per username so chat looks more alive.
 var _name_colors: Dictionary = {}
+var _recent_messages: Array = []
+var _next_hue: float = randf()
+var _online_users: Array = []   # the current subset of usernames that can chat
 var _timer: Timer
 
 
 func _ready() -> void:
 	randomize()  # Godot 4 auto-randomizes, kept for clarity.
+	_refresh_online_users()
 	_timer = Timer.new()
 	_timer.one_shot = true
 	_timer.timeout.connect(_on_timer_timeout)
@@ -72,10 +93,60 @@ func post_random_message() -> void:
 	if usernames.is_empty() or chat_messages.is_empty():
 		push_warning("FakeChat: usernames or chat_messages list is empty.")
 		return
+	if _online_users.is_empty():
+		return  # nobody online, nobody talks
 
-	var user: String = usernames.pick_random()
-	var text: String = chat_messages.pick_random()
-	add_chat_line(user, text)
+	var user: String = _online_users.pick_random()
+	add_chat_line(user, _pick_message())
+
+
+## Call this whenever the number of online players changes.
+## Default: keeps current chatters and only logs the difference in/out.
+## rebuild = true: throws the group away and picks a brand new random set.
+func build_online_group(new_count: int, rebuild: bool = false) -> void:
+	if rebuild:
+		_online_users.clear()
+	online_count = new_count  # the setter calls _refresh_online_users()
+
+
+## Adjusts the online group to match online_count while keeping existing
+## online users stable (only the difference logs in/out).
+func _refresh_online_users() -> void:
+	# Drop anyone no longer in the usernames list (e.g. list edited).
+	_online_users = _online_users.filter(func(u): return usernames.has(u))
+
+	var target: int = clampi(online_count, 0, usernames.size())
+
+	# Too many online: log out random users.
+	while _online_users.size() > target:
+		_online_users.remove_at(randi() % _online_users.size())
+
+	# Too few online: log in random users that are currently offline.
+	if _online_users.size() < target:
+		var offline: Array = usernames.filter(func(u): return not _online_users.has(u))
+		offline.shuffle()
+		while _online_users.size() < target and not offline.is_empty():
+			_online_users.append(offline.pop_back())
+
+	# Everyone in the group gets their color now (existing colors are kept).
+	for u in _online_users:
+		_get_name_color(u)
+
+
+## Picks a random message that wasn't used in the last no_repeat_count posts.
+func _pick_message() -> String:
+	var available: Array = chat_messages.filter(func(m): return not _recent_messages.has(m))
+	if available.is_empty():
+		available = chat_messages  # safety net, e.g. very short message list
+
+	var picked: String = available.pick_random()
+
+	_recent_messages.append(picked)
+	var window: int = mini(no_repeat_count, chat_messages.size() - 1)
+	while _recent_messages.size() > maxi(window, 0):
+		_recent_messages.pop_front()
+
+	return picked
 
 
 func add_chat_line(user: String, text: String) -> void:
@@ -95,7 +166,10 @@ func add_chat_line(user: String, text: String) -> void:
 
 func _get_name_color(user: String) -> Color:
 	if not _name_colors.has(user):
-		_name_colors[user] = Color.from_hsv(randf(), 0.6, 1.0)
+		# Golden-ratio hue stepping spreads colors apart, so users in the
+		# same group look distinct instead of randomly clashing.
+		_next_hue = fposmod(_next_hue + 0.618034, 1.0)
+		_name_colors[user] = Color.from_hsv(_next_hue, 0.6, 1.0)
 	return _name_colors[user]
 
 

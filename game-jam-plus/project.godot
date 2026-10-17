@@ -17,10 +17,7 @@ config/icon="res://assets/audios/icon.svg"
 [autoload]
 
 DialogueManager="*uid://c3rodes2l3gxb"
-
-[dialogue_manager]
-
-runtime/advanced/uses_dotnet=true
+Globals="*uid://cyarkxashe4ds"
 
 [display]
 

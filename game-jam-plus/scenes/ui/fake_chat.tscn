@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://e8ho00vp8vek"]
 
-[ext_resource type="Script" uid="uid://bp7vg4xy6wpku" path="res://scripts/ui/fake_chat (2).gd" id="1_37p78"]
+[ext_resource type="Script" uid="uid://bp7vg4xy6wpku" path="res://scripts/ui/fake_chat.gd" id="1_37p78"]
 [ext_resource type="PackedScene" uid="uid://dj1rwqbuollp8" path="res://scenes/ui/ChatLabel.tscn" id="2_64ctp"]
 
 [sub_resource type="Theme" id="Theme_64ctp"]

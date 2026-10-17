@@ -9,11 +9,10 @@ var distance : float
 var DIRECTION : Vector2
 var move_flag : bool
 var rng = RandomNumberGenerator.new()
-@export var Point : Area2D
 
 
 func _ready() -> void:
-	INITIAL_POSITION =  Point.global_position
+	INITIAL_POSITION =  global_position
 	$Timer.wait_time = timer
 	$Timer.start()
 	
@@ -49,7 +48,6 @@ func _on_timer_timeout() -> void:
 
 
 func _on_hit_area_body_entered(body: Node2D) -> void:
-	print("oie")
-	var direction = -body.global_position.direction_to(global_position)
+	var direction = body.global_position.direction_to(global_position)
 	DIRECTION = direction
 	move_flag = false

@@ -9,11 +9,12 @@ size = Vector2(104, 103)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_tl5bo"]
 size = Vector2(112, 110)
 
-[node name="Npc" type="CharacterBody2D" unique_id=523486800 node_paths=PackedStringArray("Point")]
+[node name="Npc" type="CharacterBody2D" unique_id=523486800]
+collision_layer = 2
+motion_mode = 1
 script = ExtResource("1_7fv6s")
 radius_limit = 200.0
 timer = 4.0
-Point = NodePath("HitArea")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1562784947]
 texture = ExtResource("2_bq5aw")

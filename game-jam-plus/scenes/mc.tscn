@@ -2,6 +2,10 @@
 
 [ext_resource type="Script" uid="uid://ban4lcwpoysck" path="res://scripts/mc.gd" id="1_i6vl1"]
 [ext_resource type="Texture2D" uid="uid://v5cu1276vqab" path="res://assets/icon.svg" id="2_a6s5m"]
+[ext_resource type="Script" uid="uid://blv5ffueggafa" path="res://scripts/ui/character_dialogue.gd" id="3_gcf5n"]
+[ext_resource type="Script" uid="uid://bl24wyvtoeawn" path="res://scripts/speech_anchor.gd" id="4_gkuii"]
+[ext_resource type="PackedScene" uid="uid://rbonvwrh7gbn" path="res://scenes/SpeechBalloon.tscn" id="5_ccss8"]
+[ext_resource type="Resource" uid="uid://bfmelgio6beqp" path="res://dialogues/test.dialogue" id="6_3ylss"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ungyi"]
 size = Vector2(123, 122)
@@ -16,3 +20,12 @@ texture = ExtResource("2_a6s5m")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=882635758]
 position = Vector2(-0.5, -1)
 shape = SubResource("RectangleShape2D_ungyi")
+
+[node name="Dialogue" type="Node2D" parent="." unique_id=919208436]
+script = ExtResource("3_gcf5n")
+
+[node name="SpeechAnchor" type="Marker2D" parent="Dialogue" unique_id=1272025382]
+position = Vector2(1, -85)
+script = ExtResource("4_gkuii")
+balloon_scene = ExtResource("5_ccss8")
+default_dialogue = ExtResource("6_3ylss")

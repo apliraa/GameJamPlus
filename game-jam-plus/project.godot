@@ -19,6 +19,10 @@ config/icon="res://assets/audios/icon.svg"
 DialogueManager="*uid://c3rodes2l3gxb"
 Globals="*uid://cyarkxashe4ds"
 
+[dialogue_manager]
+
+runtime/advanced/uses_dotnet=true
+
 [display]
 
 window/stretch/mode="canvas_items"

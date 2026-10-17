@@ -7,6 +7,8 @@ var curDay : int
 
 @export var events: Array[Node]
 
+#var playerXP: int
+
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:

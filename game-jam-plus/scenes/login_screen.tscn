@@ -1,0 +1,360 @@
+[gd_scene format=3 uid="uid://rhs4kiisomag"]
+
+[ext_resource type="Script" uid="uid://d0scd78mwlakd" path="res://scripts/login_screen.gd" id="1_mhqwn"]
+[ext_resource type="Texture2D" uid="uid://pkuxp4vreimm" path="res://assets/7d078c01ae2c74609b93d3689860c62f.jpg" id="2_kcwbp"]
+[ext_resource type="FontFile" uid="uid://bqb1qyg5od2x2" path="res://assets/Vyaz Pixel.ttf" id="3_dtwsp"]
+[ext_resource type="FontFile" uid="uid://dldoaqsjq31cp" path="res://assets/fonts/runescape_uf.ttf" id="4_xqvf2"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_mhqwn"]
+shadow_size = 10
+shadow_color = Color(0, 0.20392157, 1, 0)
+
+[sub_resource type="Animation" id="Animation_mhqwn"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Fade:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Fade:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Fade:self_modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_kcwbp"]
+resource_name = "fade"
+length = 2.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Fade:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [false, true]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Fade:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Fade:self_modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_dtwsp"]
+_data = {
+&"RESET": SubResource("Animation_mhqwn"),
+&"fade": SubResource("Animation_kcwbp")
+}
+
+[node name="LoginScreen" type="Control" unique_id=1085053605]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_mhqwn")
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=50267418]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.41655222, 0.21232617, 0.1557846, 1)
+
+[node name="Online" type="Label" parent="ColorRect" unique_id=889454837]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -284.0
+offset_top = -88.0
+grow_horizontal = 0
+grow_vertical = 0
+theme_override_colors/font_color = Color(0, 0.80809474, 0.01468296, 1)
+theme_override_fonts/font = ExtResource("4_xqvf2")
+theme_override_font_sizes/font_size = 40
+text = "ONLINE: "
+
+[node name="TextureRect" type="TextureRect" parent="." unique_id=1318668663]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_kcwbp")
+
+[node name="Label" type="Label" parent="." unique_id=1412832754]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -576.5
+offset_right = 576.5
+offset_bottom = 153.0
+grow_horizontal = 2
+theme_override_fonts/font = ExtResource("3_dtwsp")
+theme_override_font_sizes/font_size = 120
+text = "LOGO MUITO FODA"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="LoginOk" type="ColorRect" parent="." unique_id=229307855]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -209.5
+offset_top = -160.0
+offset_right = 209.5
+offset_bottom = 160.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.49803922, 0.22352941, 0.19215687, 1)
+
+[node name="ColorRect" type="ColorRect" parent="LoginOk" unique_id=1568301902]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -180.0
+offset_top = -130.0
+offset_right = 180.0
+offset_bottom = 130.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.3048026, 0.12418624, 0.10375782, 1)
+
+[node name="LoginOkLabel" type="Label" parent="LoginOk/ColorRect" unique_id=2081447450]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -237.0
+offset_top = -41.5
+offset_right = 237.0
+offset_bottom = 41.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("4_xqvf2")
+theme_override_font_sizes/font_size = 28
+text = "LOGIN REALIZADO COM SUCESSO!!
+BEM VINDO AO JOGO..."
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="LoginModal" type="ColorRect" parent="." unique_id=2030257194]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -209.5
+offset_top = -160.0
+offset_right = 209.5
+offset_bottom = 160.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.49803922, 0.22352941, 0.19215687, 1)
+
+[node name="ColorRect" type="ColorRect" parent="LoginModal" unique_id=1002727294]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 0.372
+anchor_right = 0.5
+anchor_bottom = 0.372
+offset_left = -178.0
+offset_top = -88.04
+offset_right = 183.5
+offset_bottom = -6.040001
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.30588236, 0.1254902, 0.101960786, 1)
+
+[node name="ColorRect" type="ColorRect" parent="LoginModal/ColorRect" unique_id=1237844742]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -39.0
+offset_bottom = -14.0
+grow_horizontal = 2
+grow_vertical = 0
+color = Color(0.21376842, 0.07911017, 0.06157642, 1)
+
+[node name="UserLabelText" type="Label" parent="LoginModal/ColorRect/ColorRect" unique_id=366821361]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "  NickMuitoSafado"
+label_settings = SubResource("LabelSettings_mhqwn")
+visible_characters = 0
+visible_ratio = 0.0
+
+[node name="UserLabel" type="Label" parent="LoginModal/ColorRect" unique_id=106724852]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 23.0
+theme_override_fonts/font = ExtResource("4_xqvf2")
+theme_override_font_sizes/font_size = 20
+text = "  User:"
+
+[node name="ColorRect2" type="ColorRect" parent="LoginModal" unique_id=1231918482]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 0.372
+anchor_right = 0.5
+anchor_bottom = 0.372
+offset_left = -175.0
+offset_top = 4.959999
+offset_right = 186.5
+offset_bottom = 86.96
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.3048026, 0.12418624, 0.10375782, 1)
+
+[node name="PasswordLabel" type="Label" parent="LoginModal/ColorRect2" unique_id=155591407]
+layout_mode = 1
+offset_right = 82.0
+offset_bottom = 28.0
+theme_override_fonts/font = ExtResource("4_xqvf2")
+theme_override_font_sizes/font_size = 20
+text = "  Password:"
+
+[node name="ColorRect" type="ColorRect" parent="LoginModal/ColorRect2" unique_id=403055840]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -39.0
+offset_bottom = -14.0
+grow_horizontal = 2
+grow_vertical = 0
+color = Color(0.21376842, 0.07911017, 0.06157642, 1)
+
+[node name="PasswordLabelText" type="Label" parent="LoginModal/ColorRect2/ColorRect" unique_id=499822658]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "  ************"
+visible_characters = 0
+visible_ratio = 0.0
+
+[node name="ColorRect3" type="ColorRect" parent="LoginModal" unique_id=529104238]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -94.0
+offset_top = -78.0
+offset_right = 99.0
+offset_bottom = -41.0
+grow_horizontal = 2
+grow_vertical = 0
+color = Color(0.30588236, 0.1254902, 0.101960786, 1)
+
+[node name="TextureButton" type="Button" parent="LoginModal/ColorRect3" unique_id=1456321830]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("4_xqvf2")
+text = "Submit"
+
+[node name="Timer" type="Timer" parent="." unique_id=1684646616]
+
+[node name="FadeAnim" type="AnimationPlayer" parent="." unique_id=1958531286]
+libraries/ = SubResource("AnimationLibrary_dtwsp")
+
+[node name="Fade" type="ColorRect" parent="." unique_id=2025651763]
+visible = false
+modulate = Color(1, 1, 1, 0)
+self_modulate = Color(1, 1, 1, 0)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+
+[connection signal="pressed" from="LoginModal/ColorRect3/TextureButton" to="." method="_on_texture_button_pressed"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+[connection signal="animation_finished" from="FadeAnim" to="." method="_on_fade_anim_animation_finished"]

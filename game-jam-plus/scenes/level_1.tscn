@@ -1,18 +1,19 @@
-[gd_scene format=3 uid="uid://c0mxuwfaue45"]
+[gd_scene format=3 uid="uid://2da8xk2griue"]
 
-[ext_resource type="Script" uid="uid://ban4lcwpoysck" path="res://scripts/mc.gd" id="1_bswci"]
-[ext_resource type="Texture2D" uid="uid://v5cu1276vqab" path="res://assets/icon.svg" id="2_rus8k"]
+[sub_resource type="GDScript" id="GDScript_gkh53"]
+script/source = "extends Node2D
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_ungyi"]
-size = Vector2(123, 122)
 
-[node name="CharacterBody2D" type="CharacterBody2D" unique_id=1775706242]
-motion_mode = 1
-script = ExtResource("1_bswci")
+# Called when the node enters the scene tree for the first time.
+func _ready() -> void:
+	
+	pass # Replace with function body.
 
-[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1496478930]
-texture = ExtResource("2_rus8k")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=882635758]
-position = Vector2(-0.5, -1)
-shape = SubResource("RectangleShape2D_ungyi")
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta: float) -> void:
+	pass
+"
+
+[node name="level_1" type="Node2D" unique_id=1516653308]
+script = SubResource("GDScript_gkh53")

@@ -11,6 +11,7 @@
 size = Vector2(54, 46)
 
 [node name="mc" type="CharacterBody2D" unique_id=1775706242]
+collision_mask = 3
 motion_mode = 1
 script = ExtResource("1_i6vl1")
 

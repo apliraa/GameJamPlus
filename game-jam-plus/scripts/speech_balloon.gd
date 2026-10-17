@@ -21,6 +21,10 @@ signal finished
 @export_group("Position")
 ## Offset from the anchor. The balloon is centered horizontally above it.
 @export var offset: Vector2 = Vector2(0, -8)
+## The balloon follows the character while the "..." typing bubble shows.
+## If this is on, the message stays at the spot where it appeared, even if the
+## character walks away. If off, the message keeps following the character.
+@export var pin_message_in_place: bool = true
 
 @export_group("Size")
 ## Shrink the balloon to fit short messages instead of using a fixed width.
@@ -50,6 +54,8 @@ signal finished
 @onready var dialogue_label: RichTextLabel = $DialogueLabel
 
 var _cancelled: bool = false
+var _is_pinned: bool = false
+var _pinned_global_position: Vector2 = Vector2.ZERO
 
 
 func _ready() -> void:
@@ -95,10 +101,14 @@ func cancel() -> void:
 
 
 func _show_line(line: DialogueLine) -> void:
+	_unpin()  # the typing bubble follows the character
 	if show_typing_indicator:
 		await _show_typing_dots(line)
 		if _cancelled:
 			return
+
+	# The message stays where the character is right now.
+	_pin_in_place()
 
 	# Swap in the real message.
 	modulate.a = 0.0  # invisible while we measure the text
@@ -187,6 +197,33 @@ func _fade_out() -> void:
 	await tween.finished
 
 
+## Fixes the balloon at the anchor's current world position, so it stops
+## following the character.
+func _pin_in_place() -> void:
+	if not pin_message_in_place or _is_pinned:
+		return
+	var anchor: Node2D = get_parent() as Node2D
+	if anchor == null:
+		return
+	_pinned_global_position = anchor.global_position
+	_is_pinned = true
+	top_level = true  # ignore the parent's movement/scale from now on
+	_reposition()
+
+
+## Makes the balloon follow the character again (used for the typing bubble).
+func _unpin() -> void:
+	if not _is_pinned:
+		return
+	_is_pinned = false
+	top_level = false
+	_reposition()
+
+
 func _reposition() -> void:
 	# Bottom-center of the balloon sits on the anchor (plus offset).
-	position = Vector2(-size.x * 0.5, -size.y) + offset
+	var local_offset: Vector2 = Vector2(-size.x * 0.5, -size.y) + offset
+	if _is_pinned:
+		global_position = _pinned_global_position + local_offset
+	else:
+		position = local_offset

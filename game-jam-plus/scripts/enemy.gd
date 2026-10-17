@@ -64,7 +64,7 @@ func check_player_distance() -> void:
 func _on_timer_timeout() -> void:
 	if cur_state == State.ATTACK:
 		return
-	print(DIRECTION)
+	
 	new_direction()
 	move_flag = true
 
@@ -88,3 +88,11 @@ func wander():
 
 func attack():
 	velocity = SPEED * global_position.direction_to(Globals.player_pos)
+
+
+func _on_enemy_body_entered(body: Node2D) -> void:
+	pass # Replace with function body.
+
+
+func _on_enemy_body_exited(body: Node2D) -> void:
+	pass # Replace with function body.

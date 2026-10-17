@@ -1,0 +1,48 @@
+[gd_scene format=3 uid="uid://csu5i0d235td7"]
+
+[ext_resource type="PackedScene" uid="uid://da1atgsbu7dtv" path="res://hud.tscn" id="1_ekcqj"]
+[ext_resource type="PackedScene" uid="uid://7o2plo56qevd" path="res://ui/hp_bar_value.tscn" id="2_2bhp0"]
+[ext_resource type="Texture2D" uid="uid://b4aogi0y4s2tf" path="res://ui/icon.svg" id="3_aydlw"]
+[ext_resource type="Script" uid="uid://blv5ffueggafa" path="res://ui/character_dialogue.gd" id="4_ec4mc"]
+[ext_resource type="Script" uid="uid://bl24wyvtoeawn" path="res://dialogue/scripts/speech_anchor.gd" id="5_avbjy"]
+[ext_resource type="PackedScene" uid="uid://rbonvwrh7gbn" path="res://dialogue/scripts/SpeechBalloon.tscn" id="6_1a36h"]
+[ext_resource type="Resource" uid="uid://bfmelgio6beqp" path="res://dialogue/test.dialogue" id="7_56jlq"]
+
+[node name="Node2D" type="Node2D" unique_id=1937043519]
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=248334728]
+anchor_mode = 0
+
+[node name="Fake chat" parent="." unique_id=66097488 instance=ExtResource("1_ekcqj")]
+anchors_preset = 15
+anchor_top = 0.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+usernames = Array[String](["Thorgar", "Lunaria", "xXSlayerXx", "HealzPlz", "NoobMaster69", "Elaria", "Grimbold", "Sir_Lagsalot", "DarkMage", "FarmingBot3000", "_SazukeGod_", "xXStormLordXx", "TheUnburden", "Leonardt", "StormHunter", "FlipFlops", "X1Noob", "SapoChateado"])
+
+[node name="HUD" type="Control" parent="." unique_id=1982614361]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="CanvasLayer" type="CanvasLayer" parent="HUD" unique_id=2127473872]
+
+[node name="Hp Bar Value" parent="HUD/CanvasLayer" unique_id=832068778 instance=ExtResource("2_2bhp0")]
+
+[node name="Character" type="Node2D" parent="." unique_id=733036571]
+position = Vector2(891, 221)
+
+[node name="Sprite2D" type="Sprite2D" parent="Character" unique_id=1396647215]
+texture = ExtResource("3_aydlw")
+
+[node name="Dialogue" type="Node2D" parent="Character" unique_id=1174920403]
+script = ExtResource("4_ec4mc")
+
+[node name="SpeechAnchor" type="Marker2D" parent="Character/Dialogue" unique_id=496881512]
+position = Vector2(1, -85)
+script = ExtResource("5_avbjy")
+balloon_scene = ExtResource("6_1a36h")
+default_dialogue = ExtResource("7_56jlq")

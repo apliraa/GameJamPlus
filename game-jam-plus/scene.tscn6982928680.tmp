@@ -1,0 +1,115 @@
+[gd_scene format=3 uid="uid://csu5i0d235td7"]
+
+[ext_resource type="FontFile" uid="uid://dldoaqsjq31cp" path="res://ui/fonts/runescape_uf.ttf" id="2_3253y"]
+[ext_resource type="PackedScene" uid="uid://da1atgsbu7dtv" path="res://hud.tscn" id="2_nxogm"]
+[ext_resource type="Texture2D" uid="uid://b4aogi0y4s2tf" path="res://icon.svg" id="3_3253y"]
+[ext_resource type="LabelSettings" uid="uid://ciefef8ka7t8r" path="res://ui/fonts/label_settings.tres" id="3_u3cyc"]
+
+[sub_resource type="Theme" id="Theme_1e6km"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_y4mfu"]
+bg_color = Color(1, 1, 1, 1)
+border_blend = true
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+corner_detail = 4
+shadow_color = Color(0, 0, 0, 1)
+shadow_size = 1
+shadow_offset = Vector2(6, 6)
+anti_aliasing = false
+
+[sub_resource type="Theme" id="Theme_alrc6"]
+default_font = ExtResource("2_3253y")
+default_font_size = 18
+
+[node name="Node2D" type="Node2D" unique_id=1937043519]
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=248334728]
+anchor_mode = 0
+
+[node name="Fake chat" parent="." unique_id=66097488 instance=ExtResource("2_nxogm")]
+anchors_preset = 15
+anchor_top = 0.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="HUD" type="Control" parent="." unique_id=1982614361]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="CanvasLayer" type="CanvasLayer" parent="HUD" unique_id=2127473872]
+
+[node name="Dialogue" type="Control" parent="HUD/CanvasLayer" unique_id=722667043]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 241.0
+offset_top = 299.5
+offset_right = 911.0
+offset_bottom = 348.5
+
+[node name="PanelContainer" type="PanelContainer" parent="HUD/CanvasLayer/Dialogue" unique_id=881945624]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -335.0
+offset_top = -24.5
+offset_right = 335.0
+offset_bottom = 24.5
+grow_horizontal = 2
+grow_vertical = 2
+theme = SubResource("Theme_1e6km")
+theme_override_styles/panel = SubResource("StyleBoxFlat_y4mfu")
+
+[node name="Dialogue Label" type="Label" parent="HUD/CanvasLayer/Dialogue/PanelContainer" unique_id=1976727428]
+custom_maximum_size = Vector2(800, 800)
+layout_mode = 2
+text = "asdasdasdasdsadaw asdaaaaaaaaaaaaaaaaaaaaaaaaaaasdasdasdasdasdasdasdas
+asdasdasdsaaaaaaaaadada"
+label_settings = ExtResource("3_u3cyc")
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 1
+
+[node name="ProgressBar" type="ProgressBar" parent="HUD/CanvasLayer" unique_id=1748959365]
+self_modulate = Color(0, 1.331009, 1.353256, 1)
+texture_filter = 1
+texture_repeat = 1
+offset_left = 14.0
+offset_top = 25.0
+offset_right = 305.0
+offset_bottom = 36.0
+value = 33.58
+show_percentage = false
+
+[node name="RichTextLabel" type="RichTextLabel" parent="HUD/CanvasLayer/ProgressBar" unique_id=2017829367]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = -0.020618556
+anchor_top = -0.045818154
+anchor_right = 0.25738147
+anchor_bottom = 1.0
+offset_left = 11.0
+offset_top = -8.496
+offset_right = 221.10199
+offset_bottom = -1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = SubResource("Theme_alrc6")
+text = "Kirito"
+fit_content = true
+metadata/_edit_use_anchors_ = true
+
+[node name="Character" type="Node2D" parent="." unique_id=733036571]
+position = Vector2(559, 478)
+
+[node name="Sprite2D" type="Sprite2D" parent="Character" unique_id=1396647215]
+texture = ExtResource("3_3253y")

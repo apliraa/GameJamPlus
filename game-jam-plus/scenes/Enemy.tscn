@@ -5,7 +5,9 @@
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_klwtp"]
 
-[node name="Enemy" type="CharacterBody2D" unique_id=1350644445]
+[node name="Enemy" type="CharacterBody2D" unique_id=1350644445 groups=["Enemies"]]
+collision_layer = 4
+collision_mask = 15
 script = ExtResource("1_3gvst")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=670228505]

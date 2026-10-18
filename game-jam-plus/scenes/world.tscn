@@ -3,6 +3,7 @@
 [ext_resource type="PackedScene" uid="uid://dcune8pi3wh5l" path="res://scenes/mc.tscn" id="1_nnsk1"]
 [ext_resource type="Script" uid="uid://bvens2a46fdl6" path="res://scripts/world.gd" id="1_rwgxs"]
 [ext_resource type="PackedScene" uid="uid://ioxakgiwmphy" path="res://scenes/Scene 1.tscn" id="2_4wyf3"]
+[ext_resource type="PackedScene" uid="uid://crhpwtv5b1u3v" path="res://scenes/missions.tscn" id="2_i7141"]
 [ext_resource type="PackedScene" uid="uid://brnwmy3ij5rld" path="res://scenes/Npc.tscn" id="4_k0juu"]
 [ext_resource type="PackedScene" uid="uid://btd50jvwac3ko" path="res://scenes/friend.tscn" id="5_qfnet"]
 [ext_resource type="PackedScene" uid="uid://bsxg4awkj6s12" path="res://scenes/Enemy.tscn" id="6_i7141"]
@@ -92,12 +93,17 @@ _data = {
 &"fadeOut": SubResource("Animation_rus8k")
 }
 
-[node name="World" type="Node2D" unique_id=1127001669]
+[node name="World" type="Node2D" unique_id=1127001669 node_paths=PackedStringArray("enemys")]
 script = ExtResource("1_rwgxs")
+enemys = [NodePath("Enemy"), NodePath("Enemy2")]
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=190252225]
+
+[node name="Missions" parent="CanvasLayer" unique_id=901892109 instance=ExtResource("2_i7141")]
 
 [node name="Map" parent="." unique_id=189647539 instance=ExtResource("2_4wyf3")]
 
-[node name="mc" parent="." unique_id=1775706242 groups=["Player"] instance=ExtResource("1_nnsk1")]
+[node name="mc" parent="." unique_id=1775706242 instance=ExtResource("1_nnsk1")]
 position = Vector2(550, 315)
 
 [node name="Camera2D" type="Camera2D" parent="mc" unique_id=739074232]
@@ -117,6 +123,18 @@ playback_auto_capture = false
 
 [node name="Npc" parent="." unique_id=523486800 instance=ExtResource("4_k0juu")]
 position = Vector2(697, -378)
+radius_limit = 100.0
+
+[node name="Npc2" parent="." unique_id=2071537878 instance=ExtResource("4_k0juu")]
+position = Vector2(355, -401)
+radius_limit = 100.0
+
+[node name="Npc3" parent="." unique_id=476473949 instance=ExtResource("4_k0juu")]
+position = Vector2(731, -716)
+radius_limit = 100.0
+
+[node name="Npc4" parent="." unique_id=1428913842 instance=ExtResource("4_k0juu")]
+position = Vector2(1004, -268)
 radius_limit = 100.0
 
 [node name="Friend" parent="." unique_id=34609045 instance=ExtResource("5_qfnet")]

@@ -26,6 +26,7 @@ func _on_timer_timeout() -> void:
 			user.visible_characters += 1
 	elif password.visible_characters < password.text.length():
 			password.visible_characters += 1
+			#som de teclar
 	else:
 		timer.stop()
 		

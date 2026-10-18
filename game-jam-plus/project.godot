@@ -11,8 +11,8 @@ config_version=5
 [application]
 
 config/name="MMORPG"
-run/main_scene="uid://rhs4kiisomag"
-config/features=PackedStringArray("4.7", "GL Compatibility")
+run/main_scene="uid://bfsovyhjkuru4"
+config/features=PackedStringArray("4.7", "C#", "GL Compatibility")
 config/icon="res://assets/audios/icon.svg"
 
 [autoload]

@@ -18,8 +18,12 @@ config/icon="res://assets/audios/icon.svg"
 [autoload]
 
 DialogueManager="*uid://c3rodes2l3gxb"
+Globals="*uid://dxf6v0ekqny24"
 EventManager="*uid://b8mycqjbf6iwi"
-Globals="*uid://b4ne7gt1pa8ql"
+
+[dialogue_manager]
+
+runtime/advanced/uses_dotnet=true
 
 [display]
 
@@ -37,8 +41,8 @@ enabled=PackedStringArray("res://addons/dialogue_manager/plugin.cfg")
 [global_group]
 
 Enemies=""
-Friend=""
 Player=""
+Friend=""
 
 [input]
 

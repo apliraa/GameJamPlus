@@ -1,5 +1,6 @@
 [gd_scene format=3 uid="uid://7o2plo56qevd"]
 
+[ext_resource type="Script" uid="uid://b6u0c6aeaijxn" path="res://scenes/ui/hp_bar_value.gd" id="1_f7tfw"]
 [ext_resource type="FontFile" uid="uid://dldoaqsjq31cp" path="res://assets/fonts/runescape_uf.ttf" id="1_wygta"]
 
 [sub_resource type="Theme" id="Theme_alrc6"]
@@ -14,8 +15,9 @@ offset_left = 14.0
 offset_top = 25.0
 offset_right = 305.0
 offset_bottom = 36.0
-value = 33.58
+value = 100.0
 show_percentage = false
+script = ExtResource("1_f7tfw")
 
 [node name="RichTextLabel" type="RichTextLabel" parent="." unique_id=433638509]
 layout_mode = 1
@@ -31,6 +33,6 @@ offset_bottom = -1.0
 grow_horizontal = 2
 grow_vertical = 2
 theme = SubResource("Theme_alrc6")
-text = "Kirito"
+text = "RichardXD"
 fit_content = true
 metadata/_edit_use_anchors_ = true

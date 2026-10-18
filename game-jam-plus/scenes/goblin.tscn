@@ -3,6 +3,40 @@
 [ext_resource type="PackedScene" uid="uid://bsxg4awkj6s12" path="res://scenes/Enemy.tscn" id="1_dl46o"]
 [ext_resource type="Texture2D" uid="uid://c01ayebnjy1d" path="res://assets/Enemies/goblin.png" id="2_4yait"]
 
+[sub_resource type="VisualShaderNodeColorParameter" id="VisualShaderNodeColorParameter_4yait"]
+parameter_name = "Tint"
+default_value_enabled = true
+
+[sub_resource type="VisualShaderNodeBooleanParameter" id="VisualShaderNodeBooleanParameter_q3g0h"]
+parameter_name = "BooleanParameter"
+default_value_enabled = true
+
+[sub_resource type="VisualShaderNodeIf" id="VisualShaderNodeIf_76chb"]
+default_input_values = [0, 0.0, 1, 1.0, 2, 1e-05, 3, Vector3(0, 0, 0), 4, Vector3(0, 0, 0), 5, Vector3(0, 0, 0)]
+
+[sub_resource type="VisualShaderNodeInput" id="VisualShaderNodeInput_g1p1y"]
+input_name = "color"
+
+[sub_resource type="VisualShader" id="VisualShader_lkl8q"]
+resource_local_to_scene = true
+mode = 1
+flags/light_only = false
+nodes/fragment/2/node = SubResource("VisualShaderNodeColorParameter_4yait")
+nodes/fragment/2/position = Vector2(-32, 208)
+nodes/fragment/3/node = SubResource("VisualShaderNodeBooleanParameter_q3g0h")
+nodes/fragment/3/position = Vector2(-384, 240)
+nodes/fragment/4/node = SubResource("VisualShaderNodeIf_76chb")
+nodes/fragment/4/position = Vector2(240, 512)
+nodes/fragment/5/node = SubResource("VisualShaderNodeInput_g1p1y")
+nodes/fragment/5/position = Vector2(-256, 560)
+nodes/fragment/connections = PackedInt32Array(3, 0, 4, 0, 5, 0, 4, 4, 5, 0, 4, 5, 4, 0, 0, 0, 2, 0, 4, 3)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_yyaat"]
+resource_local_to_scene = true
+shader = SubResource("VisualShader_lkl8q")
+shader_parameter/BooleanParameter = true
+shader_parameter/Tint = Color(1, 1, 1, 1)
+
 [sub_resource type="AtlasTexture" id="AtlasTexture_q3g0h"]
 atlas = ExtResource("2_4yait")
 region = Rect2(0, 0, 16, 32)
@@ -186,46 +220,10 @@ animations = [{
 "speed": 5.0
 }]
 
-[sub_resource type="Animation" id="Animation_ft8do"]
-resource_name = "Hit Flash"
-length = 0.15
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:material:shader_parameter/BooleanParameter")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.08),
-"transitions": PackedFloat32Array(1, 1),
-"update": 1,
-"values": [true, false]
-}
-
-[sub_resource type="Animation" id="Animation_5wwv6"]
-length = 0.15
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:material:shader_parameter/BooleanParameter")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.08),
-"transitions": PackedFloat32Array(1, 1),
-"update": 1,
-"values": [true, false]
-}
-
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_4yait"]
-_data = {
-&"Hit Flash": SubResource("Animation_ft8do"),
-&"RESET": SubResource("Animation_5wwv6")
-}
-
 [node name="Goblin" unique_id=1350644445 instance=ExtResource("1_dl46o")]
 
 [node name="Sprite2D" parent="." index="1" unique_id=1633986561]
+material = SubResource("ShaderMaterial_yyaat")
 sprite_frames = SubResource("SpriteFrames_ccss8")
 animation = &"Idle"
 
@@ -234,7 +232,3 @@ visible = false
 
 [node name="DamageArea" parent="." index="3" unique_id=603865676]
 scale = Vector2(0.5, 0.5)
-
-[node name="AnimationPlayer" type="AnimationPlayer" parent="." index="6" unique_id=1062217771]
-libraries/ = SubResource("AnimationLibrary_4yait")
-autoplay = &"Hit Flash"

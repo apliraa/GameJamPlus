@@ -35,4 +35,5 @@ func _process(_delta: float) -> void:
 	if enemys.is_empty() and enemysInScene > 0:
 		set_process(false)
 		await get_tree().create_timer(1.0).timeout
-		logout_screen.show()
+		logout_screen.show()	
+		

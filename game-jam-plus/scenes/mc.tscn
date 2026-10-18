@@ -7,7 +7,6 @@
 [ext_resource type="Script" uid="uid://fk7syfrf6h00" path="res://scenes/sprite_2d.gd" id="3_gkuii"]
 [ext_resource type="Texture2D" uid="uid://bebb4ynjy213l" path="res://assets/Characters/character_base_eyes.png" id="4_ccss8"]
 [ext_resource type="Script" uid="uid://bl24wyvtoeawn" path="res://scripts/speech_anchor.gd" id="4_gkuii"]
-[ext_resource type="PackedScene" uid="uid://rbonvwrh7gbn" path="res://scenes/SpeechBalloon.tscn" id="5_ccss8"]
 [ext_resource type="Texture2D" uid="uid://bw23fpy15878y" path="res://assets/Characters/Equipments/cavaleiro_capacete.png" id="6_2vtfs"]
 [ext_resource type="Texture2D" uid="uid://clqu3oex067i3" path="res://assets/Characters/Equipments/cavaleiro_peitoral.png" id="7_4rxjt"]
 [ext_resource type="Texture2D" uid="uid://phdcsesxos5a" path="res://assets/Characters/Equipments/cavaleiro_botas.png" id="8_dlm4k"]
@@ -917,9 +916,6 @@ size = Vector2(16, 34)
 [sub_resource type="CircleShape2D" id="CircleShape2D_klwtp"]
 radius = 22.203604
 
-[sub_resource type="Resource" id="Resource_ibph8"]
-metadata/__load_path__ = "res://dialogues/test.dialogue"
-
 [sub_resource type="Animation" id="Animation_ccss8"]
 resource_name = "Flash Hit"
 length = 0.15
@@ -958,7 +954,7 @@ _data = {
 }
 
 [node name="mc" type="CharacterBody2D" unique_id=1775706242]
-collision_mask = 62
+collision_mask = 63
 motion_mode = 1
 script = ExtResource("1_i6vl1")
 metadata/_edit_group_ = true
@@ -1001,15 +997,6 @@ collision_mask = 4
 visible = false
 shape = SubResource("CircleShape2D_klwtp")
 
-[node name="Dialogue" type="Node2D" parent="." unique_id=919208436]
-script = ExtResource("3_gcf5n")
-
-[node name="SpeechAnchor" type="Marker2D" parent="Dialogue" unique_id=1272025382]
-position = Vector2(1, -85)
-script = ExtResource("4_gkuii")
-balloon_scene = ExtResource("5_ccss8")
-default_dialogue = SubResource("Resource_ibph8")
-
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1622458977]
 libraries/ = SubResource("AnimationLibrary_ibph8")
 autoplay = &"Flash Hit"
@@ -1019,3 +1006,9 @@ one_shot = true
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=93466555]
 zoom = Vector2(3, 3)
+
+[node name="Dialogue" type="Node2D" parent="." unique_id=17385208]
+script = ExtResource("3_gcf5n")
+
+[node name="SpeechAnchor" type="Marker2D" parent="Dialogue" unique_id=2141433313]
+script = ExtResource("4_gkuii")

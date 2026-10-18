@@ -16,4 +16,4 @@ func playDialogue(eventName: String) -> void:
 		push_error("CharacterDialogue: no child node named 'SpeechAnchor'.")
 		return
 	curDialogue = eventName
-	speech_anchor.say(nickname, dialogueAsset, curDialogue)
+	speech_anchor.say()

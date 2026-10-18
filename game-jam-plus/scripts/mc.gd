@@ -11,7 +11,8 @@ var direcao : Vector2
 
 var XP: int
 
-var MAX_LIFE: int = 100
+var MAX_LIFE: int = 10
+
 var life: int = MAX_LIFE
 var DAMAGE: int = 10
 
@@ -29,7 +30,9 @@ func _ready() -> void:
 	damage_timer.wait_time = attack_cooldown
 
 func _physics_process(delta: float) -> void:
+	Globals.player_maxlife = MAX_LIFE
 	Globals.player_pos = global_position
+	Globals.player_life = life
 	
 	if not is_instance_valid(target_enemy):
 		target_enemy = null
@@ -96,6 +99,7 @@ func attack(enemy: Node2D) -> void:
 
 func receive_damage(amount: int) -> void:
 	life = max(life - amount, 0)
+	Globals.player_life = life
 	play_hit_animation()
 	if life == 0:
 		die()
@@ -107,7 +111,14 @@ func play_hit_animation() -> void:
 	pass
 
 func die() -> void:
-	pass
+	global_position = $"../Respawn".position
+	life = MAX_LIFE
+	direcao = Vector2.ZERO
+	last_direction = Vector2.ZERO
+	velocity = Vector2.ZERO
+	clear_target()
+	posicao_alvo = global_position
+	is_moving = false
 
 
 func update_animations() -> void:

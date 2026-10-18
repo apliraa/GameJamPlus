@@ -1,5 +1,22 @@
 class_name SpeechAnchor
 extends Marker2D
+## Put one of these on every character (child of the player/NPC node) and move
+## it to just above the character's head.
+##
+## Dialogue is written with the normal Dialogue Manager notation, with several
+## characters in the same file:
+##
+##   ~ start
+##   Nathan: Hi there!
+##   Arthur: Oi, meu nome é Arthur.
+##
+## Set "character_name" on each anchor to the name used in the file (Nathan,
+## Arthur...). When any character calls say(), every line is shown above the
+## character it belongs to. A line whose name matches no anchor is shown above
+## the character that started the conversation.
+##
+## Like an MMO, each message is also posted to the chat window (FakeChat) under
+## the speaker's nickname, at the moment it appears in the bubble.
 
 signal speech_started
 signal speech_finished
@@ -20,6 +37,10 @@ signal speech_finished
 ## showing a bubble. This is the word before the colon.
 @export var pause_keyword: String = "wait"
 
+@export_group("Debug")
+## Prints every step of a conversation to the Output panel.
+@export var debug_log: bool = false
+
 @export_group("Chat")
 ## Also post each message to the chat window.
 @export var post_to_chat: bool = true
@@ -39,8 +60,6 @@ var _bbcode_regex: RegEx
 func _ready() -> void:
 	add_to_group("speech_anchors")  # lets other anchors find this character by name
 
-func _exit_tree() -> void:
-	clear()
 
 ## Starts a conversation from this character. Every line is shown by the
 ## character it belongs to (see character_name). If this character is already
@@ -60,8 +79,8 @@ func say(nickname: String = "", resource: DialogueResource = null, title: String
 		return
 
 	clear()
-	var states: Array = []
-	states.append_array(extra_game_states)
+	_log("say() called, title '%s'" % title)
+	var states: Array = extra_game_states.duplicate()
 	_run_conversation(resource, title, states, _run_id)
 
 
@@ -103,6 +122,10 @@ func _run_conversation(resource: DialogueResource, title: String, states: Array,
 
 	while run_id == _run_id:
 		var line: DialogueLine = await DialogueManager.get_next_dialogue_line(resource, next_id, states)
+		if line == null:
+			_log("no more lines (conversation ended at id '%s')" % next_id)
+		else:
+			_log("line: speaker='%s' text='%s' next_id='%s'" % [line.character, line.text, line.next_id])
 		if run_id != _run_id or line == null:
 			break
 
@@ -118,6 +141,7 @@ func _run_conversation(resource: DialogueResource, title: String, states: Array,
 			if target == null:
 				target = self  # unknown speaker: use the character that started it
 
+			_log("  -> shown by %s anchor '%s'" % ["matching" if matched else "fallback (no anchor named like the speaker)", target.character_name])
 			var chat_name: String = target.get_chat_name()
 			if not matched and not line.character.is_empty():
 				chat_name = line.character
@@ -139,6 +163,11 @@ func _run_conversation(resource: DialogueResource, title: String, states: Array,
 
 	if run_id == _run_id:
 		speech_finished.emit()
+
+
+func _log(message: String) -> void:
+	if debug_log:
+		print("[SpeechAnchor '%s'] %s" % [character_name, message])
 
 
 ## True for lines like "wait: 3" (speaker = pause_keyword, text = a number of seconds).
@@ -191,6 +220,7 @@ func _cancel_balloon() -> void:
 
 func _post_to_chat(nickname: String, text: String) -> void:
 	if not post_to_chat or nickname.is_empty():
+		_log("  chat post skipped (post_to_chat=%s, nickname='%s')" % [post_to_chat, nickname])
 		return
 
 	var target: FakeChat = chat

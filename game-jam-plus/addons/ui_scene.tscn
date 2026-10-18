@@ -34,7 +34,7 @@ nickname = "Arthur"
 dialogueAsset = ExtResource("7_5aqtf")
 curDialogue = "start"
 
-[node name="SpeechAnchor" type="Marker2D" parent="Player/Dialogue" unique_id=496881512 node_paths=PackedStringArray("chat")]
+[node name="SpeechAnchor" type="Marker2D" parent="Player/Dialogue" unique_id=496881512]
 position = Vector2(1, -85)
 script = ExtResource("5_a1x5q")
 balloon_scene = ExtResource("6_y5smt")
@@ -42,7 +42,6 @@ default_dialogue = ExtResource("7_3skvq")
 default_title = ""
 character_name = "player"
 default_nickname = "Apollo"
-chat = NodePath("")
 
 [node name="Friend" type="Node2D" parent="." unique_id=2104782102]
 position = Vector2(891, 221)
@@ -52,7 +51,7 @@ texture = ExtResource("3_ep6cc")
 
 [node name="Dialogue" type="Node2D" parent="Friend" unique_id=104853130]
 
-[node name="SpeechAnchor" type="Marker2D" parent="Friend/Dialogue" unique_id=1219601342 node_paths=PackedStringArray("chat")]
+[node name="SpeechAnchor" type="Marker2D" parent="Friend/Dialogue" unique_id=1219601342]
 position = Vector2(1, -85)
 script = ExtResource("5_a1x5q")
 balloon_scene = ExtResource("6_y5smt")
@@ -60,4 +59,3 @@ default_dialogue = ExtResource("7_3skvq")
 default_title = ""
 character_name = "friend"
 default_nickname = "Luiz"
-chat = NodePath("")

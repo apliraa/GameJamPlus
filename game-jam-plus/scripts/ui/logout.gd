@@ -8,11 +8,14 @@ func _ready() -> void:
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	
+func _process(delta: float) -> void:	
 	pass
 
 
 func _on_button_pressed() -> void:
+	EventManager._endDay()
+	$"../../../AnimationPlayer".play("fadelogoff")
+	
+	#await get_tree().create_timer(5.0).timeout
 	get_tree().change_scene_to_file("res://scenes/login_screen.tscn")
 	pass # Replace with function body.

@@ -7,6 +7,7 @@ const ONLINE_PLAYERS = "1200"
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	EventManager._startDay()
 	user.visible_characters = 0
 	password.visible_characters = 0
 	timer.wait_time = 0.1

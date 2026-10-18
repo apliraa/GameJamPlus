@@ -8,6 +8,7 @@ extends CharacterBody2D
 const DETECTION_MULTIPLIER := 2.0
 
 var detection_radius: float
+var last_direction : Vector2
 
 var xp_reward: int = 10
 var attack_cooldown: float = 1.0
@@ -128,18 +129,20 @@ func die() -> void:
 	
 func update_animations() -> void:
 	# Memoriza a direção enquanto estiver andando
+	DIRECTION = (velocity/SPEED)
+	
 	if DIRECTION != Vector2.ZERO:
-		DIRECTION = velocity.normalized()
-
+		DIRECTION = DIRECTION.normalized()
+		last_direction = DIRECTION
 	# Lógica quando está PARADO
 	if DIRECTION == Vector2.ZERO:
-		if DIRECTION.x > 0.1:
+		if last_direction.x > 0.1:
 			$Sprite2D.play("Idle R")
-		elif DIRECTION.x < -0.1:
+		elif last_direction.x < -0.1:
 			$Sprite2D.play("Idle L")
-		elif DIRECTION.y > 0:
+		elif last_direction.y > 0:
 			$Sprite2D.play("Idle")
-		elif DIRECTION.y < 0:
+		elif last_direction.y < 0:
 			$Sprite2D.play("Idle B")
 			
 	# Lógica quando está ANDANDO

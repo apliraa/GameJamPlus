@@ -1,0 +1,76 @@
+[gd_scene format=3 uid="uid://ucie2vw12luy"]
+
+[ext_resource type="PackedScene" uid="uid://7o2plo56qevd" path="res://scenes/ui/hp_bar_value.tscn" id="1_q2bk2"]
+[ext_resource type="PackedScene" uid="uid://da1atgsbu7dtv" path="res://scenes/ui/fakechat.tscn" id="2_1s0v4"]
+[ext_resource type="Script" uid="uid://ix53yhyhy7pf" path="res://scripts/ui/chat_day.gd" id="3_xfnap"]
+
+[sub_resource type="Resource" id="Resource_tmwax"]
+script = ExtResource("3_xfnap")
+online_players = 25
+messages = Array[String](["whats going on?", "i won’t be back home", "wait for me", "the lights in the sky call me by my name", "ill join them  soon", "im scared", "Everyone is gone.", ""])
+metadata/_custom_type_script = "uid://ix53yhyhy7pf"
+
+[sub_resource type="Resource" id="Resource_5aqtf"]
+script = ExtResource("3_xfnap")
+day = 2
+online_players = 35
+messages = Array[String](["whats going on?", "i won’t be back home", "wait for me", "the lights in the sky call me by my name", "ill join them  soon", "im scared", "Everyone is gone.", "Da"])
+metadata/_custom_type_script = "uid://ix53yhyhy7pf"
+
+[sub_resource type="Resource" id="Resource_j0a20"]
+script = ExtResource("3_xfnap")
+day = 3
+online_players = 35
+messages = Array[String](["whats going on?", "i won’t be back home", "wait for me", "the lights in the sky call me by my name", "ill join them  soon", "im scared", "Everyone is gone."])
+metadata/_custom_type_script = "uid://ix53yhyhy7pf"
+
+[sub_resource type="Resource" id="Resource_vhaju"]
+script = ExtResource("3_xfnap")
+day = 4
+online_players = 35
+messages = Array[String](["whats going on?", "i won’t be back home", "wait for me", "the lights in the sky call me by my name", "ill join them  soon", "im scared", "Everyone is gone.", "", ""])
+metadata/_custom_type_script = "uid://ix53yhyhy7pf"
+
+[sub_resource type="Resource" id="Resource_2nnsp"]
+script = ExtResource("3_xfnap")
+day = 5
+online_players = 25
+messages = Array[String](["", ""])
+metadata/_custom_type_script = "uid://ix53yhyhy7pf"
+
+[sub_resource type="Resource" id="Resource_la7ch"]
+script = ExtResource("3_xfnap")
+day = 6
+online_players = 20
+messages = Array[String](["whats going on?", "i won’t be back home", "wait for me", "the lights in the sky call me by my name", "ill join them  soon", "im scared", "Everyone is gone."])
+metadata/_custom_type_script = "uid://ix53yhyhy7pf"
+
+[sub_resource type="Resource" id="Resource_ylgo8"]
+script = ExtResource("3_xfnap")
+day = 7
+online_players = 0
+metadata/_custom_type_script = "uid://ix53yhyhy7pf"
+
+[node name="HUD" type="Control" unique_id=1909278812]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1300723936]
+
+[node name="Hp Bar Value" parent="CanvasLayer" unique_id=832068778 instance=ExtResource("1_q2bk2")]
+
+[node name="Fake chat" parent="." unique_id=66097488 instance=ExtResource("2_1s0v4")]
+layout_mode = 1
+anchors_preset = 15
+anchor_top = 0.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+days = Array[ExtResource("3_xfnap")]([SubResource("Resource_tmwax"), SubResource("Resource_5aqtf"), SubResource("Resource_j0a20"), SubResource("Resource_vhaju"), SubResource("Resource_2nnsp"), SubResource("Resource_la7ch"), SubResource("Resource_ylgo8")])
+new_group_each_day = true
+fake_user_color = Color(0.6542321, 0.6542321, 0.654232, 1)
+dialogue_user_color = Color(0.31, 0.4249999, 1, 1)
+usernames = Array[String](["Thorgar", "Lunaria", "xXSlayerXx", "HealzPlz", "NoobMaster69", "Elaria", "Grimbold", "Sir_Lagsalot", "DarkMage", "FarmingBot3000", "_SazukeGod_", "xXStormLordXx", "TheUnburden", "Leonardt", "StormHunter", "FlipFlops", "X1Noob", "SapoChateado", "BrendanTheSlayer", "YohanNightborne", "CutieSparksy", ""])

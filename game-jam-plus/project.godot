@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="MMORPG"
-run/main_scene="uid://rhs4kiisomag"
+run/main_scene="uid://bfsovyhjkuru4"
 config/features=PackedStringArray("4.7", "GL Compatibility")
 config/icon="res://assets/audios/icon.svg"
 
@@ -20,6 +20,11 @@ config/icon="res://assets/audios/icon.svg"
 DialogueManager="*uid://c3rodes2l3gxb"
 EventManager="*uid://b8mycqjbf6iwi"
 Globals="*uid://b4ne7gt1pa8ql"
+Music="*uid://htgolo30gsr2"
+
+[dialogue_manager]
+
+runtime/advanced/uses_dotnet=true
 
 [display]
 

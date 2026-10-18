@@ -1,6 +1,6 @@
 extends CharacterBody2D
 
-const SPEED := 100.0
+
 const ARRIVE_DISTANCE := 6.0
 const ARRIVE_DISTANCE_WIDE := 10.0
 
@@ -27,6 +27,7 @@ enum Actions {
 var cur_action: Actions = Actions.WAIT
 
 var DAMAGE: int = 15
+var SPEED: int = 70
 var timer: float = 1.0
 var attack_cooldown: float = 1.0
 
@@ -45,6 +46,9 @@ var back_forth_a: Vector2 = Vector2.ZERO
 var back_forth_dir: Vector2 = Vector2.RIGHT
 var back_forth_legs: int = 0
 
+var player_min_distance: float = 350.0
+var player_radius: float = 700.0
+var player_max_distance: float
 var player_distance: float
 
 var last_player_pos: Vector2 = Vector2.ZERO

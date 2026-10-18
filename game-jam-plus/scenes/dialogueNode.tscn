@@ -7,7 +7,6 @@
 
 [node name="DialogueNode" type="Node2D" unique_id=1567685948]
 script = ExtResource("1_w08l3")
-dialogueAsset = ExtResource("4_o1fvd")
 
 [node name="SpeechAnchor" type="Marker2D" parent="." unique_id=1124552507]
 position = Vector2(1, -85)

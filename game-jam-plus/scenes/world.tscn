@@ -2,14 +2,16 @@
 
 [ext_resource type="PackedScene" uid="uid://dcune8pi3wh5l" path="res://scenes/mc.tscn" id="1_nnsk1"]
 [ext_resource type="Script" uid="uid://bvens2a46fdl6" path="res://scripts/world.gd" id="1_rwgxs"]
+[ext_resource type="PackedScene" uid="uid://dvxwl2p8hl2ev" path="res://scenes/logout.tscn" id="2_4mrxx"]
 [ext_resource type="PackedScene" uid="uid://ioxakgiwmphy" path="res://scenes/Scene 1.tscn" id="2_4wyf3"]
+[ext_resource type="PackedScene" uid="uid://crhpwtv5b1u3v" path="res://scenes/missions.tscn" id="2_i7141"]
 [ext_resource type="PackedScene" uid="uid://brnwmy3ij5rld" path="res://scenes/Npc.tscn" id="4_k0juu"]
 [ext_resource type="PackedScene" uid="uid://btd50jvwac3ko" path="res://scenes/friend.tscn" id="5_qfnet"]
 [ext_resource type="PackedScene" uid="uid://bsxg4awkj6s12" path="res://scenes/Enemy.tscn" id="6_i7141"]
 [ext_resource type="PackedScene" uid="uid://ucie2vw12luy" path="res://addons/hud.tscn" id="7_i7141"]
 
 [sub_resource type="Animation" id="Animation_bswci"]
-length = 0.001
+length = 2.0
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -17,7 +19,7 @@ tracks/0/path = NodePath("Fade:visible")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0),
+"times": PackedFloat32Array(1.5),
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [true]
@@ -29,7 +31,7 @@ tracks/1/path = NodePath("Fade:modulate")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0),
+"times": PackedFloat32Array(1.5),
 "transitions": PackedFloat32Array(1),
 "update": 0,
 "values": [Color(1, 1, 1, 1)]
@@ -41,7 +43,7 @@ tracks/2/path = NodePath("Fade:self_modulate")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
-"times": PackedFloat32Array(0),
+"times": PackedFloat32Array(1.5),
 "transitions": PackedFloat32Array(1),
 "update": 0,
 "values": [Color(1, 1, 1, 1)]
@@ -93,12 +95,19 @@ _data = {
 &"fadeOut": SubResource("Animation_rus8k")
 }
 
-[node name="World" type="Node2D" unique_id=1127001669]
+[node name="World" type="Node2D" unique_id=1127001669 node_paths=PackedStringArray("enemys")]
 script = ExtResource("1_rwgxs")
+enemys = [NodePath("Goblin"), NodePath("Goblin2")]
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=190252225]
+
+[node name="Missions" parent="CanvasLayer" unique_id=901892109 instance=ExtResource("2_i7141")]
+
+[node name="Logout" parent="CanvasLayer" unique_id=607644776 instance=ExtResource("2_4mrxx")]
 
 [node name="Map" parent="." unique_id=189647539 instance=ExtResource("2_4wyf3")]
 
-[node name="mc" parent="." unique_id=1775706242 groups=["Player"] instance=ExtResource("1_nnsk1")]
+[node name="mc" parent="." unique_id=1775706242 instance=ExtResource("1_nnsk1")]
 position = Vector2(550, 315)
 
 [node name="SpeechAnchor" parent="mc/Dialogue" parent_id_path=PackedInt32Array(1775706242, 919208436) index="0" unique_id=1272025382 node_paths=PackedStringArray("chat")]
@@ -125,12 +134,28 @@ playback_auto_capture = false
 position = Vector2(697, -378)
 radius_limit = 100.0
 
+[node name="Npc2" parent="." unique_id=2071537878 instance=ExtResource("4_k0juu")]
+position = Vector2(355, -401)
+radius_limit = 100.0
+
+[node name="Npc3" parent="." unique_id=476473949 instance=ExtResource("4_k0juu")]
+position = Vector2(731, -716)
+radius_limit = 100.0
+
+[node name="Npc4" parent="." unique_id=1428913842 instance=ExtResource("4_k0juu")]
+position = Vector2(1004, -268)
+radius_limit = 100.0
+
 [node name="Friend" parent="." unique_id=34609045 instance=ExtResource("5_qfnet")]
 visible = false
 position = Vector2(989, -523)
 
-[node name="Enemy" parent="." unique_id=1350644445 instance=ExtResource("6_i7141")]
-position = Vector2(-389, -316)
+[node name="Goblin" parent="." unique_id=1350644445 instance=ExtResource("7_i7141")]
+position = Vector2(80, -300)
+radius_limit = 100.0
+
+[node name="Goblin2" parent="." unique_id=722312520 instance=ExtResource("7_i7141")]
+position = Vector2(-84, -207)
 
 [node name="Enemy2" parent="." unique_id=564039145 instance=ExtResource("6_i7141")]
 position = Vector2(-483, -18)

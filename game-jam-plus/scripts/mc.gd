@@ -7,6 +7,7 @@ const CLICK_RADIUS := 24.0
 var posicao_alvo = Vector2.ZERO
 var is_moving = false # Controla se o personagem deve andar ou não
 var last_direction = Vector2.ZERO
+var direcao : Vector2
 
 var XP: int
 
@@ -56,7 +57,8 @@ func _physics_process(delta: float) -> void:
 	velocity = Vector2.ZERO
 	if is_moving:
 		if global_position.distance_to(posicao_alvo) > SPEED * delta:
-			velocity = global_position.direction_to(posicao_alvo) * SPEED
+			direcao = global_position.direction_to(posicao_alvo)
+			velocity = direcao * SPEED
 		else:
 			# Chegou no destino
 			is_moving = false
@@ -129,11 +131,11 @@ func update_animations() -> void:
 			
 	# Lógica quando está ANDANDO
 	else:
-		if velocity.x > 0:
+		if direcao.x > 0.1:
 			$Sprite2D.play_animations("Walk R")
-		elif velocity.x < 0:
+		elif direcao.x < -0.1:
 			$Sprite2D.play_animations("Walk L")
-		elif velocity.y > 0:
+		elif direcao.y > 0:
 			$Sprite2D.play_animations("Walk F")
-		elif velocity.y < 0:
+		elif direcao.y < 0:
 			$Sprite2D.play_animations("Walk B")

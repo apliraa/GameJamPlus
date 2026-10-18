@@ -1,22 +1,5 @@
 class_name SpeechAnchor
 extends Marker2D
-## Put one of these on every character (child of the player/NPC node) and move
-## it to just above the character's head.
-##
-## Dialogue is written with the normal Dialogue Manager notation, with several
-## characters in the same file:
-##
-##   ~ start
-##   Nathan: Hi there!
-##   Arthur: Oi, meu nome é Arthur.
-##
-## Set "character_name" on each anchor to the name used in the file (Nathan,
-## Arthur...). When any character calls say(), every line is shown above the
-## character it belongs to. A line whose name matches no anchor is shown above
-## the character that started the conversation.
-##
-## Like an MMO, each message is also posted to the chat window (FakeChat) under
-## the speaker's nickname, at the moment it appears in the bubble.
 
 signal speech_started
 signal speech_finished
@@ -31,6 +14,11 @@ signal speech_finished
 @export_group("Character")
 ## The name this character has in .dialogue files: the "Nathan" in "Nathan: Hi!".
 @export var character_name: String = ""
+
+@export_group("Pause")
+## A line like "wait: 3" pauses the conversation for 3 seconds instead of
+## showing a bubble. This is the word before the colon.
+@export var pause_keyword: String = "wait"
 
 @export_group("Chat")
 ## Also post each message to the chat window.
@@ -115,7 +103,12 @@ func _run_conversation(resource: DialogueResource, title: String, states: Array,
 		if run_id != _run_id or line == null:
 			break
 
-		if not line.text.is_empty():
+		if _is_pause_line(line):
+			# "wait: 3" -> nobody speaks, the conversation just waits.
+			await _pause(_pause_seconds(line), run_id)
+			if run_id != _run_id:
+				return
+		elif not line.text.is_empty():
 			# Which character says this line?
 			var target: SpeechAnchor = _find_anchor(line.character)
 			var matched: bool = target != null
@@ -143,6 +136,30 @@ func _run_conversation(resource: DialogueResource, title: String, states: Array,
 
 	if run_id == _run_id:
 		speech_finished.emit()
+
+
+## True for lines like "wait: 3" (speaker = pause_keyword, text = a number of seconds).
+func _is_pause_line(line: DialogueLine) -> bool:
+	if pause_keyword.strip_edges().is_empty():
+		return false
+	return _names_match(line.character, pause_keyword) and _pause_text(line).is_valid_float()
+
+
+func _pause_seconds(line: DialogueLine) -> float:
+	return maxf(_pause_text(line).to_float(), 0.0)
+
+
+## Accepts "3", "2.5" and also "3s".
+func _pause_text(line: DialogueLine) -> String:
+	return line.text.strip_edges().trim_suffix("s").strip_edges()
+
+
+## Waits without freezing the game; stops early if the conversation is replaced.
+func _pause(seconds: float, run_id: int) -> void:
+	var elapsed: float = 0.0
+	while elapsed < seconds and run_id == _run_id:
+		await get_tree().process_frame
+		elapsed += get_process_delta_time()
 
 
 ## Finds the anchor whose character_name matches the speaker of a line.

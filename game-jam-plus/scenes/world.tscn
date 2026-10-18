@@ -142,9 +142,7 @@ visible = false
 position = Vector2(989, -523)
 
 [node name="Enemy" parent="." unique_id=1350644445 instance=ExtResource("6_i7141")]
-visible = false
 position = Vector2(-389, -316)
 
 [node name="Enemy2" parent="." unique_id=564039145 instance=ExtResource("6_i7141")]
-visible = false
 position = Vector2(-483, -18)

@@ -1,3 +1,4 @@
+class_name FakeChat
 extends Control
 ## Fake MMO chat simulator (Godot 4.x).
 ##
@@ -34,12 +35,32 @@ extends Control
 		online_count = maxi(value, 0)
 		_refresh_online_users()
 
+@export_group("Day Messages")
+## Name of the autoload (Project Settings > Globals) that holds your day variable.
+@export var global_node_name: StringName = &"Global"
+## Name of the int variable inside that autoload.
+@export var global_day_variable: StringName = &"currentDay"
+## Used only if the autoload or variable can't be found (handy for testing a scene alone).
+@export var fallback_day: int = 1
+## One entry per day with that day's possible messages. If several entries share
+## the same day, their messages are combined.
+@export var days: Array[ChatDay] = []
+## When the day changes, pick a completely new random set of online users
+## instead of keeping the current ones and only logging the difference in/out.
+@export var new_group_each_day: bool = false
+
+@export_group("Name Colors")
+## Color of the usernames of the fake chatters.
+@export var fake_user_color: Color = Color(0.7, 0.7, 0.7)
+## Color of the nicknames of messages that come from a dialogue (SpeechAnchor).
+@export var dialogue_user_color: Color = Color(1.0, 0.85, 0.3)
+
 @export_group("Content")
 @export var usernames: Array[String] = [
 	"Thorgar", "Lunaria", "xXSlayerXx", "HealzPlz", "NoobMaster69",
 	"Elaria", "Grimbold", "Sir_Lagsalot", "DarkMage", "FarmingBot3000"
 ]
-
+## Default messages, used on any day that has no entry in "days" above.
 @export var chat_messages: Array[String] = [
 	"LFG dungeon, need tank and healer!",
 	"WTS Iron Sword 500g",
@@ -56,22 +77,23 @@ extends Control
 	"is the event still going?",
 	"LF1M for quest, 2 min",
 	"nice armor bro",
-	"hours farming for this trash loot",
-	"invite me to raid",
-	"Diamond sword for 10k"
 ]
 
-# Optional: one color per username so chat looks more alive.
-var _name_colors: Dictionary = {}
 var _recent_messages: Array = []
-var _next_hue: float = randf()
 var _online_users: Array = []   # the current subset of usernames that can chat
+var _last_day: int = -999999
+var _todays_messages: Array[String] = []
+var _warned_missing_global: bool = false
+var _default_online_count: int = 0   # online_count as set in the Inspector
 var _timer: Timer
 
 
 func _ready() -> void:
 	randomize()  # Godot 4 auto-randomizes, kept for clarity.
+	add_to_group("fake_chat")  # lets SpeechAnchor find this chat automatically
+	_default_online_count = online_count
 	_refresh_online_users()
+	_get_todays_messages()  # applies today's messages and online player count
 	_timer = Timer.new()
 	_timer.one_shot = true
 	_timer.timeout.connect(_on_timer_timeout)
@@ -90,8 +112,8 @@ func _on_timer_timeout() -> void:
 
 ## Call this manually too if you want (e.g. from a button).
 func post_random_message() -> void:
-	if usernames.is_empty() or chat_messages.is_empty():
-		push_warning("FakeChat: usernames or chat_messages list is empty.")
+	if usernames.is_empty() or _get_todays_messages().is_empty():
+		push_warning("FakeChat: usernames or messages list is empty.")
 		return
 	if _online_users.is_empty():
 		return  # nobody online, nobody talks
@@ -128,32 +150,68 @@ func _refresh_online_users() -> void:
 		while _online_users.size() < target and not offline.is_empty():
 			_online_users.append(offline.pop_back())
 
-	# Everyone in the group gets their color now (existing colors are kept).
-	for u in _online_users:
-		_get_name_color(u)
-
 
 ## Picks a random message that wasn't used in the last no_repeat_count posts.
 func _pick_message() -> String:
-	var available: Array = chat_messages.filter(func(m): return not _recent_messages.has(m))
+	var messages: Array[String] = _get_todays_messages()
+	var available: Array = messages.filter(func(m): return not _recent_messages.has(m))
 	if available.is_empty():
-		available = chat_messages  # safety net, e.g. very short message list
+		available = messages  # safety net, e.g. very short message list
 
 	var picked: String = available.pick_random()
 
 	_recent_messages.append(picked)
-	var window: int = mini(no_repeat_count, chat_messages.size() - 1)
+	var window: int = mini(no_repeat_count, messages.size() - 1)
 	while _recent_messages.size() > maxi(window, 0):
 		_recent_messages.pop_front()
 
 	return picked
 
 
-func add_chat_line(user: String, text: String) -> void:
+## Reads your global day variable (e.g. Global.currentDay).
+func _get_current_day() -> int:
+	var global_node: Node = get_node_or_null("/root/" + String(global_node_name))
+	if global_node != null:
+		var value: Variant = global_node.get(global_day_variable)
+		if value != null:
+			return int(value)
+
+	if not _warned_missing_global:
+		_warned_missing_global = true
+		push_warning("FakeChat: couldn't read %s.%s, using fallback_day (%d)." % [global_node_name, global_day_variable, fallback_day])
+	return fallback_day
+
+
+## Messages and online player count for the current day. Rebuilt automatically whenever the day changes
+## (and the no-repeat history is cleared), so you don't need to notify the chat.
+func _get_todays_messages() -> Array[String]:
+	var day: int = _get_current_day()
+	if day != _last_day:
+		_last_day = day
+		_recent_messages.clear()
+		_todays_messages = []
+		var day_online_players: int = -1
+		for entry in days:
+			if entry != null and entry.day == day:
+				_todays_messages.append_array(entry.messages)
+				if entry.online_players >= 0:
+					day_online_players = entry.online_players
+		if _todays_messages.is_empty():
+			_todays_messages = chat_messages.duplicate()
+
+		# Online players: this day's value, or the Inspector default.
+		var target: int = day_online_players if day_online_players >= 0 else _default_online_count
+		build_online_group(target, new_group_each_day)
+	return _todays_messages
+
+
+## Adds a line to the chat. Set is_dialogue = true for messages that come from a
+## dialogue (uses dialogue_user_color instead of fake_user_color).
+func add_chat_line(user: String, text: String, is_dialogue: bool = false) -> void:
 	# Unity: Instantiate(prefab, parent)
 	var label: ChatLabel = chat_label_scene.instantiate()
 	chat_container.add_child(label)
-	label.setup(user, text, _get_name_color(user))
+	label.setup(user, text, _get_name_color(is_dialogue))
 
 	# Remove oldest messages (Unity: Destroy(...)) to avoid infinite growth.
 	while chat_container.get_child_count() > max_messages:
@@ -164,13 +222,8 @@ func add_chat_line(user: String, text: String) -> void:
 	_scroll_to_bottom()
 
 
-func _get_name_color(user: String) -> Color:
-	if not _name_colors.has(user):
-		# Golden-ratio hue stepping spreads colors apart, so users in the
-		# same group look distinct instead of randomly clashing.
-		_next_hue = fposmod(_next_hue + 0.618034, 1.0)
-		_name_colors[user] = Color.from_hsv(_next_hue, 0.6, 1.0)
-	return _name_colors[user]
+func _get_name_color(is_dialogue: bool) -> Color:
+	return dialogue_user_color if is_dialogue else fake_user_color
 
 
 func _scroll_to_bottom() -> void:

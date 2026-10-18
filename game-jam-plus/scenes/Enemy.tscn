@@ -5,16 +5,35 @@
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_klwtp"]
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_10siy"]
+radius = 102.396286
+
 [node name="Enemy" type="CharacterBody2D" unique_id=1350644445 groups=["Enemies"]]
 collision_layer = 4
-collision_mask = 15
+collision_mask = 47
 motion_mode = 1
 script = ExtResource("1_3gvst")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=670228505]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=670228505 groups=["Player"]]
 shape = SubResource("CircleShape2D_klwtp")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=2047224396]
 texture = ExtResource("2_55jtl")
 
+[node name="TargetSprite" type="Sprite2D" parent="." unique_id=390352958]
+modulate = Color(0.5176471, 0, 0, 1)
+position = Vector2(1.0000019, -1.5)
+scale = Vector2(0.48437503, 0.33593747)
+texture = ExtResource("2_55jtl")
+
+[node name="DamageArea" type="Area2D" parent="." unique_id=603865676]
+collision_layer = 4
+collision_mask = 33
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DamageArea" unique_id=647601863]
+shape = SubResource("CircleShape2D_10siy")
+
 [node name="Timer" type="Timer" parent="." unique_id=1620551125]
+
+[node name="DamageTimer" type="Timer" parent="." unique_id=264525209]
+one_shot = true

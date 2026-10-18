@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://bp7vg4xy6wpku" path="res://scripts/ui/fake_chat.gd" id="1_37p78"]
 [ext_resource type="PackedScene" uid="uid://dj1rwqbuollp8" path="res://scenes/ui/ChatLabel.tscn" id="2_64ctp"]
+[ext_resource type="Script" uid="uid://ix53yhyhy7pf" path="res://scripts/ui/chat_day.gd" id="3_bo48s"]
 
 [sub_resource type="Theme" id="Theme_64ctp"]
 
@@ -29,6 +30,7 @@ chat_container = NodePath("CanvasLayer/ScrollContainer/VBoxContainer")
 chat_label_scene = ExtResource("2_64ctp")
 min_delay = 0.05
 online_count = 10
+days = Array[ExtResource("3_bo48s")]([null, null, null, null, null, null, null])
 usernames = Array[String](["Thorgar", "Lunaria", "xXSlayerXx", "HealzPlz", "NoobMaster69", "Elaria", "Grimbold", "Sir_Lagsalot", "DarkMage", "FarmingBot3000", "_SazukeGod_", "xXStormLordXx", "TheUnburden", "Leonardt", "StormHunter", "TuffBoi", "Chinelo", "LordKnight", "Klebersonn"])
 metadata/_edit_use_anchors_ = true
 
@@ -62,7 +64,7 @@ anchor_bottom = 1.0
 offset_left = 9.0
 offset_top = 398.0
 offset_right = -850.0
-offset_bottom = 21.0
+offset_bottom = -25.0
 grow_horizontal = 2
 grow_vertical = 2
 theme = SubResource("Theme_37p78")

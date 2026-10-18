@@ -1,0 +1,39 @@
+[gd_scene format=3 uid="uid://dhj7rdxaitx4q"]
+
+[ext_resource type="PackedScene" uid="uid://dcune8pi3wh5l" path="res://scenes/mc.tscn" id="1_3253y"]
+[ext_resource type="PackedScene" uid="uid://btd50jvwac3ko" path="res://scenes/friend.tscn" id="2_u3cyc"]
+[ext_resource type="PackedScene" uid="uid://bsxg4awkj6s12" path="res://scenes/Enemy.tscn" id="3_m7jmp"]
+[ext_resource type="Texture2D" uid="uid://v5cu1276vqab" path="res://assets/icon.svg" id="4_u3cyc"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_klwtp"]
+size = Vector2(3350, 273)
+
+[node name="Scene" type="Node2D" unique_id=782247269]
+
+[node name="mc" parent="." unique_id=1775706242 instance=ExtResource("1_3253y")]
+position = Vector2(-1201, -686)
+
+[node name="Camera2D" type="Camera2D" parent="mc" unique_id=573082837]
+zoom = Vector2(0.2, 0.2)
+metadata/_edit_lock_ = true
+
+[node name="Friend" parent="." unique_id=34609045 instance=ExtResource("2_u3cyc")]
+modulate = Color(0, 1, 0.039215688, 1)
+position = Vector2(-2138, 440)
+
+[node name="Enemy" parent="." unique_id=1350644445 instance=ExtResource("3_m7jmp")]
+modulate = Color(1, 0, 0, 1)
+position = Vector2(1144, 124)
+
+[node name="Icon" type="Sprite2D" parent="." unique_id=206344976]
+modulate = Color(0, 0, 0, 1)
+position = Vector2(-863, -1519)
+scale = Vector2(26.242188, 2.15625)
+texture = ExtResource("4_u3cyc")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="." unique_id=287460871]
+position = Vector2(1021, -1371)
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="StaticBody2D" unique_id=812355585]
+position = Vector2(-1884, -146.5)
+shape = SubResource("RectangleShape2D_klwtp")

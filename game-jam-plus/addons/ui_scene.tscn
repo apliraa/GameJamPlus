@@ -31,6 +31,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 days = Array[ExtResource("2_ep6cc")]([SubResource("Resource_tmwax"), SubResource("Resource_tmwax"), SubResource("Resource_tmwax"), SubResource("Resource_tmwax"), SubResource("Resource_tmwax")])
 new_group_each_day = true
+dialogue_user_color = Color(0.31, 0.4249999, 1, 1)
 usernames = Array[String](["Thorgar", "Lunaria", "xXSlayerXx", "HealzPlz", "NoobMaster69", "Elaria", "Grimbold", "Sir_Lagsalot", "DarkMage", "FarmingBot3000", "_SazukeGod_", "xXStormLordXx", "TheUnburden", "Leonardt", "StormHunter", "FlipFlops", "X1Noob", "SapoChateado", "BrendanTheSlayer", "YohanNightborne", "CutieSparksy", ""])
 
 [node name="HUD" type="Control" parent="." unique_id=1982614361]

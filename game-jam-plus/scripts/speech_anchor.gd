@@ -1,12 +1,22 @@
 class_name SpeechAnchor
 extends Marker2D
 ## Put one of these on every character (child of the player/NPC node) and move
-## it to just above the character's head. Call say() to make that character
-## speak in its own balloon. Each character has its own anchor, so many
-## characters can talk at the same time.
+## it to just above the character's head.
+##
+## Dialogue is written with the normal Dialogue Manager notation, with several
+## characters in the same file:
+##
+##   ~ start
+##   Nathan: Hi there!
+##   Arthur: Oi, meu nome é Arthur.
+##
+## Set "character_name" on each anchor to the name used in the file (Nathan,
+## Arthur...). When any character calls say(), every line is shown above the
+## character it belongs to. A line whose name matches no anchor is shown above
+## the character that started the conversation.
 ##
 ## Like an MMO, each message is also posted to the chat window (FakeChat) under
-## the character's nickname, at the moment the message appears in the bubble.
+## the speaker's nickname, at the moment it appears in the bubble.
 
 signal speech_started
 signal speech_finished
@@ -14,62 +24,149 @@ signal speech_finished
 @export var balloon_scene: PackedScene   # drag SpeechBalloon.tscn here
 @export var default_dialogue: DialogueResource
 @export var default_title: String = "start"
-## Nodes whose variables/functions the .dialogue file can use for this character
+## Nodes whose variables/functions the .dialogue file can use
 ## (for example the character itself).
 @export var extra_game_states: Array[Node] = []
+
+@export_group("Character")
+## The name this character has in .dialogue files: the "Nathan" in "Nathan: Hi!".
+@export var character_name: String = ""
 
 @export_group("Chat")
 ## Also post each message to the chat window.
 @export var post_to_chat: bool = true
-## Nickname used in the chat when say() isn't given one.
+## Nickname shown in the chat. Empty = use character_name.
 @export var default_nickname: String = ""
 ## The chat to post to. Leave empty to find it automatically (FakeChat adds
 ## itself to the "fake_chat" group).
 @export var chat: FakeChat
 
 var _current_balloon: SpeechBalloon
+var _run_id: int = 0
 var _warned_no_chat: bool = false
+var _warned_choices: bool = false
 var _bbcode_regex: RegEx
 
 
-## Makes this character speak. If it is already speaking, the old balloon is
-## replaced. Uses the default nickname/dialogue/title when none are given.
-##   say()                                  -> everything default
-##   say("Thorgar")                         -> default dialogue, nickname Thorgar
+func _ready() -> void:
+	add_to_group("speech_anchors")  # lets other anchors find this character by name
+
+
+## Starts a conversation from this character. Every line is shown by the
+## character it belongs to (see character_name). If this character is already
+## in a conversation, it is replaced.
+##   say()                                  -> default dialogue and title
+##   say("Thorgar")                         -> also sets this character's chat nickname
 ##   say("Thorgar", my_dialogue, "greeting") -> specific dialogue and title
 func say(nickname: String = "", resource: DialogueResource = null, title: String = "") -> void:
 	if resource == null:
 		resource = default_dialogue
 	if title.is_empty():
 		title = default_title
-	if nickname.is_empty():
-		nickname = default_nickname
+	if not nickname.is_empty():
+		default_nickname = nickname
 	if resource == null or balloon_scene == null:
 		push_warning("SpeechAnchor: needs a dialogue resource and a balloon_scene.")
 		return
 
 	clear()
-
 	var states: Array = extra_game_states.duplicate()
-
-	_current_balloon = balloon_scene.instantiate() as SpeechBalloon
-	add_child(_current_balloon)
-	_current_balloon.finished.connect(func(): speech_finished.emit())
-	# Posts to the chat each time a message appears in the bubble (not while it's "typing").
-	_current_balloon.message_shown.connect(func(text: String): _post_to_chat(nickname, text))
-	speech_started.emit()
-	_current_balloon.start(resource, title, states)
+	_run_conversation(resource, title, states, _run_id)
 
 
-## Removes the current balloon right away, if any.
+## Stops this character's conversation and removes its balloon right away.
 func clear() -> void:
-	if is_instance_valid(_current_balloon):
-		_current_balloon.cancel()
-	_current_balloon = null
+	_run_id += 1
+	_cancel_balloon()
 
 
 func is_speaking() -> bool:
 	return is_instance_valid(_current_balloon)
+
+
+## The name shown in the chat for this character.
+func get_chat_name() -> String:
+	return default_nickname if not default_nickname.is_empty() else character_name
+
+
+## Shows one line above THIS character and waits until the balloon is gone.
+## Called by the conversation that is running (usually from another anchor).
+func speak_line(line: DialogueLine, chat_name: String = "") -> void:
+	if balloon_scene == null:
+		push_warning("SpeechAnchor '%s': no balloon_scene assigned." % character_name)
+		return
+
+	_cancel_balloon()
+	var balloon: SpeechBalloon = balloon_scene.instantiate() as SpeechBalloon
+	_current_balloon = balloon
+	add_child(balloon)
+	# Posts to the chat when the message appears (not while it's "typing").
+	balloon.message_shown.connect(func(text: String): _post_to_chat(chat_name, text))
+	balloon.play_line(line)
+	await balloon.tree_exited
+
+
+func _run_conversation(resource: DialogueResource, title: String, states: Array, run_id: int) -> void:
+	speech_started.emit()
+	var next_id: String = title
+
+	while run_id == _run_id:
+		var line: DialogueLine = await DialogueManager.get_next_dialogue_line(resource, next_id, states)
+		if run_id != _run_id or line == null:
+			break
+
+		if not line.text.is_empty():
+			# Which character says this line?
+			var target: SpeechAnchor = _find_anchor(line.character)
+			var matched: bool = target != null
+			if target == null:
+				target = self  # unknown speaker: use the character that started it
+
+			var chat_name: String = target.get_chat_name()
+			if not matched and not line.character.is_empty():
+				chat_name = line.character
+
+			await target.speak_line(line, chat_name)
+			if run_id != _run_id:
+				return  # replaced by a newer conversation
+
+		# Choices ("- option") can't be answered from a bubble, so stop here.
+		if line.responses.size() > 0:
+			if not _warned_choices:
+				_warned_choices = true
+				push_warning("SpeechAnchor: dialogue choices are not supported in speech bubbles; the conversation stops here.")
+			break
+
+		next_id = line.next_id
+		if next_id.is_empty():
+			break
+
+	if run_id == _run_id:
+		speech_finished.emit()
+
+
+## Finds the anchor whose character_name matches the speaker of a line.
+## Returns null if the line has no speaker or nobody matches.
+func _find_anchor(speaker: String) -> SpeechAnchor:
+	if speaker.strip_edges().is_empty():
+		return null
+	if _names_match(character_name, speaker):
+		return self
+	for node in get_tree().get_nodes_in_group("speech_anchors"):
+		var anchor: SpeechAnchor = node as SpeechAnchor
+		if anchor != null and _names_match(anchor.character_name, speaker):
+			return anchor
+	return null
+
+
+func _names_match(a: String, b: String) -> bool:
+	return a.strip_edges().to_lower() == b.strip_edges().to_lower()
+
+
+func _cancel_balloon() -> void:
+	if is_instance_valid(_current_balloon):
+		_current_balloon.cancel()
+	_current_balloon = null
 
 
 func _post_to_chat(nickname: String, text: String) -> void:
@@ -85,7 +182,7 @@ func _post_to_chat(nickname: String, text: String) -> void:
 			push_warning("SpeechAnchor: no FakeChat found to post to (assign 'chat' or make sure FakeChat is in the scene).")
 		return
 
-	target.add_chat_line(nickname, _strip_bbcode(text))
+	target.add_chat_line(nickname, _strip_bbcode(text), true)  # true = dialogue color
 
 
 ## Removes BBCode tags like [b] or [color=red] so they don't show as raw text in the chat.

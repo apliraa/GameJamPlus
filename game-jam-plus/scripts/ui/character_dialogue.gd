@@ -8,5 +8,5 @@ class_name CharacterDialogue
 @export var curDialogue: String
 
 func _ready() -> void:
-	await get_tree().create_timer(1.0).timeout  
-	speech_anchor.say(nickname, dialogueAsset, curDialogue)
+	await get_tree().create_timer(1.0).timeout
+	speech_anchor.say("", dialogueAsset, curDialogue)

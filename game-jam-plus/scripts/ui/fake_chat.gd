@@ -49,6 +49,12 @@ extends Control
 ## instead of keeping the current ones and only logging the difference in/out.
 @export var new_group_each_day: bool = false
 
+@export_group("Name Colors")
+## Color of the usernames of the fake chatters.
+@export var fake_user_color: Color = Color(0.7, 0.7, 0.7)
+## Color of the nicknames of messages that come from a dialogue (SpeechAnchor).
+@export var dialogue_user_color: Color = Color(1.0, 0.85, 0.3)
+
 @export_group("Content")
 @export var usernames: Array[String] = [
 	"Thorgar", "Lunaria", "xXSlayerXx", "HealzPlz", "NoobMaster69",
@@ -73,10 +79,7 @@ extends Control
 	"nice armor bro",
 ]
 
-# Optional: one color per username so chat looks more alive.
-var _name_colors: Dictionary = {}
 var _recent_messages: Array = []
-var _next_hue: float = randf()
 var _online_users: Array = []   # the current subset of usernames that can chat
 var _last_day: int = -999999
 var _todays_messages: Array[String] = []
@@ -147,10 +150,6 @@ func _refresh_online_users() -> void:
 		while _online_users.size() < target and not offline.is_empty():
 			_online_users.append(offline.pop_back())
 
-	# Everyone in the group gets their color now (existing colors are kept).
-	for u in _online_users:
-		_get_name_color(u)
-
 
 ## Picks a random message that wasn't used in the last no_repeat_count posts.
 func _pick_message() -> String:
@@ -206,11 +205,13 @@ func _get_todays_messages() -> Array[String]:
 	return _todays_messages
 
 
-func add_chat_line(user: String, text: String) -> void:
+## Adds a line to the chat. Set is_dialogue = true for messages that come from a
+## dialogue (uses dialogue_user_color instead of fake_user_color).
+func add_chat_line(user: String, text: String, is_dialogue: bool = false) -> void:
 	# Unity: Instantiate(prefab, parent)
 	var label: ChatLabel = chat_label_scene.instantiate()
 	chat_container.add_child(label)
-	label.setup(user, text, _get_name_color(user))
+	label.setup(user, text, _get_name_color(is_dialogue))
 
 	# Remove oldest messages (Unity: Destroy(...)) to avoid infinite growth.
 	while chat_container.get_child_count() > max_messages:
@@ -221,13 +222,8 @@ func add_chat_line(user: String, text: String) -> void:
 	_scroll_to_bottom()
 
 
-func _get_name_color(user: String) -> Color:
-	if not _name_colors.has(user):
-		# Golden-ratio hue stepping spreads colors apart, so users in the
-		# same group look distinct instead of randomly clashing.
-		_next_hue = fposmod(_next_hue + 0.618034, 1.0)
-		_name_colors[user] = Color.from_hsv(_next_hue, 0.6, 1.0)
-	return _name_colors[user]
+func _get_name_color(is_dialogue: bool) -> Color:
+	return dialogue_user_color if is_dialogue else fake_user_color
 
 
 func _scroll_to_bottom() -> void:

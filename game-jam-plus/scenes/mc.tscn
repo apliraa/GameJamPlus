@@ -403,10 +403,10 @@ animations = [{
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ungyi"]
-size = Vector2(54, 46)
+size = Vector2(16, 33)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_klwtp"]
-radius = 92.19544
+radius = 22.203604
 
 [sub_resource type="Resource" id="Resource_ibph8"]
 metadata/__load_path__ = "res://dialogues/test.dialogue"
@@ -474,7 +474,7 @@ animation = &"Walk R"
 autoplay = "Idle"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=882635758]
-position = Vector2(0, 2)
+position = Vector2(0, 0.5)
 shape = SubResource("RectangleShape2D_ungyi")
 
 [node name="DamageArea" type="Area2D" parent="." unique_id=970989728]

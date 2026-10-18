@@ -1,18 +1,19 @@
 [gd_scene format=3 uid="uid://bsxg4awkj6s12"]
 
 [ext_resource type="Script" uid="uid://c6eqijwlb62bh" path="res://scripts/enemy.gd" id="1_3gvst"]
-[ext_resource type="Texture2D" uid="uid://v5cu1276vqab" path="res://assets/icon.svg" id="2_55jtl"]
 [ext_resource type="Shader" uid="uid://blf8vuw5i08es" path="res://assets/Shaders/mc.tres" id="2_mpr68"]
+[ext_resource type="Texture2D" uid="uid://c1l0q05bqb7e" path="res://assets/Enemies/TargetSprite.png" id="3_mpr68"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_klwtp"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_ks8t0"]
+resource_local_to_scene = true
 shader = ExtResource("2_mpr68")
 shader_parameter/BooleanParameter = true
 shader_parameter/Tint = Color(1, 1, 1, 1)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_10siy"]
-radius = 102.396286
+radius = 38.832977
 
 [sub_resource type="Animation" id="Animation_ft8do"]
 resource_name = "Hit Flash"
@@ -66,10 +67,8 @@ material = SubResource("ShaderMaterial_ks8t0")
 animation = &""
 
 [node name="TargetSprite" type="Sprite2D" parent="." unique_id=390352958]
-modulate = Color(0.5176471, 0, 0, 1)
-position = Vector2(1.0000019, -1.5)
-scale = Vector2(0.48437503, 0.33593747)
-texture = ExtResource("2_55jtl")
+position = Vector2(0, -1)
+texture = ExtResource("3_mpr68")
 
 [node name="DamageArea" type="Area2D" parent="." unique_id=603865676]
 collision_layer = 4

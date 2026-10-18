@@ -2,11 +2,54 @@
 
 [ext_resource type="Script" uid="uid://c6eqijwlb62bh" path="res://scripts/enemy.gd" id="1_3gvst"]
 [ext_resource type="Texture2D" uid="uid://v5cu1276vqab" path="res://assets/icon.svg" id="2_55jtl"]
+[ext_resource type="Shader" uid="uid://blf8vuw5i08es" path="res://assets/Shaders/mc.tres" id="2_mpr68"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_klwtp"]
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ks8t0"]
+shader = ExtResource("2_mpr68")
+shader_parameter/BooleanParameter = true
+shader_parameter/Tint = Color(1, 1, 1, 1)
+
 [sub_resource type="CircleShape2D" id="CircleShape2D_10siy"]
 radius = 102.396286
+
+[sub_resource type="Animation" id="Animation_ft8do"]
+resource_name = "Hit Flash"
+length = 0.15
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:material:shader_parameter/BooleanParameter")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.08),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+
+[sub_resource type="Animation" id="Animation_5wwv6"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:material:shader_parameter/BooleanParameter")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_1vja8"]
+_data = {
+&"Hit Flash": SubResource("Animation_ft8do"),
+&"RESET": SubResource("Animation_5wwv6")
+}
 
 [node name="Enemy" type="CharacterBody2D" unique_id=1350644445 groups=["Enemies"]]
 collision_layer = 4
@@ -17,8 +60,9 @@ script = ExtResource("1_3gvst")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=670228505 groups=["Player"]]
 shape = SubResource("CircleShape2D_klwtp")
 
-[node name="Sprite2D" type="Sprite2D" parent="." unique_id=2047224396]
-texture = ExtResource("2_55jtl")
+[node name="Sprite2D" type="AnimatedSprite2D" parent="." unique_id=1633986561]
+material = SubResource("ShaderMaterial_ks8t0")
+animation = &"Idle R"
 
 [node name="TargetSprite" type="Sprite2D" parent="." unique_id=390352958]
 modulate = Color(0.5176471, 0, 0, 1)
@@ -37,3 +81,6 @@ shape = SubResource("CircleShape2D_10siy")
 
 [node name="DamageTimer" type="Timer" parent="." unique_id=264525209]
 one_shot = true
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=468473772]
+libraries/ = SubResource("AnimationLibrary_1vja8")

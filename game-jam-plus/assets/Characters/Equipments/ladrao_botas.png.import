@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bug04svpu3kbk"
-path="res://.godot/imported/cavaleiro_equipamento.png-4493dd67ae7ea30548af75b0f07985fd.ctex"
+uid="uid://bgty1lb2upw7x"
+path="res://.godot/imported/ladrao_botas.png-b19aad7409a18d146887accab1f42250.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/Characters/Equipments/cavaleiro_equipamento.png"
-dest_files=["res://.godot/imported/cavaleiro_equipamento.png-4493dd67ae7ea30548af75b0f07985fd.ctex"]
+source_file="res://assets/Characters/Equipments/ladrao_botas.png"
+dest_files=["res://.godot/imported/ladrao_botas.png-b19aad7409a18d146887accab1f42250.ctex"]
 
 [params]
 

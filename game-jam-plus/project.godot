@@ -18,7 +18,8 @@ config/icon="res://assets/audios/icon.svg"
 [autoload]
 
 DialogueManager="*uid://c3rodes2l3gxb"
-Globals="*uid://cyarkxashe4ds"
+EventManager="*uid://b8mycqjbf6iwi"
+Globals="*uid://bxpfky5jodb4b"
 
 [dialogue_manager]
 

@@ -17,6 +17,8 @@ extends PanelContainer
 
 ## Emitted after the last line has been shown and the balloon has faded out.
 signal finished
+## Emitted each time a message becomes visible (after the "..." typing bubble).
+signal message_shown(text: String)
 
 @export_group("Position")
 ## Offset from the anchor. The balloon is centered horizontally above it.
@@ -121,6 +123,9 @@ func _show_line(line: DialogueLine) -> void:
 			return
 
 	modulate.a = 1.0
+	if _cancelled:
+		return
+	message_shown.emit(line.text)
 	await _wait(_display_time(line))
 
 

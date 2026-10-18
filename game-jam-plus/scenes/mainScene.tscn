@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://i8dbthb5i2vq"]
 
-[ext_resource type="Script" uid="uid://b8mycqjbf6iwi" path="res://scenes/event_manager.gd" id="1_ki6c0"]
+[ext_resource type="Script" uid="uid://b8mycqjbf6iwi" path="res://scripts/ui/event_manager.gd" id="1_ki6c0"]
 
 [node name="main" type="Node" unique_id=417759079]
 

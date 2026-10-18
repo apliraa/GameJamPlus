@@ -1,23 +1,18 @@
 class_name SpeechBalloon
 extends PanelContainer
-## A per-character speech bubble driven by Dialogue Manager (Godot 4.x).
+## A per-character speech bubble for ONE dialogue line (Godot 4.x, Dialogue Manager).
 ##
-## Every character gets its own instance of this scene, so many players can
-## talk at once. It does not use DialogueManager.show_dialogue_balloon(); it
-## asks Dialogue Manager for each line itself and shows it in a plain
-## RichTextLabel.
-##
-## For each line it first shows an animated "typing" bubble (. .. ...) whose
-## length depends on the message, then swaps in the full message, like a live
-## MMO chat. No typewriter effect.
+## SpeechAnchor creates one of these for every line a character speaks and calls
+## play_line(). The balloon shows an animated "typing" bubble (. .. ...), whose
+## length depends on the message, then the full message, then fades out and
+## frees itself. No typewriter effect.
 ##
 ## Scene: PanelContainer (this script) -> RichTextLabel.
 ## Style the look (font, panel background, margins) in the scene itself.
-## Responses/choices are not supported here (MMO chat bubbles don't have them).
 
-## Emitted after the last line has been shown and the balloon has faded out.
+## Emitted after the line has been shown and the balloon has faded out.
 signal finished
-## Emitted each time a message becomes visible (after the "..." typing bubble).
+## Emitted when the message becomes visible (after the "..." typing bubble).
 signal message_shown(text: String)
 
 @export_group("Position")
@@ -35,7 +30,7 @@ signal message_shown(text: String)
 @export var max_width: float = 280.0
 
 @export_group("Typing Indicator")
-## Show the animated "..." bubble before each message.
+## Show the animated "..." bubble before the message.
 @export var show_typing_indicator: bool = true
 ## How long the dots show per character of the upcoming message...
 @export var typing_seconds_per_character: float = 0.05
@@ -66,22 +61,11 @@ func _ready() -> void:
 	_reposition()
 
 
-## Runs the dialogue from `title`, line by line. Not meant to be awaited by the
-## caller; listen to the `finished` signal instead.
-func start(resource: DialogueResource, title: String, extra_game_states: Array = []) -> void:
-	modulate.a = 0.0  # stay invisible until the first line is ready
-
-	var next_id: String = title
-	while not _cancelled:
-		var line: DialogueLine = await DialogueManager.get_next_dialogue_line(resource, next_id, extra_game_states)
-		if _cancelled or line == null:
-			break
-		await _show_line(line)
-		if _cancelled:
-			break
-		next_id = line.next_id
-		if next_id.is_empty():
-			break
+## Shows one dialogue line, then frees the balloon. Not meant to be awaited by
+## the caller; wait for the node to leave the tree (or listen to `finished`).
+func play_line(line: DialogueLine) -> void:
+	modulate.a = 0.0  # stay invisible until the line is ready
+	await _show_line(line)
 
 	if _cancelled:
 		queue_free()

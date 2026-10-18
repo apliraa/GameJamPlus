@@ -1,0 +1,66 @@
+[gd_scene format=3 uid="uid://csu5i0d235td7"]
+
+[ext_resource type="Script" uid="uid://b8mycqjbf6iwi" path="res://scenes/event_manager.gd" id="1_ep6cc"]
+[ext_resource type="PackedScene" uid="uid://da1atgsbu7dtv" path="res://scenes/ui/hud.tscn" id="1_f35ww"]
+[ext_resource type="PackedScene" uid="uid://7o2plo56qevd" path="res://scenes/ui/hp_bar_value.tscn" id="2_e7qjq"]
+[ext_resource type="Script" uid="uid://ix53yhyhy7pf" path="res://scripts/ui/chat_day.gd" id="2_ep6cc"]
+[ext_resource type="Texture2D" uid="uid://b4aogi0y4s2tf" path="res://assets/audios/icon.svg" id="3_ep6cc"]
+[ext_resource type="Script" uid="uid://blv5ffueggafa" path="res://scripts/ui/character_dialogue.gd" id="4_731w5"]
+[ext_resource type="Script" uid="uid://bl24wyvtoeawn" path="res://scripts/speech_anchor.gd" id="5_a1x5q"]
+[ext_resource type="PackedScene" uid="uid://rbonvwrh7gbn" path="res://scenes/SpeechBalloon.tscn" id="6_y5smt"]
+[ext_resource type="Resource" uid="uid://bfmelgio6beqp" path="res://dialogues/test.dialogue" id="7_3skvq"]
+
+[sub_resource type="Resource" id="Resource_tmwax"]
+script = ExtResource("2_ep6cc")
+online_players = 30
+messages = Array[String](["LFG dungeon, need tank and healer!", "WTS Iron Sword 500g", "anyone know where the blacksmith is?", "lol that boss one-shot me", "guild recruiting, lvl 20+, DM me", "server lag again...", "gg everyone", "WTB health potions, paying well", "who wants to trade?", "brb afk 5 min"])
+metadata/_custom_type_script = "uid://ix53yhyhy7pf"
+
+[node name="Node2D" type="Node2D" unique_id=1937043519 node_paths=PackedStringArray("friendDialogue", "playerDialogue")]
+script = ExtResource("1_ep6cc")
+friendDialogue = NodePath("Friend/Dialogue")
+playerDialogue = NodePath("Friend/Dialogue")
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=248334728]
+anchor_mode = 0
+
+[node name="Fake chat" parent="." unique_id=66097488 instance=ExtResource("1_f35ww")]
+anchors_preset = 15
+anchor_top = 0.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+days = Array[ExtResource("2_ep6cc")]([SubResource("Resource_tmwax"), SubResource("Resource_tmwax"), SubResource("Resource_tmwax"), SubResource("Resource_tmwax"), SubResource("Resource_tmwax")])
+new_group_each_day = true
+dialogue_user_color = Color(0.31, 0.4249999, 1, 1)
+usernames = Array[String](["Thorgar", "Lunaria", "xXSlayerXx", "HealzPlz", "NoobMaster69", "Elaria", "Grimbold", "Sir_Lagsalot", "DarkMage", "FarmingBot3000", "_SazukeGod_", "xXStormLordXx", "TheUnburden", "Leonardt", "StormHunter", "FlipFlops", "X1Noob", "SapoChateado", "BrendanTheSlayer", "YohanNightborne", "CutieSparksy", ""])
+
+[node name="HUD" type="Control" parent="." unique_id=1982614361]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="CanvasLayer" type="CanvasLayer" parent="HUD" unique_id=2127473872]
+
+[node name="Hp Bar Value" parent="HUD/CanvasLayer" unique_id=832068778 instance=ExtResource("2_e7qjq")]
+
+[node name="Friend" type="Node2D" parent="." unique_id=733036571]
+position = Vector2(891, 221)
+
+[node name="Sprite2D" type="Sprite2D" parent="Friend" unique_id=1396647215]
+texture = ExtResource("3_ep6cc")
+
+[node name="Dialogue" type="Node2D" parent="Friend" unique_id=1174920403]
+script = ExtResource("4_731w5")
+nickname = "Luizinho"
+dialogueAsset = ExtResource("7_3skvq")
+curDialogue = "arthur"
+
+[node name="SpeechAnchor" type="Marker2D" parent="Friend/Dialogue" unique_id=496881512 node_paths=PackedStringArray("chat")]
+position = Vector2(1, -85)
+script = ExtResource("5_a1x5q")
+balloon_scene = ExtResource("6_y5smt")
+default_dialogue = ExtResource("7_3skvq")
+chat = NodePath("../../../Fake chat")

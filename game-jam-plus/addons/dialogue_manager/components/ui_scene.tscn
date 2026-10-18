@@ -1,6 +1,6 @@
-[gd_scene format=3 uid="uid://csu5i0d235td7"]
+[gd_scene format=3 uid="uid://cadgte77eun04"]
 
-[ext_resource type="Script" uid="uid://b8mycqjbf6iwi" path="res://scenes/event_manager.gd" id="1_ep6cc"]
+[ext_resource type="Script" uid="uid://cicx8yp1d41ug" path="res://scenes/event_manager.gd" id="1_ep6cc"]
 [ext_resource type="PackedScene" uid="uid://da1atgsbu7dtv" path="res://scenes/ui/hud.tscn" id="1_f35ww"]
 [ext_resource type="PackedScene" uid="uid://7o2plo56qevd" path="res://scenes/ui/hp_bar_value.tscn" id="2_e7qjq"]
 [ext_resource type="Script" uid="uid://ix53yhyhy7pf" path="res://scripts/ui/chat_day.gd" id="2_ep6cc"]
@@ -18,8 +18,8 @@ metadata/_custom_type_script = "uid://ix53yhyhy7pf"
 
 [node name="Node2D" type="Node2D" unique_id=1937043519 node_paths=PackedStringArray("friendDialogue", "playerDialogue")]
 script = ExtResource("1_ep6cc")
-friendDialogue = NodePath("Friend/Dialogue")
-playerDialogue = NodePath("Friend/Dialogue")
+friendDialogue = NodePath("Arthur/Dialogue")
+playerDialogue = NodePath("Arthur/Dialogue")
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=248334728]
 anchor_mode = 0
@@ -46,21 +46,38 @@ grow_vertical = 2
 
 [node name="Hp Bar Value" parent="HUD/CanvasLayer" unique_id=832068778 instance=ExtResource("2_e7qjq")]
 
-[node name="Friend" type="Node2D" parent="." unique_id=733036571]
-position = Vector2(891, 221)
+[node name="Arthur" type="Node2D" parent="." unique_id=733036571]
+position = Vector2(306, 270)
 
-[node name="Sprite2D" type="Sprite2D" parent="Friend" unique_id=1396647215]
+[node name="Sprite2D" type="Sprite2D" parent="Arthur" unique_id=1396647215]
 texture = ExtResource("3_ep6cc")
 
-[node name="Dialogue" type="Node2D" parent="Friend" unique_id=1174920403]
+[node name="Dialogue" type="Node2D" parent="Arthur" unique_id=1174920403]
+
+[node name="SpeechAnchor" type="Marker2D" parent="Arthur/Dialogue" unique_id=496881512 node_paths=PackedStringArray("chat")]
+position = Vector2(1, -85)
+script = ExtResource("5_a1x5q")
+balloon_scene = ExtResource("6_y5smt")
+default_dialogue = ExtResource("7_3skvq")
+character_name = "Arthur"
+chat = NodePath("../../../Fake chat")
+
+[node name="Luizinho" type="Node2D" parent="." unique_id=578384553]
+position = Vector2(891, 448)
+
+[node name="Sprite2D" type="Sprite2D" parent="Luizinho" unique_id=2018229938]
+texture = ExtResource("3_ep6cc")
+
+[node name="Dialogue" type="Node2D" parent="Luizinho" unique_id=1702760832]
 script = ExtResource("4_731w5")
 nickname = "Luizinho"
 dialogueAsset = ExtResource("7_3skvq")
 curDialogue = "arthur"
 
-[node name="SpeechAnchor" type="Marker2D" parent="Friend/Dialogue" unique_id=496881512 node_paths=PackedStringArray("chat")]
+[node name="SpeechAnchor" type="Marker2D" parent="Luizinho/Dialogue" unique_id=1680319971 node_paths=PackedStringArray("chat")]
 position = Vector2(1, -85)
 script = ExtResource("5_a1x5q")
 balloon_scene = ExtResource("6_y5smt")
 default_dialogue = ExtResource("7_3skvq")
+character_name = "Luizinho"
 chat = NodePath("../../../Fake chat")

@@ -917,6 +917,9 @@ radius = 265.45245
 [sub_resource type="CircleShape2D" id="CircleShape2D_mykxq"]
 radius = 32.01562
 
+[sub_resource type="Resource" id="Resource_w4v4f"]
+metadata/__load_path__ = "res://dialogues/test.dialogue"
+
 [node name="Friend" type="CharacterBody2D" unique_id=34609045]
 collision_layer = 32
 collision_mask = 15
@@ -975,6 +978,19 @@ shape = SubResource("CircleShape2D_mykxq")
 
 [node name="DamageTimer" type="Timer" parent="." unique_id=1193896029]
 one_shot = true
+
+[node name="Dialogue" type="Node2D" parent="." unique_id=1822750882]
+script = ExtResource("3_w4v4f")
+dialogueAsset = ExtResource("4_rduxe")
+
+[node name="SpeechAnchor" type="Marker2D" parent="Dialogue" unique_id=1981211982 node_paths=PackedStringArray("chat")]
+position = Vector2(1, -85)
+script = ExtResource("5_4gghk")
+balloon_scene = ExtResource("6_buh2q")
+default_dialogue = SubResource("Resource_w4v4f")
+character_name = "friend"
+default_nickname = "TheFabulouz"
+chat = NodePath("")
 
 [connection signal="body_entered" from="DamageArea" to="." method="_on_damage_area_body_entered"]
 [connection signal="body_exited" from="DamageArea" to="." method="_on_damage_area_body_exited"]

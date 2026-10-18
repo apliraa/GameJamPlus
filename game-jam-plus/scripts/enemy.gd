@@ -45,10 +45,12 @@ func _physics_process(_delta: float) -> void:
 	match cur_state:
 		State.WANDER:
 			wander()
+			update_animations()
 		State.ATTACK:
 			attack()
+			update_animations()
 	
-	update_animations()
+	
 	
 	move_and_slide()
 
@@ -69,6 +71,7 @@ func new_direction() -> void:
 			
 	else:
 		DIRECTION = Vector2.ZERO
+	
 
 func wander():
 	if global_position.distance_to(INITIAL_POSITION) >= radius_limit:
@@ -119,8 +122,8 @@ func play_hit_animation() -> void:
 
 func die() -> void:
 	var player = get_tree().get_first_node_in_group("Player")
-	if player != null:
-		player.gainXP(xp_reward)
+	#if player != null:
+		#player.gainXP(xp_reward)
 	queue_free()
 	
 func update_animations() -> void:

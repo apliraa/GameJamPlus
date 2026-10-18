@@ -1,4 +1,5 @@
 extends CharacterBody2D
+class_name PlayerController
 
 const SPEED := 100.0
 const CLICK_RADIUS := 24.0
@@ -108,9 +109,6 @@ func play_hit_animation() -> void:
 func die() -> void:
 	pass
 
-# CORRIGIDO: A função gainXP agora apenas soma a experiência, sem atrapalhar a física.
-func gainXP(amount: int) -> void:
-	XP += amount
 
 func update_animations() -> void:
 	# Memoriza a direção enquanto estiver andando

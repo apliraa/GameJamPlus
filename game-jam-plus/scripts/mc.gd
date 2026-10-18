@@ -1,4 +1,5 @@
 extends CharacterBody2D
+class_name PlayerController
 
 const SPEED := 100.0
 const CLICK_RADIUS := 24.0

@@ -7,7 +7,8 @@
 [ext_resource type="PackedScene" uid="uid://crhpwtv5b1u3v" path="res://scenes/missions.tscn" id="2_i7141"]
 [ext_resource type="PackedScene" uid="uid://brnwmy3ij5rld" path="res://scenes/Npc.tscn" id="4_k0juu"]
 [ext_resource type="PackedScene" uid="uid://btd50jvwac3ko" path="res://scenes/friend.tscn" id="5_qfnet"]
-[ext_resource type="PackedScene" uid="uid://cnpykke82d2yd" path="res://scenes/goblin.tscn" id="7_i7141"]
+[ext_resource type="PackedScene" uid="uid://bsxg4awkj6s12" path="res://scenes/Enemy.tscn" id="6_i7141"]
+[ext_resource type="PackedScene" uid="uid://ucie2vw12luy" path="res://addons/hud.tscn" id="7_i7141"]
 
 [sub_resource type="Animation" id="Animation_bswci"]
 length = 2.0
@@ -109,6 +110,11 @@ enemys = [NodePath("Goblin"), NodePath("Goblin2")]
 [node name="mc" parent="." unique_id=1775706242 instance=ExtResource("1_nnsk1")]
 position = Vector2(550, 315)
 
+[node name="SpeechAnchor" parent="mc/Dialogue" parent_id_path=PackedInt32Array(1775706242, 919208436) index="0" unique_id=1272025382 node_paths=PackedStringArray("chat")]
+character_name = "player"
+default_nickname = "TheFabulouz"
+chat = NodePath("../../../HUD/Fake chat")
+
 [node name="Camera2D" type="Camera2D" parent="mc" unique_id=739074232]
 zoom = Vector2(1.3, 1.3)
 
@@ -151,4 +157,10 @@ radius_limit = 100.0
 [node name="Goblin2" parent="." unique_id=722312520 instance=ExtResource("7_i7141")]
 position = Vector2(-84, -207)
 
-[connection signal="child_exiting_tree" from="Npc" to="." method="_on_npc_child_exiting_tree"]
+[node name="Enemy2" parent="." unique_id=564039145 instance=ExtResource("6_i7141")]
+position = Vector2(-483, -18)
+
+[node name="HUD" parent="." unique_id=1909278812 instance=ExtResource("7_i7141")]
+
+[editable path="mc"]
+[editable path="HUD"]

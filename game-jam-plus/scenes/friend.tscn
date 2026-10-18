@@ -1,0 +1,47 @@
+[gd_scene format=3 uid="uid://btd50jvwac3ko"]
+
+[ext_resource type="Texture2D" uid="uid://v5cu1276vqab" path="res://assets/icon.svg" id="1_am7dx"]
+[ext_resource type="Script" uid="uid://p1ae87ha1bg0" path="res://scripts/friend.gd" id="1_s8sfs"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_bmgde"]
+radius = 63.505905
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_s8sfs"]
+radius = 610.2655
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_mykxq"]
+radius = 100.97524
+
+[node name="Friend" type="CharacterBody2D" unique_id=34609045]
+collision_layer = 32
+collision_mask = 15
+motion_mode = 1
+script = ExtResource("1_s8sfs")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=330301075]
+shape = SubResource("CircleShape2D_bmgde")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=2141918437]
+texture = ExtResource("1_am7dx")
+
+[node name="EnemyArea" type="Area2D" parent="." unique_id=1058022157]
+collision_layer = 2
+collision_mask = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="EnemyArea" unique_id=1293354402]
+shape = SubResource("CircleShape2D_s8sfs")
+
+[node name="DamageArea" type="Area2D" parent="." unique_id=124059614 groups=["Friend"]]
+collision_layer = 32
+collision_mask = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DamageArea" unique_id=1616494868]
+shape = SubResource("CircleShape2D_mykxq")
+
+[node name="Timer" type="Timer" parent="." unique_id=222636550]
+
+[node name="DamageTimer" type="Timer" parent="." unique_id=1193896029]
+one_shot = true
+
+[connection signal="body_entered" from="DamageArea" to="." method="_on_damage_area_body_entered"]
+[connection signal="body_exited" from="DamageArea" to="." method="_on_damage_area_body_exited"]

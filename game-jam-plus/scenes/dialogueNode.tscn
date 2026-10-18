@@ -1,0 +1,15 @@
+[gd_scene format=3 uid="uid://di86tac6q5xk6"]
+
+[ext_resource type="Script" uid="uid://blv5ffueggafa" path="res://scripts/ui/character_dialogue.gd" id="1_w08l3"]
+[ext_resource type="Script" uid="uid://bl24wyvtoeawn" path="res://scripts/speech_anchor.gd" id="2_1s7wh"]
+[ext_resource type="PackedScene" uid="uid://rbonvwrh7gbn" path="res://scenes/SpeechBalloon.tscn" id="3_5e5yo"]
+[ext_resource type="Resource" uid="uid://bfmelgio6beqp" path="res://dialogues/test.dialogue" id="4_o1fvd"]
+
+[node name="DialogueNode" type="Node2D" unique_id=1567685948]
+script = ExtResource("1_w08l3")
+
+[node name="SpeechAnchor" type="Marker2D" parent="." unique_id=1124552507]
+position = Vector2(1, -85)
+script = ExtResource("2_1s7wh")
+balloon_scene = ExtResource("3_5e5yo")
+default_dialogue = ExtResource("4_o1fvd")

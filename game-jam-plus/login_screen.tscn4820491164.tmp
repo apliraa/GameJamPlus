@@ -1,0 +1,152 @@
+[gd_scene format=3 uid="uid://rhs4kiisomag"]
+
+[ext_resource type="Script" uid="uid://d0scd78mwlakd" path="res://login_screen.gd" id="1_3u8nt"]
+[ext_resource type="Texture2D" uid="uid://pkuxp4vreimm" path="res://assets/7d078c01ae2c74609b93d3689860c62f.jpg" id="1_wplbs"]
+[ext_resource type="FontFile" uid="uid://dldoaqsjq31cp" path="res://assets/fonts/runescape_uf.ttf" id="2_7xvqn"]
+
+[node name="LoginScreen" type="Control" unique_id=1085053605]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_3u8nt")
+
+[node name="TextureRect" type="TextureRect" parent="." unique_id=1318668663]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_wplbs")
+
+[node name="Label" type="Label" parent="." unique_id=1412832754]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -576.5
+offset_right = 576.5
+offset_bottom = 153.0
+grow_horizontal = 2
+theme_override_fonts/font = ExtResource("2_7xvqn")
+theme_override_font_sizes/font_size = 120
+text = "LOGO MUITO FODA"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=2030257194]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -209.5
+offset_top = -160.0
+offset_right = 209.5
+offset_bottom = 160.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.49803922, 0.22352941, 0.19215687, 1)
+
+[node name="ColorRect" type="ColorRect" parent="ColorRect" unique_id=1002727294]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 0.372
+anchor_right = 0.5
+anchor_bottom = 0.372
+offset_left = -178.0
+offset_top = -88.04
+offset_right = 183.5
+offset_bottom = -6.040001
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.3048026, 0.12418624, 0.10375782, 1)
+
+[node name="UserLineEdit" type="LineEdit" parent="ColorRect/ColorRect" unique_id=200386635]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -170.5
+offset_top = -31.0
+offset_right = 170.5
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="UserLabel" type="Label" parent="ColorRect/ColorRect" unique_id=106724852]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 23.0
+theme_override_fonts/font = ExtResource("2_7xvqn")
+theme_override_font_sizes/font_size = 20
+text = "  User:"
+
+[node name="ColorRect2" type="ColorRect" parent="ColorRect" unique_id=1231918482]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 0.372
+anchor_right = 0.5
+anchor_bottom = 0.372
+offset_left = -175.0
+offset_top = 4.959999
+offset_right = 186.5
+offset_bottom = 86.96
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.3048026, 0.12418624, 0.10375782, 1)
+
+[node name="PasswordLineEdit" type="LineEdit" parent="ColorRect/ColorRect2" unique_id=1071013341]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -170.5
+offset_top = -31.0
+offset_right = 170.5
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="PasswordLabel" type="Label" parent="ColorRect/ColorRect2" unique_id=155591407]
+layout_mode = 1
+offset_right = 82.0
+offset_bottom = 28.0
+theme_override_fonts/font = ExtResource("2_7xvqn")
+theme_override_font_sizes/font_size = 20
+text = "  Password:"
+
+[node name="ColorRect3" type="ColorRect" parent="ColorRect" unique_id=529104238]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -94.0
+offset_top = -78.0
+offset_right = 99.0
+offset_bottom = -41.0
+grow_horizontal = 2
+grow_vertical = 0
+color = Color(0.30588236, 0.1254902, 0.101960786, 1)
+
+[node name="TextureButton" type="Button" parent="ColorRect/ColorRect3" unique_id=1456321830]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("2_7xvqn")
+text = "Submit"
+
+[connection signal="pressed" from="ColorRect/ColorRect3/TextureButton" to="." method="_on_texture_button_pressed"]

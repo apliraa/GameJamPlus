@@ -2,17 +2,45 @@
 
 [ext_resource type="Script" uid="uid://ban4lcwpoysck" path="res://scripts/mc.gd" id="1_i6vl1"]
 [ext_resource type="Texture2D" uid="uid://v5cu1276vqab" path="res://assets/icon.svg" id="2_a6s5m"]
+[ext_resource type="Script" uid="uid://blv5ffueggafa" path="res://scripts/ui/character_dialogue.gd" id="3_gcf5n"]
+[ext_resource type="Script" uid="uid://bl24wyvtoeawn" path="res://scripts/speech_anchor.gd" id="4_gkuii"]
+[ext_resource type="PackedScene" uid="uid://rbonvwrh7gbn" path="res://scenes/SpeechBalloon.tscn" id="5_ccss8"]
+[ext_resource type="Resource" uid="uid://bfmelgio6beqp" path="res://dialogues/test.dialogue" id="6_3ylss"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ungyi"]
-size = Vector2(123, 122)
+size = Vector2(54, 46)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_klwtp"]
+radius = 92.19544
 
 [node name="mc" type="CharacterBody2D" unique_id=1775706242]
+collision_mask = 62
 motion_mode = 1
 script = ExtResource("1_i6vl1")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1496478930]
+position = Vector2(0.9999981, 1.9073486e-06)
+scale = Vector2(0.578125, 0.578125)
 texture = ExtResource("2_a6s5m")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=882635758]
-position = Vector2(-0.5, -1)
+position = Vector2(0, 2)
 shape = SubResource("RectangleShape2D_ungyi")
+
+[node name="DamageArea" type="Area2D" parent="." unique_id=970989728]
+collision_mask = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DamageArea" unique_id=940942626]
+shape = SubResource("CircleShape2D_klwtp")
+
+[node name="Dialogue" type="Node2D" parent="." unique_id=919208436]
+script = ExtResource("3_gcf5n")
+
+[node name="SpeechAnchor" type="Marker2D" parent="Dialogue" unique_id=1272025382]
+position = Vector2(1, -85)
+script = ExtResource("4_gkuii")
+balloon_scene = ExtResource("5_ccss8")
+default_dialogue = ExtResource("6_3ylss")
+
+[node name="DamageTimer" type="Timer" parent="." unique_id=1776813864]
+one_shot = true

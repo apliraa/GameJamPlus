@@ -1,7 +1,7 @@
 extends CharacterBody2D
 
 
-const SPEED = 150.0
+const SPEED = 50.0
 @export var radius_limit : float
 var INITIAL_POSITION : Vector2
 var distance : float
@@ -9,14 +9,14 @@ var distance : float
 var DIRECTION : Vector2
 var move_flag : bool
 var rng = RandomNumberGenerator.new()
-@export var Point : Area2D
 
 
 func _ready() -> void:
-	INITIAL_POSITION =  Point.global_position
+	INITIAL_POSITION =  global_position
 	$Timer.wait_time = timer
 	$Timer.start()
-	
+	var angle = randf_range(0.0, TAU)
+	DIRECTION = (Vector2.from_angle(angle)).normalized()
 	
 
 func _physics_process(_delta: float) -> void:
@@ -28,8 +28,7 @@ func _physics_process(_delta: float) -> void:
 	elif(distance < radius_limit and move_flag):
 		velocity = SPEED * DIRECTION
 		move_flag = false	
-	else:
-		velocity = SPEED * DIRECTION
+	
 		
 	move_and_slide()
 
@@ -49,7 +48,7 @@ func _on_timer_timeout() -> void:
 
 
 func _on_hit_area_body_entered(body: Node2D) -> void:
-	print("oie")
-	var direction = -body.global_position.direction_to(global_position)
-	DIRECTION = direction
-	move_flag = false
+	if not body.is_in_group("Player"):
+		var direction = body.global_position.direction_to(global_position)
+		DIRECTION = direction
+		move_flag = false

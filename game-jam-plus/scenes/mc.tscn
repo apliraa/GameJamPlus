@@ -448,6 +448,11 @@ _data = {
 [node name="mc" type="CharacterBody2D" unique_id=1775706242]
 position = Vector2(107, 110)
 collision_mask = 3
+[sub_resource type="CircleShape2D" id="CircleShape2D_klwtp"]
+radius = 92.19544
+
+[node name="mc" type="CharacterBody2D" unique_id=1775706242]
+collision_mask = 62
 motion_mode = 1
 script = ExtResource("1_i6vl1")
 metadata/_edit_group_ = true
@@ -475,6 +480,12 @@ visible = false
 position = Vector2(0, 2)
 shape = SubResource("RectangleShape2D_ungyi")
 
+[node name="DamageArea" type="Area2D" parent="." unique_id=970989728]
+collision_mask = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DamageArea" unique_id=940942626]
+shape = SubResource("CircleShape2D_klwtp")
+
 [node name="Dialogue" type="Node2D" parent="." unique_id=919208436]
 script = ExtResource("3_gcf5n")
 
@@ -486,3 +497,7 @@ default_dialogue = SubResource("Resource_ibph8")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1622458977]
 libraries/ = SubResource("AnimationLibrary_ibph8")
+default_dialogue = ExtResource("6_3ylss")
+
+[node name="DamageTimer" type="Timer" parent="." unique_id=1776813864]
+one_shot = true

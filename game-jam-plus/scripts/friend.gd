@@ -1,6 +1,6 @@
 extends CharacterBody2D
 
-const SPEED := 100.0
+
 const ARRIVE_DISTANCE := 6.0
 const ARRIVE_DISTANCE_WIDE := 10.0
 

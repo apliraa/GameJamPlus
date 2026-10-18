@@ -85,7 +85,7 @@ func _post_to_chat(nickname: String, text: String) -> void:
 			push_warning("SpeechAnchor: no FakeChat found to post to (assign 'chat' or make sure FakeChat is in the scene).")
 		return
 
-	target.add_chat_line(nickname, _strip_bbcode(text))
+	target.add_chat_line(nickname, _strip_bbcode(text), true)  # true = dialogue color
 
 
 ## Removes BBCode tags like [b] or [color=red] so they don't show as raw text in the chat.

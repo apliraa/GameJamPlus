@@ -19,7 +19,7 @@ config/icon="res://assets/audios/icon.svg"
 
 DialogueManager="*uid://c3rodes2l3gxb"
 EventManager="*uid://b8mycqjbf6iwi"
-Globals="*uid://bxpfky5jodb4b"
+Globals="*uid://b4ne7gt1pa8ql"
 
 [display]
 

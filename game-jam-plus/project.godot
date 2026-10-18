@@ -22,10 +22,6 @@ EventManager="*uid://b8mycqjbf6iwi"
 Globals="*uid://b4ne7gt1pa8ql"
 Music="*uid://htgolo30gsr2"
 
-[dialogue_manager]
-
-runtime/advanced/uses_dotnet=true
-
 [display]
 
 window/stretch/mode="canvas_items"

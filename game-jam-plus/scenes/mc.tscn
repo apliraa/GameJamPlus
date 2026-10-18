@@ -2,15 +2,15 @@
 
 [ext_resource type="Script" uid="uid://ban4lcwpoysck" path="res://scripts/mc.gd" id="1_i6vl1"]
 [ext_resource type="Texture2D" uid="uid://v5cu1276vqab" path="res://assets/icon.svg" id="2_a6s5m"]
-[ext_resource type="Script" uid="uid://blv5ffueggafa" path="res://scripts/ui/character_dialogue.gd" id="3_gcf5n"]
-[ext_resource type="Script" uid="uid://bl24wyvtoeawn" path="res://scripts/speech_anchor.gd" id="4_gkuii"]
-[ext_resource type="PackedScene" uid="uid://rbonvwrh7gbn" path="res://scenes/SpeechBalloon.tscn" id="5_ccss8"]
-[ext_resource type="Resource" uid="uid://bfmelgio6beqp" path="res://dialogues/test.dialogue" id="6_3ylss"]
+[ext_resource type="PackedScene" uid="uid://crhpwtv5b1u3v" path="res://scenes/missions.tscn" id="2_gcf5n"]
+[ext_resource type="PackedScene" uid="uid://gkxt0sbv33ka" path="res://scenes/dialogueNode.tscn" id="5_xbm6p"]
+[ext_resource type="PackedScene" uid="uid://da1atgsbu7dtv" path="res://scenes/ui/hud.tscn" id="7_ccss8"]
+[ext_resource type="PackedScene" uid="uid://7o2plo56qevd" path="res://scenes/ui/hp_bar_value.tscn" id="8_3ylss"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ungyi"]
 size = Vector2(54, 46)
 
-[node name="mc" type="CharacterBody2D" unique_id=1775706242]
+[node name="mc" type="CharacterBody2D" unique_id=1775706242 groups=["Player"]]
 collision_mask = 3
 motion_mode = 1
 script = ExtResource("1_i6vl1")
@@ -24,11 +24,26 @@ texture = ExtResource("2_a6s5m")
 position = Vector2(0, 2)
 shape = SubResource("RectangleShape2D_ungyi")
 
-[node name="Dialogue" type="Node2D" parent="." unique_id=919208436]
-script = ExtResource("3_gcf5n")
+[node name="Fake chat" parent="." unique_id=66097488 instance=ExtResource("7_ccss8")]
+anchors_preset = 15
+anchor_top = 0.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+usernames = Array[String](["Thorgar", "Lunaria", "xXSlayerXx", "HealzPlz", "NoobMaster69", "Elaria", "Grimbold", "Sir_Lagsalot", "DarkMage", "FarmingBot3000", "_SazukeGod_", "xXStormLordXx", "TheUnburden", "Leonardt", "StormHunter", "FlipFlops", "X1Noob", "SapoChateado"])
 
-[node name="SpeechAnchor" type="Marker2D" parent="Dialogue" unique_id=1272025382]
-position = Vector2(1, -85)
-script = ExtResource("4_gkuii")
-balloon_scene = ExtResource("5_ccss8")
-default_dialogue = ExtResource("6_3ylss")
+[node name="HUD" type="Control" parent="." unique_id=1030395290]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="CanvasLayer" type="CanvasLayer" parent="HUD" unique_id=1176213429]
+
+[node name="Hp Bar Value" parent="HUD/CanvasLayer" unique_id=832068778 instance=ExtResource("8_3ylss")]
+
+[node name="Missions" parent="HUD/CanvasLayer" unique_id=901892109 instance=ExtResource("2_gcf5n")]
+visible = false
+
+[node name="DialogueNode" parent="." unique_id=1567685948 instance=ExtResource("5_xbm6p")]

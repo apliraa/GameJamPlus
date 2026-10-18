@@ -10,7 +10,7 @@ enum Actions {
 var cur_action: Actions = Actions.WAIT
 
 var DAMAGE: int = 15
-var SPEED: int = 300
+var SPEED: int = 70
 var timer: float = 1.0
 
 var target: Vector2
@@ -30,7 +30,7 @@ var back_forth_dir: Vector2 = Vector2.RIGHT
 var back_forth_legs: int = 0
 
 var player_min_distance: float = 350.0
-var player_radius: float = 900.0
+var player_radius: float = 700.0
 var player_max_distance: float
 var player_distance: float
 

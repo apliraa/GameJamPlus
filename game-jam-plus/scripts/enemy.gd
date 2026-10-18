@@ -1,12 +1,12 @@
 extends CharacterBody2D
 
 var types = {
-	"wolf": [15, 2, 200, 600.0],
+	"wolf": [15, 2, 200, 200.0],
 	"goblin": [15, 2, 25, 100.0],
 	"skeleton": [15, 2, 25, 100.0]
 }
 @export var type: String = "wolf"
-var life: int
+var life: int 
 var DAMAGE: int
 var SPEED: int
 var radius_limit : float

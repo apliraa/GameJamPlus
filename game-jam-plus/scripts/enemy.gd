@@ -48,6 +48,8 @@ func _physics_process(_delta: float) -> void:
 		State.ATTACK:
 			attack()
 	
+	update_animations()
+	
 	move_and_slide()
 
 func check_player_distance() -> void:
@@ -64,6 +66,7 @@ func _on_timer_timeout() -> void:
 func new_direction() -> void:
 	if rng.randf() < 0.55:
 		DIRECTION = Vector2.from_angle(rng.randf_range(0.0, TAU))
+			
 	else:
 		DIRECTION = Vector2.ZERO
 
@@ -112,10 +115,37 @@ func play_attack_animation() -> void:
 	pass
 
 func play_hit_animation() -> void:
-	pass
+	$AnimationPlayer.play()
 
 func die() -> void:
 	var player = get_tree().get_first_node_in_group("Player")
 	if player != null:
 		player.gainXP(xp_reward)
 	queue_free()
+	
+func update_animations() -> void:
+	# Memoriza a direção enquanto estiver andando
+	if DIRECTION != Vector2.ZERO:
+		DIRECTION = velocity.normalized()
+
+	# Lógica quando está PARADO
+	if DIRECTION == Vector2.ZERO:
+		if DIRECTION.x > 0.1:
+			$Sprite2D.play("Idle R")
+		elif DIRECTION.x < -0.1:
+			$Sprite2D.play("Idle L")
+		elif DIRECTION.y > 0:
+			$Sprite2D.play("Idle")
+		elif DIRECTION.y < 0:
+			$Sprite2D.play("Idle B")
+			
+	# Lógica quando está ANDANDO
+	else:
+		if DIRECTION.x > 0.1:
+			$Sprite2D.play("Walk R")
+		elif DIRECTION.x < -0.1:
+			$Sprite2D.play("Walk L")
+		elif DIRECTION.y > 0:
+			$Sprite2D.play("Walk F")
+		elif DIRECTION.y < 0:
+			$Sprite2D.play("Walk B")

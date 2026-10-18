@@ -23,8 +23,29 @@ func _physics_process(delta: float) -> void:
 		if distancia > (SPEED * delta):
 			var direcao = global_position.direction_to(posicao_alvo)
 			velocity = direcao * SPEED
+			
+			if(direcao.x > 0.1):
+				$Sprite2D.play_animations("Walk R")
+			elif(direcao.x < -0.1):
+				$Sprite2D.play_animations("Walk L")
+			elif(direcao.y > 0):
+				$Sprite2D.play_animations("Walk F")
+			elif(direcao.y < 0):
+				$Sprite2D.play_animations("Walk B")
 		else:
+			var direcao = global_position.direction_to(posicao_alvo)
+			
+			if(direcao.x > 0.1):
+				$Sprite2D.play_animations("Idle R")
+			elif(direcao.x < -0.1):
+				$Sprite2D.play_animations("Idle L")
+			elif(direcao.y > 0):
+				$Sprite2D.play_animations("Idle")
+			elif(direcao.y < 0):
+				$Sprite2D.play_animations("Idle B")
+			
 			velocity = Vector2.ZERO
+			
 			is_moving = false
 			
 			

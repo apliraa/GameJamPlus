@@ -118,16 +118,13 @@ playback_auto_capture = false
 [node name="Npc" parent="." unique_id=523486800 instance=ExtResource("4_k0juu")]
 position = Vector2(697, -378)
 radius_limit = 100.0
-timer = 1.0
 
 [node name="Friend" parent="." unique_id=34609045 instance=ExtResource("5_qfnet")]
 visible = false
 position = Vector2(989, -523)
 
 [node name="Enemy" parent="." unique_id=1350644445 instance=ExtResource("6_i7141")]
-visible = false
 position = Vector2(-389, -316)
 
 [node name="Enemy2" parent="." unique_id=564039145 instance=ExtResource("6_i7141")]
-visible = false
 position = Vector2(-483, -18)

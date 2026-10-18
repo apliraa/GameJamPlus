@@ -1,0 +1,148 @@
+[gd_scene format=3 uid="uid://bfsovyhjkuru4"]
+
+[ext_resource type="PackedScene" uid="uid://dcune8pi3wh5l" path="res://scenes/mc.tscn" id="1_nnsk1"]
+[ext_resource type="Script" uid="uid://bvens2a46fdl6" path="res://scripts/world.gd" id="1_rwgxs"]
+[ext_resource type="PackedScene" uid="uid://ioxakgiwmphy" path="res://scenes/Scene 1.tscn" id="2_4wyf3"]
+[ext_resource type="PackedScene" uid="uid://crhpwtv5b1u3v" path="res://scenes/missions.tscn" id="2_i7141"]
+[ext_resource type="PackedScene" uid="uid://brnwmy3ij5rld" path="res://scenes/Npc.tscn" id="4_k0juu"]
+[ext_resource type="PackedScene" uid="uid://btd50jvwac3ko" path="res://scenes/friend.tscn" id="5_qfnet"]
+[ext_resource type="PackedScene" uid="uid://bsxg4awkj6s12" path="res://scenes/Enemy.tscn" id="6_i7141"]
+
+[sub_resource type="Animation" id="Animation_bswci"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Fade:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Fade:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Fade:self_modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_rus8k"]
+resource_name = "fadeOut"
+length = 2.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Fade:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Fade:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Fade:self_modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_fj7yv"]
+_data = {
+&"RESET": SubResource("Animation_bswci"),
+&"fadeOut": SubResource("Animation_rus8k")
+}
+
+[node name="World" type="Node2D" unique_id=1127001669 node_paths=PackedStringArray("enemys")]
+script = ExtResource("1_rwgxs")
+enemys = [NodePath("Enemy"), NodePath("Enemy2")]
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=190252225]
+
+[node name="Missions" parent="CanvasLayer" unique_id=901892109 instance=ExtResource("2_i7141")]
+
+[node name="Map" parent="." unique_id=189647539 instance=ExtResource("2_4wyf3")]
+
+[node name="mc" parent="." unique_id=1775706242 instance=ExtResource("1_nnsk1")]
+position = Vector2(550, 315)
+
+[node name="Camera2D" type="Camera2D" parent="mc" unique_id=739074232]
+zoom = Vector2(1.3, 1.3)
+
+[node name="Fade" type="ColorRect" parent="." unique_id=388703339]
+offset_left = -106.0
+offset_top = -33.0
+offset_right = 1257.0
+offset_bottom = 719.0
+color = Color(0, 0, 0, 1)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=91341710]
+libraries/ = SubResource("AnimationLibrary_fj7yv")
+autoplay = &"fadeOut"
+playback_auto_capture = false
+
+[node name="Npc" parent="." unique_id=523486800 instance=ExtResource("4_k0juu")]
+position = Vector2(697, -378)
+radius_limit = 100.0
+
+[node name="Npc2" parent="." unique_id=2071537878 instance=ExtResource("4_k0juu")]
+position = Vector2(355, -401)
+radius_limit = 100.0
+
+[node name="Npc3" parent="." unique_id=476473949 instance=ExtResource("4_k0juu")]
+position = Vector2(731, -716)
+radius_limit = 100.0
+
+[node name="Npc4" parent="." unique_id=1428913842 instance=ExtResource("4_k0juu")]
+position = Vector2(1004, -268)
+radius_limit = 100.0
+
+[node name="Friend" parent="." unique_id=34609045 instance=ExtResource("5_qfnet")]
+visible = false
+position = Vector2(989, -523)
+
+[node name="Enemy" parent="." unique_id=1350644445 instance=ExtResource("6_i7141")]
+position = Vector2(-389, -316)
+
+[node name="Enemy2" parent="." unique_id=564039145 instance=ExtResource("6_i7141")]
+position = Vector2(-483, -18)

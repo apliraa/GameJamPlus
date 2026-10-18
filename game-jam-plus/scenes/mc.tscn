@@ -474,7 +474,6 @@ animation = &"Walk R"
 autoplay = "Idle"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=882635758]
-visible = false
 position = Vector2(0, 2)
 shape = SubResource("RectangleShape2D_ungyi")
 
@@ -482,6 +481,7 @@ shape = SubResource("RectangleShape2D_ungyi")
 collision_mask = 4
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DamageArea" unique_id=940942626]
+visible = false
 shape = SubResource("CircleShape2D_klwtp")
 
 [node name="Dialogue" type="Node2D" parent="." unique_id=919208436]

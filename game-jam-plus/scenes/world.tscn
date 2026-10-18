@@ -6,7 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://crhpwtv5b1u3v" path="res://scenes/missions.tscn" id="2_i7141"]
 [ext_resource type="PackedScene" uid="uid://brnwmy3ij5rld" path="res://scenes/Npc.tscn" id="4_k0juu"]
 [ext_resource type="PackedScene" uid="uid://btd50jvwac3ko" path="res://scenes/friend.tscn" id="5_qfnet"]
-[ext_resource type="PackedScene" uid="uid://bsxg4awkj6s12" path="res://scenes/Enemy.tscn" id="6_i7141"]
+[ext_resource type="PackedScene" uid="uid://cnpykke82d2yd" path="res://scenes/goblin.tscn" id="7_i7141"]
 
 [sub_resource type="Animation" id="Animation_bswci"]
 length = 0.001
@@ -95,7 +95,7 @@ _data = {
 
 [node name="World" type="Node2D" unique_id=1127001669 node_paths=PackedStringArray("enemys")]
 script = ExtResource("1_rwgxs")
-enemys = [NodePath("Enemy"), NodePath("Enemy2")]
+enemys = [null, null]
 
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=190252225]
 
@@ -141,8 +141,10 @@ radius_limit = 100.0
 visible = false
 position = Vector2(989, -523)
 
-[node name="Enemy" parent="." unique_id=1350644445 instance=ExtResource("6_i7141")]
-position = Vector2(-389, -316)
+[node name="Goblin" parent="." unique_id=1350644445 instance=ExtResource("7_i7141")]
+position = Vector2(80, -300)
+radius_limit = 100.0
 
-[node name="Enemy2" parent="." unique_id=564039145 instance=ExtResource("6_i7141")]
-position = Vector2(-483, -18)
+[node name="Goblin2" parent="." unique_id=1817600073 instance=ExtResource("7_i7141")]
+position = Vector2(-163, -372)
+radius_limit = 100.0

@@ -3,7 +3,7 @@ extends CharacterBody2D
 
 const ARRIVE_DISTANCE := 6.0
 const ARRIVE_DISTANCE_WIDE := 10.0
-
+const SPEED = 50
 const PLAYER_MIN_DISTANCE := 120.0
 const PLAYER_RADIUS := 300.0
 const PLAYER_MAX_DISTANCE := PLAYER_RADIUS * 2.0

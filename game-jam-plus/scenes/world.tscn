@@ -112,9 +112,6 @@ dialogueAsset = ExtResource("4_4mrxx")
 character_name = "player"
 default_nickname = "TheFabulouz"
 
-[node name="Camera2D" type="Camera2D" parent="mc" unique_id=739074232]
-zoom = Vector2(1.3, 1.3)
-
 [node name="Fade" type="ColorRect" parent="." unique_id=388703339]
 offset_left = -106.0
 offset_top = -33.0

@@ -980,13 +980,9 @@ shape = SubResource("CircleShape2D_mykxq")
 one_shot = true
 
 [node name="Dialogue" type="Node2D" parent="." unique_id=1822750882]
-script = ExtResource("3_w4v4f")
-dialogueAsset = ExtResource("4_rduxe")
 
 [node name="SpeechAnchor" type="Marker2D" parent="Dialogue" unique_id=1981211982 node_paths=PackedStringArray("chat")]
 position = Vector2(1, -85)
-script = ExtResource("5_4gghk")
-balloon_scene = ExtResource("6_buh2q")
 default_dialogue = SubResource("Resource_w4v4f")
 character_name = "friend"
 default_nickname = "TheFabulouz"

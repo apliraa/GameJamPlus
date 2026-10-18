@@ -39,6 +39,8 @@ var _bbcode_regex: RegEx
 func _ready() -> void:
 	add_to_group("speech_anchors")  # lets other anchors find this character by name
 
+func _exit_tree() -> void:
+	clear()
 
 ## Starts a conversation from this character. Every line is shown by the
 ## character it belongs to (see character_name). If this character is already
@@ -58,7 +60,8 @@ func say(nickname: String = "", resource: DialogueResource = null, title: String
 		return
 
 	clear()
-	var states: Array = extra_game_states.duplicate()
+	var states: Array = []
+	states.append_array(extra_game_states)
 	_run_conversation(resource, title, states, _run_id)
 
 

@@ -25,4 +25,8 @@ func _process(delta: float) -> void:
 			print("Ficheiro de música não encontrado!")
 
 func set_music(music_index: int):
-	cur_music = MusicOptions.values()[music_index]
+	var options = MusicOptions.values()
+	if music_index >= 0 and music_index < options.size():
+		cur_music = options[music_index]
+	else:
+		print("Índice de música inválido: ", music_index)

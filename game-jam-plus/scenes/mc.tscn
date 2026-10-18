@@ -10,7 +10,11 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ungyi"]
 size = Vector2(123, 122)
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_klwtp"]
+radius = 92.19544
+
 [node name="mc" type="CharacterBody2D" unique_id=1775706242]
+collision_mask = 62
 motion_mode = 1
 script = ExtResource("1_i6vl1")
 
@@ -21,6 +25,12 @@ texture = ExtResource("2_a6s5m")
 position = Vector2(-0.5, -1)
 shape = SubResource("RectangleShape2D_ungyi")
 
+[node name="DamageArea" type="Area2D" parent="." unique_id=970989728]
+collision_mask = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DamageArea" unique_id=940942626]
+shape = SubResource("CircleShape2D_klwtp")
+
 [node name="Dialogue" type="Node2D" parent="." unique_id=919208436]
 script = ExtResource("3_gcf5n")
 
@@ -29,3 +39,6 @@ position = Vector2(1, -85)
 script = ExtResource("4_gkuii")
 balloon_scene = ExtResource("5_ccss8")
 default_dialogue = ExtResource("6_3ylss")
+
+[node name="DamageTimer" type="Timer" parent="." unique_id=1776813864]
+one_shot = true

@@ -5,6 +5,7 @@ const CLICK_RADIUS := 24.0
 
 var posicao_alvo = Vector2.ZERO
 var is_moving = false # Controla se o personagem deve andar ou não
+var last_direction = Vector2.ZERO
 
 var XP: int
 
@@ -33,38 +34,6 @@ func _physics_process(delta: float) -> void:
 	
 	# 1. Atualiza o destino quando clica
 	if Input.is_action_just_pressed("left_click"):
-		posicao_alvo = get_global_mouse_position() 
-		is_moving = true
-		
-	if is_moving:
-		var distancia = global_position.distance_to(posicao_alvo)
-		
-		if distancia > (SPEED * delta):
-			var direcao = global_position.direction_to(posicao_alvo)
-			velocity = direcao * SPEED
-			
-			if(direcao.x > 0.1):
-				$Sprite2D.play_animations("Walk R")
-			elif(direcao.x < -0.1):
-				$Sprite2D.play_animations("Walk L")
-			elif(direcao.y > 0):
-				$Sprite2D.play_animations("Walk F")
-			elif(direcao.y < 0):
-				$Sprite2D.play_animations("Walk B")
-		else:
-			var direcao = global_position.direction_to(posicao_alvo)
-			
-			if(direcao.x > 0.1):
-				$Sprite2D.play_animations("Idle R")
-			elif(direcao.x < -0.1):
-				$Sprite2D.play_animations("Idle L")
-			elif(direcao.y > 0):
-				$Sprite2D.play_animations("Idle")
-			elif(direcao.y < 0):
-				$Sprite2D.play_animations("Idle B")
-			
-			velocity = Vector2.ZERO
-			
 		var clicked_enemy = get_enemy_at_mouse()
 		if clicked_enemy != null:
 			set_target(clicked_enemy)
@@ -92,6 +61,7 @@ func _physics_process(delta: float) -> void:
 			is_moving = false
 	
 	move_and_slide()
+	update_animations()
 
 func get_enemy_at_mouse() -> Node2D:
 	var mouse_pos = get_global_mouse_position()
@@ -139,3 +109,30 @@ func die() -> void:
 # CORRIGIDO: A função gainXP agora apenas soma a experiência, sem atrapalhar a física.
 func gainXP(amount: int) -> void:
 	XP += amount
+
+func update_animations() -> void:
+	# Memoriza a direção enquanto estiver andando
+	if velocity != Vector2.ZERO:
+		last_direction = velocity.normalized()
+
+	# Lógica quando está PARADO
+	if velocity == Vector2.ZERO:
+		if last_direction.x > 0.1:
+			$Sprite2D.play_animations("Idle R")
+		elif last_direction.x < -0.1:
+			$Sprite2D.play_animations("Idle L")
+		elif last_direction.y > 0:
+			$Sprite2D.play_animations("Idle")
+		elif last_direction.y < 0:
+			$Sprite2D.play_animations("Idle B")
+			
+	# Lógica quando está ANDANDO
+	else:
+		if velocity.x > 0:
+			$Sprite2D.play_animations("Walk R")
+		elif velocity.x < 0:
+			$Sprite2D.play_animations("Walk L")
+		elif velocity.y > 0:
+			$Sprite2D.play_animations("Walk F")
+		elif velocity.y < 0:
+			$Sprite2D.play_animations("Walk B")

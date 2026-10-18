@@ -27,13 +27,13 @@ enum Actions {
 var cur_action: Actions = Actions.WAIT
 
 var DAMAGE: int = 15
-var SPEED: int = 70
 var timer: float = 1.0
 var attack_cooldown: float = 1.0
 
 var target: Vector2
 var follow_offset: Vector2 = Vector2.ZERO
 var rng = RandomNumberGenerator.new()
+var last_direction : Vector2
 
 var circle_angle: float = 0.0
 var circle_dir: float = 1.0
@@ -110,6 +110,7 @@ func _physics_process(delta: float) -> void:
 	var intended = velocity
 	move_and_slide()
 	check_stuck(intended, delta)
+	update_animations()
 
 func check_stuck(intended: Vector2, delta: float) -> void:
 	if cur_action == Actions.ATTACK or intended == Vector2.ZERO:
@@ -245,3 +246,32 @@ func next_action():
 		back_forth_dir = Vector2.from_angle(rng.randf_range(0.0, TAU))
 		back_forth_legs = rng.randi_range(2, 6)
 		target = back_forth_a
+
+
+func update_animations() -> void:
+	# Memoriza a direção enquanto estiver andando
+	var direction = (velocity/SPEED)
+	if direction != Vector2.ZERO:
+		direction = direction.normalized()
+		last_direction = direction
+	# Lógica quando está PARADO
+	if direction == Vector2.ZERO:
+		if last_direction.x > 0.1:
+			$Sprite2D.play_animations("Idle R")
+		elif last_direction.x < -0.1:
+			$Sprite2D.play_animations("Idle L")
+		elif last_direction.y > 0:
+			$Sprite2D.play_animations("Idle")
+		elif last_direction.y < 0:
+			$Sprite2D.play_animations("Idle B")
+			
+	# Lógica quando está ANDANDO
+	else:
+		if direction.x > 0.1:
+			$Sprite2D.play_animations("Walk R")
+		elif direction.x < -0.1:
+			$Sprite2D.play_animations("Walk L")
+		elif direction.y > 0:
+			$Sprite2D.play_animations("Walk F")
+		elif direction.y < 0:
+			$Sprite2D.play_animations("Walk B")

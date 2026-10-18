@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://oevdih3troj4"
-path="res://.godot/imported/ladrao_equipamento.png-72175645a2b2a90f7fab67dd8391451b.ctex"
+uid="uid://tnx0a03dfaxg"
+path="res://.godot/imported/ladrao_capacete.png-42202959bea45d70c7d1cfdca5551e6b.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/Characters/Equipments/ladrao_equipamento.png"
-dest_files=["res://.godot/imported/ladrao_equipamento.png-72175645a2b2a90f7fab67dd8391451b.ctex"]
+source_file="res://assets/Characters/Equipments/ladrao_capacete.png"
+dest_files=["res://.godot/imported/ladrao_capacete.png-42202959bea45d70c7d1cfdca5551e6b.ctex"]
 
 [params]
 

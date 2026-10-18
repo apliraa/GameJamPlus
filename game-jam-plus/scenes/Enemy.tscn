@@ -62,7 +62,7 @@ shape = SubResource("CircleShape2D_klwtp")
 
 [node name="Sprite2D" type="AnimatedSprite2D" parent="." unique_id=1633986561]
 material = SubResource("ShaderMaterial_ks8t0")
-animation = &"Idle R"
+animation = &""
 
 [node name="TargetSprite" type="Sprite2D" parent="." unique_id=390352958]
 modulate = Color(0.5176471, 0, 0, 1)

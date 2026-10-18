@@ -2,6 +2,10 @@
 
 [ext_resource type="Texture2D" uid="uid://v5cu1276vqab" path="res://assets/icon.svg" id="1_am7dx"]
 [ext_resource type="Script" uid="uid://p1ae87ha1bg0" path="res://scripts/friend.gd" id="1_s8sfs"]
+[ext_resource type="Script" uid="uid://blv5ffueggafa" path="res://scripts/ui/characterDialogue.gd" id="3_w4v4f"]
+[ext_resource type="Resource" uid="uid://bj80qbqanpei7" path="res://dialogues/day1.dialogue" id="4_rduxe"]
+[ext_resource type="Script" uid="uid://bl24wyvtoeawn" path="res://scripts/speech_anchor.gd" id="5_4gghk"]
+[ext_resource type="PackedScene" uid="uid://rbonvwrh7gbn" path="res://scenes/SpeechBalloon.tscn" id="6_buh2q"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_bmgde"]
 radius = 33.24154
@@ -11,6 +15,9 @@ radius = 265.45245
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_mykxq"]
 radius = 72.1734
+
+[sub_resource type="Resource" id="Resource_w4v4f"]
+metadata/__load_path__ = "res://dialogues/test.dialogue"
 
 [node name="Friend" type="CharacterBody2D" unique_id=34609045]
 collision_layer = 32
@@ -43,6 +50,19 @@ shape = SubResource("CircleShape2D_mykxq")
 
 [node name="DamageTimer" type="Timer" parent="." unique_id=1193896029]
 one_shot = true
+
+[node name="Dialogue" type="Node2D" parent="." unique_id=1822750882]
+script = ExtResource("3_w4v4f")
+dialogueAsset = ExtResource("4_rduxe")
+
+[node name="SpeechAnchor" type="Marker2D" parent="Dialogue" unique_id=1981211982 node_paths=PackedStringArray("chat")]
+position = Vector2(1, -85)
+script = ExtResource("5_4gghk")
+balloon_scene = ExtResource("6_buh2q")
+default_dialogue = SubResource("Resource_w4v4f")
+character_name = "friend"
+default_nickname = "TheFabulouz"
+chat = NodePath("")
 
 [connection signal="body_entered" from="DamageArea" to="." method="_on_damage_area_body_entered"]
 [connection signal="body_exited" from="DamageArea" to="." method="_on_damage_area_body_exited"]

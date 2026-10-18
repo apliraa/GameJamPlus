@@ -122,8 +122,8 @@ func play_hit_animation() -> void:
 
 func die() -> void:
 	var player = get_tree().get_first_node_in_group("Player")
-	if player != null:
-		player.gainXP(xp_reward)
+	#if player != null:
+		#player.gainXP(xp_reward)
 	queue_free()
 	
 func update_animations() -> void:

@@ -3,6 +3,8 @@
 [ext_resource type="PackedScene" uid="uid://7o2plo56qevd" path="res://scenes/ui/hp_bar_value.tscn" id="1_q2bk2"]
 [ext_resource type="PackedScene" uid="uid://da1atgsbu7dtv" path="res://scenes/ui/fakechat.tscn" id="2_1s0v4"]
 [ext_resource type="Script" uid="uid://ix53yhyhy7pf" path="res://scripts/ui/chat_day.gd" id="3_xfnap"]
+[ext_resource type="PackedScene" uid="uid://dvxwl2p8hl2ev" path="res://scenes/logout.tscn" id="4_xfnap"]
+[ext_resource type="PackedScene" uid="uid://crhpwtv5b1u3v" path="res://scenes/missions.tscn" id="5_c3mex"]
 
 [sub_resource type="Resource" id="Resource_tmwax"]
 script = ExtResource("3_xfnap")
@@ -61,10 +63,7 @@ grow_vertical = 2
 
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1300723936]
 
-[node name="Hp Bar Value" parent="CanvasLayer" unique_id=832068778 instance=ExtResource("1_q2bk2")]
-
-[node name="Fake chat" parent="." unique_id=66097488 instance=ExtResource("2_1s0v4")]
-layout_mode = 1
+[node name="Fake chat" parent="CanvasLayer" unique_id=66097488 instance=ExtResource("2_1s0v4")]
 anchors_preset = 15
 anchor_top = 0.0
 anchor_right = 1.0
@@ -74,3 +73,10 @@ new_group_each_day = true
 fake_user_color = Color(0.6542321, 0.6542321, 0.654232, 1)
 dialogue_user_color = Color(0.31, 0.4249999, 1, 1)
 usernames = Array[String](["Thorgar", "Lunaria", "xXSlayerXx", "HealzPlz", "NoobMaster69", "Elaria", "Grimbold", "Sir_Lagsalot", "DarkMage", "FarmingBot3000", "_SazukeGod_", "xXStormLordXx", "TheUnburden", "Leonardt", "StormHunter", "FlipFlops", "X1Noob", "SapoChateado", "BrendanTheSlayer", "YohanNightborne", "CutieSparksy", ""])
+
+[node name="Hp Bar Value" parent="CanvasLayer" unique_id=832068778 instance=ExtResource("1_q2bk2")]
+
+[node name="Missions" parent="CanvasLayer" unique_id=901892109 instance=ExtResource("5_c3mex")]
+
+[node name="Logout" parent="CanvasLayer" unique_id=607644776 instance=ExtResource("4_xfnap")]
+visible = false

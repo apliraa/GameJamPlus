@@ -4,18 +4,18 @@ extends CharacterBody2D
 const ARRIVE_DISTANCE := 6.0
 const ARRIVE_DISTANCE_WIDE := 10.0
 
-const PLAYER_MIN_DISTANCE := 120.0
-const PLAYER_RADIUS := 300.0
+const PLAYER_MIN_DISTANCE := 50.0
+const PLAYER_RADIUS := 90.0
 const PLAYER_MAX_DISTANCE := PLAYER_RADIUS * 2.0
 
-const CIRCLE_RADIUS_MIN := 100.0
-const CIRCLE_RADIUS_MAX := 170.0
+const CIRCLE_RADIUS_MIN := 60.0
+const CIRCLE_RADIUS_MAX := 120.0
 
 const BACK_FORTH_MARGIN := 16.0
 const SHORT_STEP_MIN := 30.0
-const SHORT_STEP_MAX := 70.0
-const LONG_STEP_MIN := 120.0
-const LONG_STEP_MAX := 230.0
+const SHORT_STEP_MAX := 50.0
+const LONG_STEP_MIN := 80.0
+const LONG_STEP_MAX := 120.0
 
 enum Actions {
 	WAIT,
@@ -26,7 +26,8 @@ enum Actions {
 }
 var cur_action: Actions = Actions.WAIT
 
-var DAMAGE: int = 15
+const SPEED = 105.0
+var DAMAGE: int = 5
 var timer: float = 1.0
 var attack_cooldown: float = 1.0
 

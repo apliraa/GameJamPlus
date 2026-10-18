@@ -1,7 +1,7 @@
 extends CharacterBody2D
 
 
-const SPEED = 50.0
+const SPEED = 30.0
 @export var radius_limit : float
 var INITIAL_POSITION : Vector2
 var distance : float
@@ -33,9 +33,9 @@ func _physics_process(_delta: float) -> void:
 		velocity = SPEED * DIRECTION
 		move_flag = false	
 	
-	
-	move_and_slide()
 	update_animations()
+	move_and_slide()
+	
 
 func _on_timer_timeout() -> void:
 	var prob = rng.randf_range(0.0, 1.0)
@@ -93,10 +93,10 @@ func update_animations() -> void:
 		DIRECTION = DIRECTION.normalized()
 		last_direction = DIRECTION
 	# Lógica quando está PARADO
-	if DIRECTION == Vector2.ZERO:
-		if last_direction.x > 0.1:
+	if velocity == Vector2.ZERO:
+		if last_direction.x > 0:
 			animation.play_animations("Idle R")
-		elif last_direction.x < -0.1:
+		elif last_direction.x < -0:
 			animation.play_animations("Idle L")
 		elif last_direction.y > 0:
 			animation.play_animations("Idle")
@@ -105,9 +105,9 @@ func update_animations() -> void:
 			
 	# Lógica quando está ANDANDO
 	else:
-		if DIRECTION.x > 0.1:
+		if DIRECTION.x > 0:
 			animation.play_animations("Walk R")
-		elif DIRECTION.x < -0.1:
+		elif DIRECTION.x < -0:
 			animation.play_animations("Walk L")
 		elif DIRECTION.y > 0:
 			animation.play_animations("Walk F")

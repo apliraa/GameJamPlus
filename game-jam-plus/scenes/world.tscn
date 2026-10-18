@@ -3,7 +3,6 @@
 [ext_resource type="PackedScene" uid="uid://dcune8pi3wh5l" path="res://scenes/mc.tscn" id="1_nnsk1"]
 [ext_resource type="Script" uid="uid://bvens2a46fdl6" path="res://scripts/world.gd" id="1_rwgxs"]
 [ext_resource type="PackedScene" uid="uid://ioxakgiwmphy" path="res://scenes/Scene 1.tscn" id="2_4wyf3"]
-[ext_resource type="Resource" uid="uid://bj80qbqanpei7" path="res://dialogues/day1.dialogue" id="4_4mrxx"]
 [ext_resource type="PackedScene" uid="uid://brnwmy3ij5rld" path="res://scenes/Npc.tscn" id="4_k0juu"]
 [ext_resource type="PackedScene" uid="uid://btd50jvwac3ko" path="res://scenes/friend.tscn" id="5_qfnet"]
 [ext_resource type="PackedScene" uid="uid://cnpykke82d2yd" path="res://scenes/goblin.tscn" id="7_4mrxx"]
@@ -105,15 +104,8 @@ enemys = [NodePath("Goblin")]
 [node name="mc" parent="." unique_id=1775706242 instance=ExtResource("1_nnsk1")]
 position = Vector2(550, 315)
 
-[node name="Dialogue" parent="mc" index="3" unique_id=919208436]
-dialogueAsset = ExtResource("4_4mrxx")
-
-[node name="SpeechAnchor" parent="mc/Dialogue" index="0" unique_id=1272025382]
-character_name = "player"
+[node name="SpeechAnchor" parent="mc/Dialogue" parent_id_path=PackedInt32Array(1775706242, 919208436) index="0" unique_id=1272025382]
 default_nickname = "TheFabulouz"
-
-[node name="Camera2D" type="Camera2D" parent="mc" unique_id=739074232]
-zoom = Vector2(1.3, 1.3)
 
 [node name="Fade" type="ColorRect" parent="." unique_id=388703339]
 offset_left = -106.0
@@ -122,7 +114,7 @@ offset_right = 1257.0
 offset_bottom = 719.0
 color = Color(0, 0, 0, 1)
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=91341710]
+[node name="Animation" type="AnimationPlayer" parent="." unique_id=91341710]
 libraries/ = SubResource("AnimationLibrary_fj7yv")
 autoplay = &"fadeOut"
 playback_auto_capture = false

@@ -8,6 +8,7 @@
 [ext_resource type="Texture2D" uid="uid://tnx0a03dfaxg" path="res://assets/Characters/Equipments/ladrao_capacete.png" id="6_nhqkh"]
 [ext_resource type="Texture2D" uid="uid://clqu3oex067i3" path="res://assets/Characters/Equipments/cavaleiro_peitoral.png" id="7_la5rf"]
 [ext_resource type="Texture2D" uid="uid://phdcsesxos5a" path="res://assets/Characters/Equipments/cavaleiro_botas.png" id="8_qvrcn"]
+[ext_resource type="Script" uid="uid://bl24wyvtoeawn" path="res://scripts/speech_anchor.gd" id="9_buh2q"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_ie4jp"]
 shader = ExtResource("2_4gghk")
@@ -912,13 +913,10 @@ animations = [{
 radius = 19.104973
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_s8sfs"]
-radius = 265.45245
+radius = 176.50496
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_mykxq"]
 radius = 32.01562
-
-[sub_resource type="Resource" id="Resource_w4v4f"]
-metadata/__load_path__ = "res://dialogues/test.dialogue"
 
 [node name="Friend" type="CharacterBody2D" unique_id=34609045]
 collision_layer = 32
@@ -942,7 +940,7 @@ autoplay = "Idle"
 [node name="Helm" type="AnimatedSprite2D" parent="Sprite2D" unique_id=70297531]
 self_modulate = Color(1.6608336, 1.6608336, 1.6608336, 1)
 sprite_frames = SubResource("SpriteFrames_226y0")
-animation = &"Walk F"
+animation = &"Idle"
 autoplay = "Idle"
 
 [node name="Plate" type="AnimatedSprite2D" parent="Sprite2D" unique_id=1281238809]
@@ -980,17 +978,12 @@ shape = SubResource("CircleShape2D_mykxq")
 one_shot = true
 
 [node name="Dialogue" type="Node2D" parent="." unique_id=1822750882]
-script = ExtResource("3_w4v4f")
-dialogueAsset = ExtResource("4_rduxe")
 
-[node name="SpeechAnchor" type="Marker2D" parent="Dialogue" unique_id=1981211982 node_paths=PackedStringArray("chat")]
+[node name="SpeechAnchor" type="Marker2D" parent="Dialogue" unique_id=1981211982]
 position = Vector2(1, -85)
-script = ExtResource("5_4gghk")
-balloon_scene = ExtResource("6_buh2q")
-default_dialogue = SubResource("Resource_w4v4f")
+script = ExtResource("9_buh2q")
 character_name = "friend"
 default_nickname = "TheFabulouz"
-chat = NodePath("")
 
 [connection signal="body_entered" from="DamageArea" to="." method="_on_damage_area_body_entered"]
 [connection signal="body_exited" from="DamageArea" to="." method="_on_damage_area_body_exited"]

@@ -11,7 +11,7 @@ var currentEnemys: int = 0
 @onready var logout_screen = $HUD/CanvasLayer/Logout
 
 func _ready() -> void:
-	$AnimationPlayer.play("fadeOut")
+	$Animation.play("fadeOut")
 	
 	# Esconde diretamente o conteúdo que está dentro do CanvasLayer do Logout
 	logout_screen.hide()

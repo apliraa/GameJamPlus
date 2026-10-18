@@ -10,9 +10,11 @@ radius = 63.505905
 radius = 610.2655
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_mykxq"]
-radius = 143.50261
+radius = 100.97524
 
 [node name="Friend" type="CharacterBody2D" unique_id=34609045]
+collision_layer = 32
+collision_mask = 15
 motion_mode = 1
 script = ExtResource("1_s8sfs")
 
@@ -29,11 +31,17 @@ collision_mask = 4
 [node name="CollisionShape2D" type="CollisionShape2D" parent="EnemyArea" unique_id=1293354402]
 shape = SubResource("CircleShape2D_s8sfs")
 
-[node name="AttackArea" type="Area2D" parent="." unique_id=124059614]
-collision_layer = 2
+[node name="DamageArea" type="Area2D" parent="." unique_id=124059614 groups=["Friend"]]
+collision_layer = 32
 collision_mask = 4
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="AttackArea" unique_id=1616494868]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DamageArea" unique_id=1616494868]
 shape = SubResource("CircleShape2D_mykxq")
 
 [node name="Timer" type="Timer" parent="." unique_id=222636550]
+
+[node name="DamageTimer" type="Timer" parent="." unique_id=1193896029]
+one_shot = true
+
+[connection signal="body_entered" from="DamageArea" to="." method="_on_damage_area_body_entered"]
+[connection signal="body_exited" from="DamageArea" to="." method="_on_damage_area_body_exited"]

@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://ban4lcwpoysck" path="res://scripts/mc.gd" id="1_i6vl1"]
 [ext_resource type="Shader" uid="uid://blf8vuw5i08es" path="res://assets/Shaders/mc.tres" id="2_ccss8"]
 [ext_resource type="Texture2D" uid="uid://xu0nrkgxbs2l" path="res://assets/Characters/character_base.png" id="2_xbm6p"]
-[ext_resource type="Script" uid="uid://blv5ffueggafa" path="res://scripts/ui/character_dialogue.gd" id="3_gcf5n"]
+[ext_resource type="Script" uid="uid://blv5ffueggafa" path="res://scripts/ui/characterDialogue.gd" id="3_gcf5n"]
 [ext_resource type="Script" uid="uid://fk7syfrf6h00" path="res://scenes/sprite_2d.gd" id="3_gkuii"]
 [ext_resource type="Texture2D" uid="uid://bebb4ynjy213l" path="res://assets/Characters/character_base_eyes.png" id="4_ccss8"]
 [ext_resource type="Script" uid="uid://bl24wyvtoeawn" path="res://scripts/speech_anchor.gd" id="4_gkuii"]

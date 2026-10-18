@@ -449,8 +449,7 @@ _data = {
 }
 
 [node name="mc" type="CharacterBody2D" unique_id=1775706242]
-position = Vector2(107, 110)
-collision_mask = 62
+collision_mask = 63
 motion_mode = 1
 script = ExtResource("1_i6vl1")
 metadata/_edit_group_ = true

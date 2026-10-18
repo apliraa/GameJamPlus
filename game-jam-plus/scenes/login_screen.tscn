@@ -110,7 +110,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-color = Color(0.41655222, 0.21232617, 0.1557846, 1)
+color = Color(0.41568628, 0.21176471, 0.15686275, 1)
 
 [node name="Online" type="Label" parent="ColorRect" unique_id=889454837]
 layout_mode = 1
@@ -149,7 +149,7 @@ offset_bottom = 153.0
 grow_horizontal = 2
 theme_override_fonts/font = ExtResource("3_dtwsp")
 theme_override_font_sizes/font_size = 120
-text = "LOGO MUITO FODA"
+text = "Imeos Online"
 horizontal_alignment = 1
 vertical_alignment = 1
 
@@ -254,7 +254,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-text = "  NickMuitoSafado"
+text = " RichardXD"
 label_settings = SubResource("LabelSettings_mhqwn")
 visible_characters = 0
 visible_ratio = 0.0
@@ -310,6 +310,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 text = "  ************"
+autowrap_trim_flags = 64
 visible_characters = 0
 visible_ratio = 0.0
 
@@ -336,7 +337,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_fonts/font = ExtResource("4_xqvf2")
-text = "Submit"
+text = "Login"
 
 [node name="Timer" type="Timer" parent="." unique_id=1684646616]
 

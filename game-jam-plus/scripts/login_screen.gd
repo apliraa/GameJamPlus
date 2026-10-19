@@ -43,5 +43,6 @@ func _on_timer_timeout() -> void:
 	
 func _on_fade_anim_animation_finished(anim_name: StringName) -> void:
 	Globals.killedEnemies = 0
+	
 	get_tree().change_scene_to_file("res://scenes/world.tscn")
 	pass # Replace with function body.

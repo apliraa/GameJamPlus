@@ -45,8 +45,11 @@ func set_event_active(event: Node, active: bool) -> void:
 	
 func disable_map() -> void:
 	var map := get_tree().current_scene.get_node_or_null("Map")
-	if map != null:
+	if map != null and Globals.diaDoisEvento == false:
 		map.hide()
+	elif(Globals.diaDoisEvento):
+		map.show()
+		
 	Globals.diaDoisEvento = true
 
 func disable_friend() -> void:

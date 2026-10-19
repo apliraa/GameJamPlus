@@ -18,6 +18,8 @@ func _ready() -> void:
 	logout_screen.hide()
 	
 	missionText.text = "Defeat: " + enemyType
+	
+	Globals.update_dialogue.connect(on_update_dialogue)
 
 func _process(_delta: float) -> void:
 	
@@ -34,3 +36,7 @@ func _process(_delta: float) -> void:
 		await get_tree().create_timer(1.0).timeout
 		logout_screen.show()	
 		
+func on_update_dialogue(dialogue):
+	$Friend/Dialogue.dialogueAsset = dialogue
+	$Friend/Dialogue/SpeechAnchor.default_dialogue = dialogue
+	print("aaaaa")

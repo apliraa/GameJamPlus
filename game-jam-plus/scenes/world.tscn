@@ -4,9 +4,7 @@
 [ext_resource type="Script" uid="uid://bvens2a46fdl6" path="res://scripts/world.gd" id="1_rwgxs"]
 [ext_resource type="PackedScene" uid="uid://ioxakgiwmphy" path="res://scenes/Scene 1.tscn" id="2_4wyf3"]
 [ext_resource type="Resource" uid="uid://bj80qbqanpei7" path="res://dialogues/day1.dialogue" id="4_4mrxx"]
-[ext_resource type="PackedScene" uid="uid://brnwmy3ij5rld" path="res://scenes/Npc.tscn" id="4_k0juu"]
 [ext_resource type="PackedScene" uid="uid://btd50jvwac3ko" path="res://scenes/friend.tscn" id="5_qfnet"]
-[ext_resource type="PackedScene" uid="uid://cnpykke82d2yd" path="res://scenes/goblin.tscn" id="7_4mrxx"]
 [ext_resource type="PackedScene" uid="uid://ucie2vw12luy" path="res://addons/hud.tscn" id="7_i7141"]
 [ext_resource type="Script" uid="uid://b8mycqjbf6iwi" path="res://scripts/event_manager.gd" id="9_7r4gi"]
 [ext_resource type="Script" uid="uid://blv5ffueggafa" path="res://scripts/ui/characterDialogue.gd" id="9_q5onr"]
@@ -144,30 +142,8 @@ script = ExtResource("1_rwgxs")
 
 [node name="Event Manager" type="Node" parent="." unique_id=921100291 node_paths=PackedStringArray("events", "playerDialogue")]
 script = ExtResource("9_7r4gi")
-events = [NodePath("Event 1"), NodePath("Event 2"), NodePath("Event 3")]
+events = [null, null, null]
 playerDialogue = NodePath("../mc/Dialogue")
-
-[node name="Event 1" type="Node2D" parent="Event Manager" unique_id=1539002553]
-modulate = Color(0.91027725, 0.5039882, 1.92523e-06, 1)
-
-[node name="Npc2" parent="Event Manager/Event 1" unique_id=1149682339 instance=ExtResource("4_k0juu")]
-position = Vector2(355, -401)
-radius_limit = 100.0
-
-[node name="Event 2" type="Node2D" parent="Event Manager" unique_id=297875046]
-
-[node name="Npc2" parent="Event Manager/Event 2" unique_id=1436659120 instance=ExtResource("4_k0juu")]
-self_modulate = Color(1, 0, 1, 1)
-position = Vector2(355, -401)
-radius_limit = 100.0
-
-[node name="Event 3" type="Node2D" parent="Event Manager" unique_id=826902445]
-modulate = Color(1.1166334e-05, 0.9427728, 0.76674986, 1)
-
-[node name="Npc2" parent="Event Manager/Event 3" unique_id=1890093231 instance=ExtResource("4_k0juu")]
-self_modulate = Color(1, 0, 1, 1)
-position = Vector2(355, -401)
-radius_limit = 100.0
 
 [node name="Fade" type="ColorRect" parent="." unique_id=388703339]
 visible = false
@@ -203,6 +179,9 @@ offset_top = -8.424
 offset_right = 1172.736
 offset_bottom = 631.152
 
+[node name="Logout" parent="HUD/CanvasLayer" parent_id_path=PackedInt32Array(1909278812, 1300723936) index="3" unique_id=607644776 node_paths=PackedStringArray("event_handler")]
+event_handler = NodePath("../../../Event Manager")
+
 [node name="mc" parent="." unique_id=1775706242 instance=ExtResource("1_nnsk1")]
 position = Vector2(517, -414)
 
@@ -223,22 +202,6 @@ libraries/ = SubResource("AnimationLibrary_fj7yv")
 autoplay = &"fadeLogoff"
 playback_auto_capture = false
 
-[node name="Npc" parent="." unique_id=523486800 instance=ExtResource("4_k0juu")]
-position = Vector2(697, -378)
-radius_limit = 100.0
-
-[node name="Npc2" parent="." unique_id=2071537878 instance=ExtResource("4_k0juu")]
-position = Vector2(355, -401)
-radius_limit = 100.0
-
-[node name="Npc3" parent="." unique_id=476473949 instance=ExtResource("4_k0juu")]
-position = Vector2(731, -716)
-radius_limit = 100.0
-
-[node name="Npc4" parent="." unique_id=1428913842 instance=ExtResource("4_k0juu")]
-position = Vector2(1004, -268)
-radius_limit = 100.0
-
 [node name="Friend" parent="." unique_id=34609045 instance=ExtResource("5_qfnet")]
 position = Vector2(662, -405)
 
@@ -256,9 +219,6 @@ default_dialogue = ExtResource("4_4mrxx")
 character_name = "TheFabulouz"
 default_nickname = "Lord"
 chat = NodePath("../../../HUD/CanvasLayer/Fake chat")
-
-[node name="Goblin" parent="." unique_id=1350644445 instance=ExtResource("7_4mrxx")]
-position = Vector2(510, 213)
 
 [editable path="HUD"]
 [editable path="mc"]

@@ -1,12 +1,11 @@
 ~ start
-friend: seeing how it is today
-friend: makes me think of when this game launched
-friend: there were so many people the servers used to get full every single day
-friend: and look at how it is now.
-friend: any day now, it will only be me and you lol
+theFabulouz: seeing how it is today
+theFabulouz: makes me think of when this game launched
+theFabulouz: there were so many people the servers used to get full every single day
+theFabulouz: and look at how it is now.
+theFabulouz: any day now, it will only be me and you lol
 wait: 4
-friend: see you tomorrow
-
+theFabulouz: see you tomorrow
 do EventManager.disable_friend()
 
 => END

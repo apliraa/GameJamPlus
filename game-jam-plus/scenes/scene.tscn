@@ -13,7 +13,7 @@ size = Vector2(3350, 273)
 [node name="mc" parent="." unique_id=1775706242 instance=ExtResource("1_3253y")]
 position = Vector2(-1201, -686)
 
-[node name="Camera2D" type="Camera2D" parent="mc" unique_id=573082837]
+[node name="Camera2D2" type="Camera2D" parent="mc" unique_id=573082837]
 zoom = Vector2(0.2, 0.2)
 metadata/_edit_lock_ = true
 

@@ -1,6 +1,6 @@
 extends Control
 
-
+@export var event_handler : EventManager
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	$".".hide()
@@ -13,7 +13,7 @@ func _process(delta: float) -> void:
 
 
 func _on_button_pressed() -> void:
-	EventManager._endDay()
+	event_handler._endDay()
 	#$"../../../AnimationPlayer".play("fadelogoff")
 	
 	#await get_tree().create_timer(5.0).timeout

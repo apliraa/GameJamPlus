@@ -15,9 +15,18 @@ func _process(delta: float) -> void:
 	
 func _startDay() -> void:
 	update_events(Globals.currentDay)
+	_set_friend_dialogue()
 	var chat: FakeChat = get_tree().get_first_node_in_group("fake_chat") as FakeChat
 	if chat != null:
 		chat._refresh_online_users()
+
+func _set_friend_dialogue() -> void:
+	var friend := get_tree().current_scene.get_node_or_null("Friend/Dialogue") as CharacterDialogue
+	if friend == null:
+		return
+	if Globals.currentDay == 1:
+		friend.dialogueAsset = load("res://dialogues/day2.dialogue")
+	
 
 func update_events(current_day_id: int) -> void:
 	for i in events.size():
@@ -34,6 +43,21 @@ func set_event_active(event: Node, active: bool) -> void:
 		event.visible = active
 		
 	
+func disable_map() -> void:
+	var map := get_tree().current_scene.get_node_or_null("Map")
+	if map != null:
+		map.hide()
+	Globals.diaDoisEvento = true
+
+func disable_friend() -> void:
+	var friend := get_tree().current_scene.get_node_or_null("Friend")
+	if friend != null:
+		friend.hide()
+		friend.set_physics_process(false)
+	
+	
+	
+
 func _endDay() -> void:
 	Globals.currentDay += 1
 	

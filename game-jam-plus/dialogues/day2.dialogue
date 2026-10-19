@@ -1,0 +1,24 @@
+~ start
+theFabulouz: Seems like there are even fewer people on today
+theFabulouz: I wonder how many of them are actually playing hahaha
+theFabulouz: I mean, a lot of people just leave their characters afk farming, y'know?
+theFabulouz: Or they might just be bots added by the devs
+theFabulouz: Who knows what's on the other side of the screen hahahaha
+wait: 4
+theFabulouz: I miss when this game had more people online
+theFabulouz: Felt like we could play all day long and never get bored
+theFabulouz: It felt more fun...
+theFabulouz: It felt more alive...
+theFabulouz: Felt like it would just be you and me, always...
+do EventManager.disable_map()
+wait: 3
+theFabulouz: I wanna go back...
+wait: 2
+do EventManager.disable_map()
+theFabulouz: But that's in the past hahahaha
+theFabulouz: It is what it is, right??
+theFabulouz: Think I'm gonna log off
+theFabulouz: See ya next time
+do EventManager.disable_friend()
+
+=> END

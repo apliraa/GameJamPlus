@@ -7,9 +7,6 @@ friend: any day now, it will only be me and you lol
 wait: 4
 friend: see you tomorrow
 
-=> END
-
-friend: Give it back.
-GIVE IT BACK.
+do EventManager.disable_friend()
 
 => END

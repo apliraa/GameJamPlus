@@ -42,16 +42,18 @@ func _ready() -> void:
 	damage_timer.wait_time = attack_cooldown
 
 func _physics_process(_delta: float) -> void:
-	check_player_distance()
-	match cur_state:
-		State.WANDER:
-			wander()
-			update_animations()
-		State.ATTACK:
-			attack()
-			update_animations()
+	if not Globals.diaDoisEvento:
+		check_player_distance()
+		match cur_state:
+			State.WANDER:
+				wander()
+				update_animations()
+			State.ATTACK:
+				attack()
+				update_animations()
 	
-	
+
+		
 	
 	move_and_slide()
 
@@ -110,6 +112,7 @@ func receive_damage(amount: int) -> void:
 	life = max(life - amount, 0)
 	play_hit_animation()
 	if life == 0:
+		Globals.killedEnemies +=1
 		die()
 
 func set_targeted(value: bool) -> void:

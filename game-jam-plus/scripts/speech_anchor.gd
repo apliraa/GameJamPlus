@@ -60,7 +60,8 @@ var _bbcode_regex: RegEx
 func _ready() -> void:
 	add_to_group("speech_anchors")  # lets other anchors find this character by name
 
-
+func _exit_tree() -> void:
+	clear()
 ## Starts a conversation from this character. Every line is shown by the
 ## character it belongs to (see character_name). If this character is already
 ## in a conversation, it is replaced.

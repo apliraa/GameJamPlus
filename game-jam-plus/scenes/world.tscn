@@ -139,9 +139,8 @@ _data = {
 &"fadeOut": SubResource("Animation_rus8k")
 }
 
-[node name="World" type="Node2D" unique_id=1127001669 node_paths=PackedStringArray("enemys")]
+[node name="World" type="Node2D" unique_id=1127001669]
 script = ExtResource("1_rwgxs")
-enemys = [NodePath("Goblin")]
 
 [node name="Event Manager" type="Node" parent="." unique_id=921100291 node_paths=PackedStringArray("events", "playerDialogue")]
 script = ExtResource("9_7r4gi")
@@ -245,7 +244,7 @@ position = Vector2(662, -405)
 
 [node name="Dialogue" parent="Friend" index="6" unique_id=1822750882]
 script = ExtResource("9_q5onr")
-nickname = "friend"
+nickname = "theFabulouz"
 dialogueAsset = ExtResource("4_4mrxx")
 curDialogue = "start"
 

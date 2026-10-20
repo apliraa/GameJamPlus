@@ -4,12 +4,60 @@
 [ext_resource type="Script" uid="uid://bvens2a46fdl6" path="res://scripts/world.gd" id="1_rwgxs"]
 [ext_resource type="PackedScene" uid="uid://ioxakgiwmphy" path="res://scenes/Scene 1.tscn" id="2_4wyf3"]
 [ext_resource type="Resource" uid="uid://bj80qbqanpei7" path="res://dialogues/day1.dialogue" id="4_4mrxx"]
+[ext_resource type="Script" uid="uid://ix53yhyhy7pf" path="res://scripts/ui/chat_day.gd" id="5_e3hyu"]
 [ext_resource type="PackedScene" uid="uid://btd50jvwac3ko" path="res://scenes/friend.tscn" id="5_qfnet"]
 [ext_resource type="PackedScene" uid="uid://ucie2vw12luy" path="res://addons/hud.tscn" id="7_i7141"]
 [ext_resource type="Script" uid="uid://b8mycqjbf6iwi" path="res://scripts/event_manager.gd" id="9_7r4gi"]
 [ext_resource type="Script" uid="uid://blv5ffueggafa" path="res://scripts/ui/characterDialogue.gd" id="9_q5onr"]
 [ext_resource type="Script" uid="uid://bl24wyvtoeawn" path="res://scripts/speech_anchor.gd" id="9_w7kh3"]
 [ext_resource type="PackedScene" uid="uid://rbonvwrh7gbn" path="res://scenes/SpeechBalloon.tscn" id="10_e3hyu"]
+
+[sub_resource type="Resource" id="Resource_q5onr"]
+script = ExtResource("5_e3hyu")
+online_players = 25
+messages = Array[String](["LFG dungeon, need tank and healer!", "WTS Iron Sword 500g", "anyone know where the blacksmith is?", "lol that boss one-shot me", "guild recruiting, lvl 20+, DM me", "server lag again...", "gg everyone", "WTB health potions, paying well", "who wants to trade?", "brb afk 5 min", "help! I'm stuck in the wall", "just got a legendary drop!!!", "is the event still going?", "LF1M for quest, 2 min", "nice armor bro"])
+metadata/_custom_type_script = "uid://ix53yhyhy7pf"
+
+[sub_resource type="Resource" id="Resource_5aqtf"]
+script = ExtResource("5_e3hyu")
+day = 2
+online_players = 35
+messages = Array[String](["whats going on?", "i won’t be back home", "wait for me", "the lights in the sky call me by my name", "ill join them  soon", "im scared", "Everyone is gone.", "Da"])
+metadata/_custom_type_script = "uid://ix53yhyhy7pf"
+
+[sub_resource type="Resource" id="Resource_j0a20"]
+script = ExtResource("5_e3hyu")
+day = 3
+online_players = 35
+messages = Array[String](["whats going on?", "i won’t be back home", "wait for me", "the lights in the sky call me by my name", "ill join them  soon", "im scared", "Everyone is gone."])
+metadata/_custom_type_script = "uid://ix53yhyhy7pf"
+
+[sub_resource type="Resource" id="Resource_vhaju"]
+script = ExtResource("5_e3hyu")
+day = 4
+online_players = 35
+messages = Array[String](["whats going on?", "i won’t be back home", "wait for me", "the lights in the sky call me by my name", "ill join them  soon", "im scared", "Everyone is gone.", "", ""])
+metadata/_custom_type_script = "uid://ix53yhyhy7pf"
+
+[sub_resource type="Resource" id="Resource_2nnsp"]
+script = ExtResource("5_e3hyu")
+day = 5
+online_players = 25
+messages = Array[String](["", ""])
+metadata/_custom_type_script = "uid://ix53yhyhy7pf"
+
+[sub_resource type="Resource" id="Resource_la7ch"]
+script = ExtResource("5_e3hyu")
+day = 6
+online_players = 20
+messages = Array[String](["whats going on?", "i won’t be back home", "wait for me", "the lights in the sky call me by my name", "ill join them  soon", "im scared", "Everyone is gone."])
+metadata/_custom_type_script = "uid://ix53yhyhy7pf"
+
+[sub_resource type="Resource" id="Resource_ylgo8"]
+script = ExtResource("5_e3hyu")
+day = 7
+online_players = 0
+metadata/_custom_type_script = "uid://ix53yhyhy7pf"
 
 [sub_resource type="Animation" id="Animation_bswci"]
 length = 2.0
@@ -167,6 +215,7 @@ offset_left = 60.0
 offset_top = -47.0
 offset_right = 60.0
 offset_bottom = -47.0
+days = Array[ExtResource("5_e3hyu")]([SubResource("Resource_q5onr"), SubResource("Resource_5aqtf"), SubResource("Resource_j0a20"), SubResource("Resource_vhaju"), SubResource("Resource_2nnsp"), SubResource("Resource_la7ch"), SubResource("Resource_ylgo8")])
 
 [node name="Missions" parent="HUD/CanvasLayer" parent_id_path=PackedInt32Array(1909278812, 1300723936) index="2" unique_id=901892109]
 anchors_preset = -1

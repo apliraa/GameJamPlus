@@ -8,17 +8,16 @@ func _ready() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-	if(animation != $Eyes.animation):
+	if (animation != $Eyes.animation ):
 		$Eyes.animation = animation
-		
-	if(animation != $Helm.animation):
+	if (animation != $Helm.animation ):
 		$Helm.animation = animation
-		
-	if(animation != $Plate.animation):
+	if (animation != $Plate.animation ):
 		$Plate.animation = animation
-	
-	if(animation != $Boots.animation):
+	if (animation != $Boots.animation ):
 		$Boots.animation = animation
+		
+	
 		
 func play_animations(target_animation : String):
 	animation = target_animation

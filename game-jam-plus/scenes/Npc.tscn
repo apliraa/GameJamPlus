@@ -95,6 +95,7 @@ atlas = ExtResource("2_v7pfm")
 region = Rect2(0, 96, 16, 32)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_fwras"]
+resource_local_to_scene = true
 animations = [{
 "frames": [{
 "duration": 1.0,
@@ -249,21 +250,21 @@ region = Rect2(32, 64, 16, 32)
 atlas = ExtResource("4_mgrbk")
 region = Rect2(48, 64, 16, 32)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_cji6f"]
-atlas = ExtResource("4_mgrbk")
-region = Rect2(0, 96, 16, 32)
-
 [sub_resource type="AtlasTexture" id="AtlasTexture_fgdlb"]
 atlas = ExtResource("4_mgrbk")
 region = Rect2(16, 96, 16, 32)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_547kf"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_cji6f"]
 atlas = ExtResource("4_mgrbk")
-region = Rect2(32, 96, 16, 32)
+region = Rect2(0, 96, 16, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_haas4"]
 atlas = ExtResource("4_mgrbk")
 region = Rect2(48, 96, 16, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_547kf"]
+atlas = ExtResource("4_mgrbk")
+region = Rect2(32, 96, 16, 32)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_yjwfh"]
 animations = [{
@@ -343,29 +344,33 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_cji6f")
-}, {
-"duration": 1.0,
 "texture": SubResource("AtlasTexture_fgdlb")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_547kf")
+"texture": SubResource("AtlasTexture_cji6f")
 }, {
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_haas4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_547kf")
 }],
 "loop": 1,
 "name": &"Walk R",
 "speed": 5.0
 }]
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_fwras"]
+atlas = ExtResource("5_6gqnu")
+region = Rect2(0, 0, 16, 32)
+
 [sub_resource type="AtlasTexture" id="AtlasTexture_xaram"]
 atlas = ExtResource("5_6gqnu")
 region = Rect2(64, 0, 16, 32)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_etyje"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_yjwfh"]
 atlas = ExtResource("5_6gqnu")
-region = Rect2(128, 0, 16, 32)
+region = Rect2(144, 0, 16, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_fpohj"]
 atlas = ExtResource("5_6gqnu")
@@ -403,21 +408,21 @@ region = Rect2(32, 0, 16, 32)
 atlas = ExtResource("5_6gqnu")
 region = Rect2(48, 0, 16, 32)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_p0j0e"]
-atlas = ExtResource("5_6gqnu")
-region = Rect2(128, 0, 16, 32)
-
 [sub_resource type="AtlasTexture" id="AtlasTexture_puwj8"]
 atlas = ExtResource("5_6gqnu")
 region = Rect2(144, 0, 16, 32)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_rieql"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_p0j0e"]
 atlas = ExtResource("5_6gqnu")
-region = Rect2(160, 0, 16, 32)
+region = Rect2(128, 0, 16, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_mvn31"]
 atlas = ExtResource("5_6gqnu")
 region = Rect2(176, 0, 16, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rieql"]
+atlas = ExtResource("5_6gqnu")
+region = Rect2(160, 0, 16, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_xj775"]
 atlas = ExtResource("5_6gqnu")
@@ -437,7 +442,10 @@ region = Rect2(240, 0, 16, 32)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_iac1k"]
 animations = [{
-"frames": [],
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fwras")
+}],
 "loop": 1,
 "name": &"Idle",
 "speed": 5.0
@@ -452,7 +460,7 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_etyje")
+"texture": SubResource("AtlasTexture_yjwfh")
 }],
 "loop": 1,
 "name": &"Idle L",
@@ -502,16 +510,16 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_p0j0e")
-}, {
-"duration": 1.0,
 "texture": SubResource("AtlasTexture_puwj8")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_rieql")
+"texture": SubResource("AtlasTexture_p0j0e")
 }, {
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_mvn31")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rieql")
 }],
 "loop": 1,
 "name": &"Walk L",
@@ -616,6 +624,7 @@ atlas = ExtResource("6_8o5xu")
 region = Rect2(240, 0, 16, 32)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_yo0io"]
+resource_local_to_scene = true
 animations = [{
 "frames": [{
 "duration": 1.0,
@@ -1165,13 +1174,14 @@ atlas = ExtResource("9_yjwfh")
 region = Rect2(240, 0, 16, 32)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_tl5bo"]
+resource_local_to_scene = true
 animations = [{
 "frames": [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_ucnw2")
 }],
 "loop": 1,
-"name": &"Idle ",
+"name": &"Idle",
 "speed": 5.0
 }, {
 "frames": [{
@@ -1717,6 +1727,7 @@ atlas = ExtResource("12_bm86k")
 region = Rect2(240, 0, 16, 32)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_alaga"]
+resource_local_to_scene = true
 animations = [{
 "frames": [{
 "duration": 1.0,
@@ -2017,56 +2028,48 @@ metadata/_edit_group_ = true
 
 [node name="Warrior" type="AnimatedSprite2D" parent="." unique_id=751120320]
 sprite_frames = SubResource("SpriteFrames_fwras")
-animation = &"Walk L"
+animation = &"Idle"
 autoplay = "Idle"
 script = ExtResource("3_qjk51")
 
 [node name="Eyes" type="AnimatedSprite2D" parent="Warrior" unique_id=528303384]
 sprite_frames = SubResource("SpriteFrames_yjwfh")
-animation = &"Walk B"
-autoplay = "Idle"
+animation = &"Walk R"
 
 [node name="Helm" type="AnimatedSprite2D" parent="Warrior" unique_id=466112276]
 sprite_frames = SubResource("SpriteFrames_iac1k")
-animation = &"Idle B"
-autoplay = "Idle"
+animation = &"Idle L"
 
 [node name="Plate" type="AnimatedSprite2D" parent="Warrior" unique_id=362928480]
 sprite_frames = SubResource("SpriteFrames_yo0io")
 animation = &"Idle"
-autoplay = "Idle"
 
 [node name="Boots" type="AnimatedSprite2D" parent="Warrior" unique_id=650345987]
 sprite_frames = SubResource("SpriteFrames_bm86k")
-animation = &"Idle R"
-autoplay = "Idle"
+animation = &"Idle"
 
 [node name="Mage" type="AnimatedSprite2D" parent="." unique_id=1672419134]
 sprite_frames = SubResource("SpriteFrames_fwras")
 animation = &"Idle"
-autoplay = "Idle"
 script = ExtResource("3_qjk51")
 
 [node name="Eyes" type="AnimatedSprite2D" parent="Mage" unique_id=1922089536]
 sprite_frames = SubResource("SpriteFrames_yjwfh")
-animation = &"Idle"
-autoplay = "Idle"
+animation = &"Walk R"
+frame_progress = 0.5697065
 
 [node name="Helm" type="AnimatedSprite2D" parent="Mage" unique_id=334182288]
 position = Vector2(0, -3)
 sprite_frames = SubResource("SpriteFrames_ev4kj")
 animation = &"Idle"
-autoplay = "Idle"
 
 [node name="Plate" type="AnimatedSprite2D" parent="Mage" unique_id=1697675469]
 sprite_frames = SubResource("SpriteFrames_tl5bo")
-animation = &"Idle "
-autoplay = "Idle "
+animation = &"Idle"
 
 [node name="Boots" type="AnimatedSprite2D" parent="Mage" unique_id=1962652210]
 sprite_frames = SubResource("SpriteFrames_2e0fd")
 animation = &"Idle"
-autoplay = "Idle"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1345548107]
 position = Vector2(0, -1.25)
@@ -2074,29 +2077,24 @@ shape = SubResource("RectangleShape2D_ev4kj")
 
 [node name="Thief" type="AnimatedSprite2D" parent="." unique_id=1884661025]
 sprite_frames = SubResource("SpriteFrames_fwras")
-animation = &"Idle L"
-autoplay = "Idle"
+animation = &"Idle"
 script = ExtResource("3_qjk51")
 
 [node name="Eyes" type="AnimatedSprite2D" parent="Thief" unique_id=1245821038]
 sprite_frames = SubResource("SpriteFrames_yjwfh")
-animation = &"Walk B"
-autoplay = "Idle"
+animation = &"Walk R"
 
 [node name="Helm" type="AnimatedSprite2D" parent="Thief" unique_id=1308528086]
 sprite_frames = SubResource("SpriteFrames_65c00")
 animation = &"Idle"
-autoplay = "Idle"
 
 [node name="Plate" type="AnimatedSprite2D" parent="Thief" unique_id=1756175203]
 sprite_frames = SubResource("SpriteFrames_alaga")
 animation = &"Idle"
-autoplay = "Idle"
 
 [node name="Boots" type="AnimatedSprite2D" parent="Thief" unique_id=346524596]
 sprite_frames = SubResource("SpriteFrames_07rus")
 animation = &"Idle"
-autoplay = "Idle"
 
 [node name="Timer" type="Timer" parent="." unique_id=620563410]
 autostart = true

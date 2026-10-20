@@ -13,13 +13,14 @@ var currentEnemys: int = 0
 func _ready() -> void:
 	enemysInScene = Globals.dayEnemies
 	$AnimationPlayer.play("fadeOut")
-	
+	print($Friend/Dialogue.dialogueAsset)
 	# Esconde diretamente o conteúdo que está dentro do CanvasLayer do Logout
 	logout_screen.hide()
 	
 	missionText.text = "Defeat: " + enemyType
-	
+
 	Globals.update_dialogue.connect(on_update_dialogue)
+	Globals.on_set_dialogue()
 
 func _process(_delta: float) -> void:
 	
@@ -39,4 +40,5 @@ func _process(_delta: float) -> void:
 func on_update_dialogue(dialogue):
 	$Friend/Dialogue.dialogueAsset = dialogue
 	$Friend/Dialogue/SpeechAnchor.default_dialogue = dialogue
-	print("aaaaa")
+	print(dialogue)
+	print("recebi")

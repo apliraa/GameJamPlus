@@ -65,3 +65,14 @@ func _endDay() -> void:
 	Globals.currentDay += 1
 	
 	
+func freeze_friend() -> void:
+		var friend := get_tree().current_scene.get_node_or_null("Friend")
+		var sprite = friend.get_node("Sprite2D")
+		if friend != null:
+			sprite.animation = "Idle"
+			friend.set_physics_process(false)
+				
+func unfreeze_friend() -> void:
+		var friend := get_tree().current_scene.get_node_or_null("Friend")
+		if friend != null:
+			friend.set_physics_process(true)

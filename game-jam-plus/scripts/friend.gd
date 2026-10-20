@@ -26,6 +26,8 @@ enum Actions {
 }
 var cur_action: Actions = Actions.WAIT
 
+var direction : Vector2
+
 var DAMAGE: int = 15
 var timer: float = 1.0
 var attack_cooldown: float = 1.0
@@ -250,10 +252,11 @@ func next_action():
 
 func update_animations() -> void:
 	# Memoriza a direção enquanto estiver andando
-	var direction = (velocity/SPEED)
+	direction = (velocity/SPEED)
 	if direction != Vector2.ZERO:
 		direction = direction.normalized()
 		last_direction = direction
+	
 	# Lógica quando está PARADO
 	if direction == Vector2.ZERO:
 		if last_direction.x > 0.1:

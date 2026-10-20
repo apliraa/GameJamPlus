@@ -249,21 +249,21 @@ region = Rect2(32, 64, 16, 32)
 atlas = ExtResource("5_t5krn")
 region = Rect2(48, 64, 16, 32)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_cji6f"]
-atlas = ExtResource("5_t5krn")
-region = Rect2(0, 96, 16, 32)
-
 [sub_resource type="AtlasTexture" id="AtlasTexture_fgdlb"]
 atlas = ExtResource("5_t5krn")
 region = Rect2(16, 96, 16, 32)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_547kf"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_cji6f"]
 atlas = ExtResource("5_t5krn")
-region = Rect2(32, 96, 16, 32)
+region = Rect2(0, 96, 16, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_haas4"]
 atlas = ExtResource("5_t5krn")
 region = Rect2(48, 96, 16, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_547kf"]
+atlas = ExtResource("5_t5krn")
+region = Rect2(32, 96, 16, 32)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_nv001"]
 animations = [{
@@ -343,16 +343,16 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_cji6f")
-}, {
-"duration": 1.0,
 "texture": SubResource("AtlasTexture_fgdlb")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_547kf")
+"texture": SubResource("AtlasTexture_cji6f")
 }, {
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_haas4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_547kf")
 }],
 "loop": 1,
 "name": &"Walk R",
@@ -917,14 +917,12 @@ radius = 265.45245
 [sub_resource type="CircleShape2D" id="CircleShape2D_mykxq"]
 radius = 32.01562
 
-[sub_resource type="Resource" id="Resource_w4v4f"]
-metadata/__load_path__ = "res://dialogues/test.dialogue"
-
 [node name="Friend" type="CharacterBody2D" unique_id=34609045]
 collision_layer = 32
 collision_mask = 15
 motion_mode = 1
 script = ExtResource("1_s8sfs")
+metadata/_edit_group_ = true
 
 [node name="Sprite2D" type="AnimatedSprite2D" parent="." unique_id=524399792]
 self_modulate = Color(0.8717754, 0.753371, 0.70872015, 1)
@@ -936,7 +934,7 @@ script = ExtResource("4_vjs8y")
 
 [node name="Eyes" type="AnimatedSprite2D" parent="Sprite2D" unique_id=221367229]
 sprite_frames = SubResource("SpriteFrames_nv001")
-animation = &"Idle"
+animation = &"Walk R"
 autoplay = "Idle"
 
 [node name="Helm" type="AnimatedSprite2D" parent="Sprite2D" unique_id=70297531]
@@ -958,9 +956,11 @@ animation = &"Idle"
 autoplay = "Idle"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=330301075]
+visible = false
 shape = SubResource("CircleShape2D_bmgde")
 
 [node name="EnemyArea" type="Area2D" parent="." unique_id=1058022157]
+visible = false
 collision_layer = 2
 collision_mask = 4
 
@@ -968,6 +968,7 @@ collision_mask = 4
 shape = SubResource("CircleShape2D_s8sfs")
 
 [node name="DamageArea" type="Area2D" parent="." unique_id=124059614 groups=["Friend"]]
+visible = false
 collision_layer = 32
 collision_mask = 4
 
@@ -981,12 +982,8 @@ one_shot = true
 
 [node name="Dialogue" type="Node2D" parent="." unique_id=1822750882]
 
-[node name="SpeechAnchor" type="Marker2D" parent="Dialogue" unique_id=1981211982 node_paths=PackedStringArray("chat")]
+[node name="SpeechAnchor" type="Marker2D" parent="Dialogue" unique_id=1981211982]
 position = Vector2(1, -85)
-default_dialogue = SubResource("Resource_w4v4f")
-character_name = "friend"
-default_nickname = "TheFabulouz"
-chat = NodePath("")
 
 [connection signal="body_entered" from="DamageArea" to="." method="_on_damage_area_body_entered"]
 [connection signal="body_exited" from="DamageArea" to="." method="_on_damage_area_body_exited"]

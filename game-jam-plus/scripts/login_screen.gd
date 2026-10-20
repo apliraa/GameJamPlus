@@ -5,6 +5,7 @@ extends Control
 @onready var online = $ColorRect/Online
 var ONLINE_PLAYERS: String = Globals.onlinePlayers
 
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	ONLINE_PLAYERS = Globals.onlinePlayers
@@ -43,6 +44,5 @@ func _on_timer_timeout() -> void:
 	
 func _on_fade_anim_animation_finished(anim_name: StringName) -> void:
 	Globals.killedEnemies = 0
-	
 	get_tree().change_scene_to_file("res://scenes/world.tscn")
 	pass # Replace with function body.

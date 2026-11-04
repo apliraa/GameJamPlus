@@ -4,10 +4,14 @@ extends Node
 @export var playerDialogue: CharacterDialogue
 var chat: FakeChat
 
+signal set_day
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	await get_tree().process_frame
 	chat = get_tree().get_first_node_in_group("fake_chat") as FakeChat
+	
+	set_day.connect(Globals.on_set_day)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
@@ -63,6 +67,7 @@ func disable_friend() -> void:
 
 func _endDay() -> void:
 	Globals.currentDay += 1
+	set_day.emit()
 	
 	
 func freeze_friend() -> void:

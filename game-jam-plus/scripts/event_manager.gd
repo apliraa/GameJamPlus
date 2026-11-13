@@ -1,10 +1,10 @@
 extends Node
 
-@export var events: Array[Node]
-@export var playerDialogue: CharacterDialogue
+@export var events: Array #Os indíces desse array representam os dias dos eventos e dentro desses indices devem estar arrays com os respectivos eventos.
 var chat: FakeChat
 
 signal set_day
+signal set_events(scene: PackedScene)
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -19,42 +19,43 @@ func _process(delta: float) -> void:
 	
 func _startDay() -> void:
 	update_events(Globals.currentDay)
-	_set_friend_dialogue()
 	var chat: FakeChat = get_tree().get_first_node_in_group("fake_chat") as FakeChat
 	if chat != null:
 		chat._refresh_online_users()
 
-func _set_friend_dialogue() -> void:
+func _change_friend_dialogue(Dialogue) -> void:
 	var friend := get_tree().current_scene.get_node_or_null("Friend/Dialogue") as CharacterDialogue
 	if friend == null:
 		return
-	if Globals.currentDay == 1:
-		friend.dialogueAsset = load("res://dialogues/day2.dialogue")
-	
-
-func update_events(current_day_id: int) -> void:
-	for i in events.size():
-		set_event_active(events[i], i == current_day_id)
-
-func set_event_active(event: Node, active: bool) -> void:
-	if active:
-		event.process_mode = Node.PROCESS_MODE_INHERIT
 	else:
-		event.process_mode = Node.PROCESS_MODE_DISABLED
+		friend.dialogueAsset = Dialogue
 	
-	# Hide it too, if it's something visible (Node2D, Control, etc.)
-	if event is CanvasItem:
-		event.visible = active
+
+func update_events(Current_day) -> void:
+	var map := get_tree().current_scene.get_node_or_null("Map")
+	
+	if events[Current_day] == null:
+		pass
+	else:
+		for i in events[Current_day]:
+			if i != null:
+				set_events.emit(i)
+			else:
+				break
 		
 	
 func disable_map() -> void:
 	var map := get_tree().current_scene.get_node_or_null("Map")
-	if map != null and Globals.diaDoisEvento == false:
+	if map != null:
 		map.hide()
-	elif(Globals.diaDoisEvento):
+
+
+func able_map () -> void:
+	var map := get_tree().current_scene.get_node_or_null("Map")
+	if map != null:
 		map.show()
 		
-	Globals.diaDoisEvento = true
+
 
 func disable_friend() -> void:
 	var friend := get_tree().current_scene.get_node_or_null("Friend")
@@ -81,3 +82,13 @@ func unfreeze_friend() -> void:
 		var friend := get_tree().current_scene.get_node_or_null("Friend")
 		if friend != null:
 			friend.set_physics_process(true)
+			
+func freeze_player() -> void:
+	var player := get_tree().current_scene.get_node_or_null("mc")
+	if player != null:
+		player.set_physics_process(false)
+		
+func unfreeze_player() -> void:
+	var player := get_tree().current_scene.get_node_or_null("mc")
+	if player != null:
+		player.set_physics_process(true)

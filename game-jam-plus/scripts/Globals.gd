@@ -14,6 +14,7 @@ var actualDialogue : DialogueResource = load("res://dialogues/day1.dialogue")
 
 func _ready() -> void:
 	if (currentDay == 0):
+		EventManager._startDay()
 		dayEnemies = 3
 		onlinePlayers = "5000"
 	
@@ -25,6 +26,7 @@ func _physics_process(delta: float) -> void:
 		
 	
 func on_set_day():
+	EventManager._startDay()
 	if currentDay == 1:
 		print("aaaaa")
 		actualDialogue = load("res://dialogues/day2.dialogue")

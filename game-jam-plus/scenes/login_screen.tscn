@@ -1,8 +1,8 @@
 [gd_scene format=3 uid="uid://rhs4kiisomag"]
 
-[ext_resource type="Script" uid="uid://d0scd78mwlakd" path="res://scripts/login_screen.gd" id="1_mhqwn"]
-[ext_resource type="Texture2D" uid="uid://pkuxp4vreimm" path="res://assets/7d078c01ae2c74609b93d3689860c62f.jpg" id="2_kcwbp"]
-[ext_resource type="FontFile" uid="uid://bqb1qyg5od2x2" path="res://assets/Vyaz Pixel.ttf" id="3_dtwsp"]
+[ext_resource type="Script" uid="uid://d0scd78mwlakd" path="res://scripts/ui/login_screen.gd" id="1_mhqwn"]
+[ext_resource type="Texture2D" uid="uid://pkuxp4vreimm" path="res://assets/sprites/map_spr/7d078c01ae2c74609b93d3689860c62f.jpg" id="2_kcwbp"]
+[ext_resource type="FontFile" uid="uid://bqb1qyg5od2x2" path="res://assets/fonts/Vyaz Pixel.ttf" id="3_dtwsp"]
 [ext_resource type="FontFile" uid="uid://dldoaqsjq31cp" path="res://assets/fonts/runescape_uf.ttf" id="4_xqvf2"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_mhqwn"]

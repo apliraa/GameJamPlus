@@ -1,8 +1,8 @@
 [gd_scene format=3 uid="uid://blvx2ftn6ycqd"]
 
-[ext_resource type="Script" uid="uid://5b3w40kwakl3" path="res://addons/dialogue_manager/example_balloon/ExampleBalloon.cs" id="1_36de5"]
+[ext_resource type="Script" path="res://addons/dialogue_manager/example_balloon/ExampleBalloon.cs" id="1_36de5"]
 [ext_resource type="PackedScene" uid="uid://c3qmxhslp0dl7" path="res://addons/dialogue_manager/nodes/dialogue_label/DialogueLabel.tscn" id="2_a8ve6"]
-[ext_resource type="Script" uid="uid://bf0gf4upyxj5l" path="res://addons/dialogue_manager/nodes/responses_menu/DialogueResponsesMenu.cs" id="3_72ixx"]
+[ext_resource type="Script" path="res://addons/dialogue_manager/nodes/responses_menu/DialogueResponsesMenu.cs" id="3_72ixx"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_spyqn"]
 content_margin_left = 20.0

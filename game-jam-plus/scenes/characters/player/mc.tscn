@@ -546,7 +546,7 @@ animations = [{
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_f3fyu"]
 atlas = ExtResource("7_4rxjt")
-region = Rect2(32, 0, 16, 32)
+region = Rect2(0, 0, 16, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_5yr8g"]
 atlas = ExtResource("7_4rxjt")
@@ -974,12 +974,12 @@ autoplay = "Idle"
 
 [node name="Helm" type="AnimatedSprite2D" parent="Sprite2D" unique_id=426581193]
 sprite_frames = SubResource("SpriteFrames_tl5bo")
-animation = &"Idle L"
+animation = &"Walk B"
 autoplay = "Idle"
 
 [node name="Plate" type="AnimatedSprite2D" parent="Sprite2D" unique_id=111380822]
 sprite_frames = SubResource("SpriteFrames_65c00")
-animation = &"Idle R"
+animation = &"Idle B"
 autoplay = "Idle"
 
 [node name="Boots" type="AnimatedSprite2D" parent="Sprite2D" unique_id=630545090]

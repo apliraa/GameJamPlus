@@ -1,0 +1,7 @@
+[gd_scene format=3 uid="uid://i8dbthb5i2vq"]
+
+[ext_resource type="Script" uid="uid://b8mycqjbf6iwi" path="res://scripts/event_manager.gd" id="1_hi7ny"]
+
+[node name="event_manager" type="Node" unique_id=561956336]
+script = ExtResource("1_hi7ny")
+events = [[null], [null], null, [null]]

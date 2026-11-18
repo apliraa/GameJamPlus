@@ -188,11 +188,6 @@ _data = {
 [node name="World" type="Node2D" unique_id=1127001669]
 script = ExtResource("1_rwgxs")
 
-[node name="Event Manager" type="Node" parent="." unique_id=921100291 node_paths=PackedStringArray("events", "playerDialogue")]
-script = ExtResource("9_7r4gi")
-events = [null, null, null]
-playerDialogue = NodePath("../mc/Dialogue")
-
 [node name="Fade" type="ColorRect" parent="." unique_id=388703339]
 visible = false
 offset_left = -106.0
@@ -229,7 +224,7 @@ offset_right = 1172.736
 offset_bottom = 631.152
 
 [node name="Logout" parent="HUD/CanvasLayer" parent_id_path=PackedInt32Array(1909278812, 1300723936) index="3" unique_id=607644776 node_paths=PackedStringArray("event_handler")]
-event_handler = NodePath("../../../Event Manager")
+event_handler = NodePath("")
 
 [node name="mc" parent="." unique_id=1775706242 instance=ExtResource("1_nnsk1")]
 position = Vector2(517, -414)

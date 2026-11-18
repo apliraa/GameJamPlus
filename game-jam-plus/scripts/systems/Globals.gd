@@ -8,38 +8,30 @@ var dayEnemies : int
 var onlinePlayers: String
 var killedEnemies: int = 0
 var diaDoisEvento: bool = false
-signal update_dialogue(new_dialogue)
+var actualDialogue : DialogueResource = load("res://dialogues/day1.dialogue")
 
 
 
 func _ready() -> void:
 	if (currentDay == 0):
+		EventManager._startDay()
 		dayEnemies = 3
 		onlinePlayers = "5000"
-	elif currentDay == 1:
-		dayEnemies = 8
 	
 		
 		
 	
 func _physics_process(delta: float) -> void:
-	if currentDay == 0:
+	pass
 		
-		onlinePlayers = "5000"
-	elif (currentDay == 1):
-		onlinePlayers = "4300"
-	elif(currentDay ==2 ):
-		get_tree().quit()
-		
-
-
-func on_set_dialogue():
-	if (currentDay == 0):
-		dayEnemies = 3
-	elif currentDay == 1:
-		var dialogue: DialogueResource = load("res://dialogues/day2.dialogue")
-		update_dialogue.emit.call_deferred(dialogue)
+	
+func on_set_day():
+	EventManager._startDay()
+	if currentDay == 1:
+		print("aaaaa")
+		actualDialogue = load("res://dialogues/day2.dialogue")
 		dayEnemies = 8
+		onlinePlayers = "4300"
 	elif(currentDay == 2):
-		pass
+		get_tree().quit()
 		

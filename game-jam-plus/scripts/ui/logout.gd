@@ -13,7 +13,7 @@ func _process(delta: float) -> void:
 
 
 func _on_button_pressed() -> void:
-	event_handler._endDay()
+	EventManager._endDay()
 	#$"../../../AnimationPlayer".play("fadelogoff")
 	
 	#await get_tree().create_timer(5.0).timeout
